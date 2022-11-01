@@ -1,5 +1,24 @@
 @import "../../index.scss";
 
+.stack1Comp {
+  @include flex(flex-start, center, row, 0.5em);
+  width: max-content;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .skill_icon_comp {
+    width: 25px;
+    height: 25px;
+    color: var(--rock-blue);
+  }
+
+  .skill_name {
+    width: max-content;
+    font-size: var(--ft-lg);
+    color: var(--rock-blue);
+  }
+}
+
 .about {
   width: 80%;
   height: max-content !important;
@@ -91,31 +110,6 @@
       margin-top: 20px;
     }
 
-    .stack1Comp {
-      justify-content: center;
-      align-items: center;
-      margin: 10px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5em;
-
-      .skill_icon_comp {
-        width: 30px;
-        height: 30px;
-        margin: 0 auto;
-        color: var(--rock-blue);
-      }
-
-      .skill_name {
-        display: flex;
-        width: 130px;
-        align-items: center;
-        font-size: 20px;
-        color: var(--rock-blue);
-      }
-    }
-
     .stack_arrow {
       color: var(--ocean-blue);
       font-size: var(--ft-sm);
@@ -124,11 +118,81 @@
   }
 }
 
-.observerAPI {
-  opacity: 0;
-  transform: translateY(100px);
+.navigation-index {
+  width: 50px;
+  height: 50px;
+  padding: 10px 0;
+  font-size: var(--ft-xtra);
+  color: var(--rock-blue);
+  font-weight: bold;
+  background: none;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+  border: none;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    left: 50%;
+    bottom: -30%;
+    transform: translate(-50%, 0);
+    font-size: 10px;
+  }
 }
 
-.observerSeen {
-  transform: translateY(0px);
+.navigation-index:hover {
+  color: var(--rock-blue);
 }
+
+.navigation_btn {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  z-index: 100;
+  width: 250px;
+  @include flex(space-between, center, row, 1em);
+}
+
+.nav-index1 {
+  &::after {
+    content: "About Me";
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover:after {
+    color: var(--orange);
+  }
+}
+
+.nav-index2 {
+  &::after {
+    content: "My Work";
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover:after {
+    color: var(--orange);
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+.nav-index3 {
+  &::after {
+    content: "Contact Me";
+  }
+
+  &:hover:after {
+    color: var(--orange);
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+// .observerAPI {
+//   opacity: 0;
+//   transform: translateY(100px);
+// }
+
+// .observerSeen {
+//   transform: translateY(0px);
+// }

@@ -1,59 +1,55 @@
 @import "../../index.scss";
 
-.contact_section {
-  width: 80%;
-  height: max-content !important;
-  padding: var(--padding);
-  margin: 100px auto 0 auto;
-  position: relative;
+// .contact_section {
+//   width: 80%;
+//   height: max-content !important;
+//   padding: var(--padding);
+//   margin: 100px auto 0 auto;
+//   position: relative;
 
-  .title {
-    .first_title,
-    .big_title {
-      @include flex(center, center, row, 5px);
-      width: 100%;
-    }
+//   .title {
+//     .first_title,
+//     .big_title {
+//       @include flex(center, center, row, 5px);
+//       width: 100%;
+//     }
 
-    .first_title {
-      font-family: var(--mono-font);
-      color: var(--ocean-blue);
-      margin-bottom: 20px;
-    }
+//     .first_title {
+//       font-family: var(--mono-font);
+//       color: var(--ocean-blue);
+//       margin-bottom: 20px;
+//     }
 
-    .big_title {
-      color: var(--rock-blue);
-      font-size: 50px;
-      font-weight: bold;
-    }
-  }
+//     .big_title {
+//       color: var(--rock-blue);
+//       font-size: 50px;
+//       font-weight: bold;
+//     }
+//   }
 
-  .message {
-    text-align: center;
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 1em;
-    color: var(--regent-gray);
-  }
+//   .message {
+//     text-align: center;
+//     width: 50%;
+//     margin: 0 auto;
+//     margin-top: 1em;
+//     color: var(--regent-gray);
+//   }
 
-  .Emailme {
-    margin-top: 4em;
-    text-align: center;
+//   .Emailme {
+//     margin-top: 4em;
+//     text-align: center;
 
-    .email {
-      @include btnresetoutline;
-    }
-  }
-}
+//     .email {
+//       @include btnresetoutline;
+//     }
+//   }
+// }
 
 .copyright {
   text-align: center;
   font-family: var(--mono-font);
   color: var(--regent-gray);
   font-size: var(--ft-sm);
-}
-
-.social_networks {
-  display: none;
 }
 
 .scrollup {
@@ -68,5 +64,38 @@
     color: var(--ocean-blue);
     position: absolute;
     right: 0;
+  }
+}
+
+// ****new
+
+.my_contact_section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+
+  .contact_me {
+    font-size: var(--ft-2xtra);
+    color: var(--rock-blue);
+    border: solid 1px rgba(255, 255, 255, 0.219);
+    padding: 1em;
+    text-align: center;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      outline: solid 1px white;
+      outline-offset: 2px;
+    }
+  }
+
+  .message {
+    width: inherit;
+    color: var(--rock-blue);
+    font-size: var(--ft-lg);
+    padding: 1em;
   }
 }

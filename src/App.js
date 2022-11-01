@@ -18,15 +18,7 @@ function App() {
 
   return (
     <div className="Main">
-      <Navbar />
       <Greet />
-      <Sdx />
-      <Network />
-      <div className="observer">
-        <About className="target" />
-        <Projects className="target" />
-        <Contact className="target" />
-      </div>
     </div>
   );
 }

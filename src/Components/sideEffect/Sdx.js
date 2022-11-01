@@ -23,7 +23,7 @@ const Sdx = () => {
 
   return (
     <>
-      <div className="sdx">
+      <div className="sdx" data-testid="sdx-1">
         <img
           src={icon1}
           className="img_prlx"

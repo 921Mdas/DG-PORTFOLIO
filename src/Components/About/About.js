@@ -16,9 +16,9 @@ import { AiOutlineHtml5 } from "react-icons/ai";
 import { TbBrandPython } from "react-icons/tb";
 import { HiOutlineDeviceMobile } from "react-icons/hi";
 import { SiDjango } from "react-icons/si";
-import deo from "../../assets/Deo.jpeg";
 import Skill from "./Skill";
-import { OBSERVERAPI } from "../../helper";
+import deo from "../../assets/Deo.jpeg";
+// import { OBSERVERAPI } from "../../helper";
 
 const About = () => {
   const [pos, setPos] = useState(0);
@@ -29,7 +29,7 @@ const About = () => {
   const target = useRef(null);
   const [isVisible, stateChange] = useState(false);
 
-  OBSERVERAPI(target, stateChange);
+  // OBSERVERAPI(target, stateChange);
 
   const classChanger = isVisible ? "" : "observerAPI";
 
