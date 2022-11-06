@@ -13,6 +13,7 @@
     "cannon-es": "^0.20.0",
     "gsap": "^3.11.2",
     "leva": "^0.9.31",
+    "r3f-perf": "^6.5.0",
     "react": "^18.2.0",
     "react-awesome-reveal": "^4.0.1",
     "react-dom": "^18.2.0",

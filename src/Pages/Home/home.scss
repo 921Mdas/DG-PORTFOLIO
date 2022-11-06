@@ -7,6 +7,29 @@
   left: 0;
 }
 
+.page1 {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  // left: 0;
+  // top: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.page2 {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  // left: 0;
+  // top: 0;
+  z-index: 3;
+  pointer-events: none;
+  // border: solid 3px red;
+}
+
 .portfolio {
   overflow: hidden;
   position: relative;
@@ -18,7 +41,7 @@
     width: 300px;
     height: 550px;
     position: absolute;
-    left: 10%;
+    left: 0%;
     top: 15%;
     perspective: 100px;
     outline: solid 1px rgba(255, 255, 255, 0.205);

@@ -1,12 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import Navbar from "./Components/Navbar/Navbar";
-import Greet from "./Components/Greet/Greet";
-import Network from "./Components/Network/Network";
-import Sdx from "./Components/sideEffect/Sdx";
-import About from "./Components/About/About";
-import Projects from "./Components/Projects/Projects";
-import Contact from "./Components/Contact/Contact";
+import Greet from "./Pages/Home/Home";
 
 function App() {
   const [pos, setPos] = useState(0);
