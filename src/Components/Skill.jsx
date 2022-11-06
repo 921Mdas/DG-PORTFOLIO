@@ -1,7 +1,3 @@
-import React from "react";
-import "./about.scss";
-import { BiRightArrow } from "react-icons/bi";
-
 const Skill = ({ Icon, skilltitle }) => {
   return (
     <div className="stack1 stack1Comp">

@@ -10,6 +10,12 @@
   margin: 0;
 }
 
+body,
+html,
+#root {
+  background: var(--glow-blue);
+}
+
 html {
   scroll-behavior: smooth;
 }
