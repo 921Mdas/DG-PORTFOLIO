@@ -37,88 +37,91 @@ import { Scrambler } from "../Helper/helper";
 
 const IntroMenu = () => {
   return (
-    <div className="Presentation ">
-      <div className="presentation_name section1 section">
-        <div className="presentation_title">
-          <Scrambler
-            phrases={["LOADING...", "I'M", "DEO MADINGU"]}
-            speed={50}
-            pauseTime={300}
-          >
-            DEO MADINGU
-          </Scrambler>
-          <p>- Full-stack developer -</p>
-        </div>
-      </div>
-
-      <div className="presentation_picture section2 section">
-        <br /> Explorer of new technologies.
-        <br />
-        <br /> Creator, tester, lover of clean code.
-        <div className="presentation_details">
-          <p>
-            {" "}
-            <span>
-              <AiFillTrophy />
-            </span>{" "}
-            5 Full-stack projects
-          </p>
-          <p>
-            {" "}
-            <span>
-              <AiFillTrophy />
-            </span>{" "}
-            Freelancer
-          </p>
-          <p>
-            {" "}
-            <span>
-              <AiFillTrophy />
-            </span>{" "}
-            Bootcamp graduate 3.8 GPA
-          </p>
-        </div>
-      </div>
-
-      <div className="presentation_message section3 section">LET'S CONNECT</div>
-
-      <div className="presentation_social section4 section">
-        <div className="presentation_social_icon">
-          <div className="social">
-            <a
-              href="https://www.linkedin.com/in/deo-m-5b873253/"
-              target="_blank"
-              rel="noreferrer"
-              data-content="Linkedin"
-            >
-              <GrLinkedinOption />
-            </a>
-          </div>
-          <div className="social">
-            <a
-              href="https://github.com/921Mdas/"
-              target="_blank"
-              rel="noreferrer"
-              data-content="Github"
-            >
-              <FaGithubSquare />
-            </a>
-          </div>
-          <div className="social">
-            <a
-              className="soc_link"
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noreferrer"
-              data-content="Instagram"
-            >
-              <AiFillInstagram />
-            </a>
-          </div>
-        </div>
-      </div>
+    <div>
+      <div className="statement">I BUILD THINGS FOR THE WEB</div>
     </div>
   );
 };
 
 export default IntroMenu;
+
+// <div className="Presentation ">
+//   <div className="presentation_name section1 section">
+//     <div className="presentation_title">
+//       <Scrambler
+//         phrases={["LOADING...", "I'M", "DEO MADINGU"]}
+//         speed={50}
+//         pauseTime={300}
+//       >
+//         DEO MADINGU
+//       </Scrambler>
+//       <p>- Full-stack developer -</p>
+//     </div>
+//   </div>
+
+//   <div className="presentation_picture section2 section">
+//     <br /> Explorer of new technologies.
+//     <br />
+//     <br /> Creator, tester, lover of clean code.
+//     <div className="presentation_details">
+//       <p>
+//         {" "}
+//         <span>
+//           <AiFillTrophy />
+//         </span>{" "}
+//         5 Full-stack projects
+//       </p>
+//       <p>
+//         {" "}
+//         <span>
+//           <AiFillTrophy />
+//         </span>{" "}
+//         Freelancer
+//       </p>
+//       <p>
+//         {" "}
+//         <span>
+//           <AiFillTrophy />
+//         </span>{" "}
+//         Bootcamp graduate 3.8 GPA
+//       </p>
+//     </div>
+//   </div>
+
+//   <div className="presentation_message section3 section">LET'S CONNECT</div>
+
+//   <div className="presentation_social section4 section">
+//     <div className="presentation_social_icon">
+//       <div className="social">
+//         <a
+//           href="https://www.linkedin.com/in/deo-m-5b873253/"
+//           target="_blank"
+//           rel="noreferrer"
+//           data-content="Linkedin"
+//         >
+//           <GrLinkedinOption />
+//         </a>
+//       </div>
+//       <div className="social">
+//         <a
+//           href="https://github.com/921Mdas/"
+//           target="_blank"
+//           rel="noreferrer"
+//           data-content="Github"
+//         >
+//           <FaGithubSquare />
+//         </a>
+//       </div>
+//       <div className="social">
+//         <a
+//           className="soc_link"
+//           href="https://www.instagram.com/"
+//           target="_blank"
+//           rel="noreferrer"
+//           data-content="Instagram"
+//         >
+//           <AiFillInstagram />
+//         </a>
+//       </div>
+//     </div>
+//   </div>

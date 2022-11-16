@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Component, useState } from "react";
+import React, { useEffect, useRef, Component, useState, Suspense } from "react";
 import ThreeJS from "../ThreeJS/three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useHelper } from "@react-three/drei";
@@ -67,6 +67,7 @@ import Contact from "../../Components/Contact";
 
 // helper functions
 import { MovePagePos, MovePageNeg } from "../../Helper/helper";
+import { Scrambler } from "../../Helper/helper";
 
 const Main = () => {
   const [showMenu, setShowMenu] = useState(true);
@@ -107,34 +108,81 @@ const Main = () => {
     handleContact();
   };
 
+  // start here
+
   return (
-    <div className="portfolio">
-      <Nav
-        navigateHome={navigateHome}
-        navigateProject={navigateProject}
-        navigateContact={navigateContact}
-      />
-      <div className="page1" style={{ left: `10%` }} ref={page1}>
+    <>
+      <div className="portfolio">
+        <div className="logo">
+          <h3>deomadingu</h3>
+          <h6>SOFTWARE DEVELOPER</h6>
+        </div>
+
+        <Nav
+          navigateHome={navigateHome}
+          navigateProject={navigateProject}
+          navigateContact={navigateContact}
+        />
+
+        <div className="headline_text">
+          <div className="headline_top subheadline">
+            <Scrambler
+              phrases={["I TEST", "I DEBUG", "I BUILD"]}
+              className="scrambler"
+            />
+          </div>
+
+          <div className="headline subheadline">
+            <Scrambler
+              phrases={["FRONT END", "BACK END", "QUALITY"]}
+              className="scrambler"
+            />
+          </div>
+
+          <div className="headline_bottom subheadline">
+            WEB <br /> APPS
+          </div>
+        </div>
+
+        <div className="introduction">
+          <div className="intro_text">
+            <h3 className="intro_text_title">Who Am I?</h3>
+            <p className="intro_text_paragrah">
+              I'm a software developer based out of Toronto. I enjoy learning
+              and combining creative and well crafted logic to achieve unique
+              results. <br /> <br /> I work and contribute to front-end and
+              back-end processes and believe in treating testing code as good as
+              development code for better results. <br /> <br /> My background
+              in client-facing roles allowed me to develop bilingual
+              communication proficiency and client-focused skills that i can use
+              in any team setting.
+            </p>
+          </div>
+        </div>
+
+        {/* <div className="page1" ref={page1}>
         <IntroMenu />
-      </div>
+      </div> */}
 
-      <div
-        className="landing_page page2"
-        style={{ left: "110%" }}
-        ref={page2}
-        id="nav"
-      >
-        <Projects />
-      </div>
+        {/* <Projects /> */}
 
-      <div className="canvas">
-        <ThreeJS
-          handleWork={handleMyWork}
-          handleAbout={handleAbout}
-          handleContact={handleContact}
-        />{" "}
-      </div>
+        {/* <Projects />
 
+      <div className="landing_page page2" ref={page2} id="nav"></div> */}
+
+        {/* <div className="points">
+        <div className="point point-0">
+          <div className="label">1</div>
+          <div className="text">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
+            provident perferendis iste voluptates assumenda repellat libero
+            blanditiis quaerat! Molestias facilis veritatis nemo minus mollitia
+            a impedit, repellendus aperiam ipsum cumque.
+          </div>
+        </div>
+      </div> */}
+
+        {/* 
       {showMenu ? (
         <div className="hovering">
           <GiHamburgerMenu className="hovering_class" />
@@ -151,15 +199,20 @@ const Main = () => {
         <Skills />
       </div>
 
-      <div
-        className="landing_page page3"
-        style={{ left: "210%" }}
-        ref={page3}
-        id="nav"
-      >
+      <div className="page3" ref={page3} id="nav">
         <Contact />
+      </div> */}
       </div>
-    </div>
+      <div className="canvas">
+        <Suspense>
+          <ThreeJS
+            handleWork={handleMyWork}
+            handleAbout={handleAbout}
+            handleContact={handleContact}
+          />{" "}
+        </Suspense>
+      </div>
+    </>
   );
 };
 

@@ -120,6 +120,7 @@ const fragmentShader = `
 
 function PlaneShader() {
   const planeRef = useRef();
+  const shaderMat = useRef();
 
   const { wave } = useControls("wave", {
     wave: {
@@ -133,13 +134,35 @@ function PlaneShader() {
     },
   });
 
-  const uniforms = useMemo(() => ({
-    uElevation: { value: wave },
-    uElevationOpposite: { value: new THREE.Vector2(1, 0.5) },
-    uTime: { value: 0 },
-    uDepthColor: { value: new THREE.Color("#1F51FF") },
-    uSurfaceColor: { value: new THREE.Color("#1E51EE") },
-  }));
+  const { depth, surface } = useControls("wavecolors", {
+    depth: {
+      value: "#1F51FF",
+      onChange: v => {
+        uniforms.uDepthColor.value = new THREE.Color(v);
+      },
+    },
+    surface: {
+      value: "#1E51EE",
+      onChange: v => {
+        uniforms.uSurfaceColor.value = new THREE.Color(v);
+      },
+    },
+  });
+
+  const uniforms = useMemo(
+    () => ({
+      uElevation: { value: 1.0 },
+      uElevationOpposite: { value: new THREE.Vector2(1, 0.5) },
+      uTime: { value: 1.0 },
+      uDepthColor: { value: new THREE.Color(depth) },
+      uSurfaceColor: { value: new THREE.Color(surface) },
+    }),
+    []
+  );
+
+  useFrame((state, delta) => {
+    shaderMat.current.material.uniforms.uTime.value += delta;
+  });
 
   useEffect(() => {
     const count = planeRef.current.attributes.position.count;
@@ -154,7 +177,11 @@ function PlaneShader() {
   }, []);
 
   return (
-    <mesh rotation={[-Math.PI * 0.5, 0, 0]} position={[0, -1, 0]}>
+    <mesh
+      rotation={[-Math.PI * 0.5, 0, 0]}
+      position={[0, -1, 0]}
+      ref={shaderMat}
+    >
       <planeGeometry args={[30, 10, 128, 128]} ref={planeRef} />
       <shaderMaterial
         vertexShader={vertexShader}

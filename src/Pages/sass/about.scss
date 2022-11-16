@@ -147,8 +147,8 @@
 
 .navigation_btn {
   position: absolute;
-  right: 10%;
-  top: 5%;
+  right: 5%;
+  top: 0.5%;
   z-index: 100;
   width: 250px;
   @include flex(space-between, center, row, 1em);
