@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useMemo } from "react";
 import * as THREE from "three";
+import { EffectComposer, Glitch } from "@react-three/postprocessing";
 
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useLoader } from "@react-three/fiber";
 import { usePlane } from "@react-three/cannon";
 import {
   useGLTF,
@@ -9,8 +10,10 @@ import {
   TransformControls,
   Html,
   useTexture,
+  Float,
 } from "@react-three/drei";
 import { gsap } from "gsap";
+import Shader from "./shaders/Shader";
 
 // texture
 import TerrainNormal from "../../assets/Texture/terrain-normal.jpeg";
@@ -18,7 +21,12 @@ import TerrainRough from "../../assets/Texture/terrain-roughness.jpeg";
 
 // models
 import ROBOTHEAD from "../../assets/models/robot_head.glb";
+import PortalDimension from "../../assets/models/portal.glb";
 import { LinearEncoding, RepeatWrapping } from "three";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
+import bakedTexture from "../../assets/models/baked.jpg";
+import NovaModel from "../../assets/models/Nova.glb";
+import Novatexture from "../../assets/models/xxy.jpg";
 
 const vertexShader = `
         uniform mat4 projectionMatrix;
@@ -133,9 +141,10 @@ export const RobotDivision = props => {
 
     return (
       <meshStandardMaterial
-        color={"#426bfc"}
+        color={[1.5, 1, 4]}
         roughness={0.1}
         metalness={0.9}
+        toneMapped={false}
         onBeforeCompile={shader => {
           shader.uniforms.uTime = customUniforms.uTime;
 
@@ -173,101 +182,122 @@ export const RobotDivision = props => {
     });
   }, [tl]);
 
-  return (
-    <TransformControls>
-      <group {...props} dispose={null} ref={CowBoy} castShadow receiveShadow>
-        <group
-          rotation={[-Math.PI / 2, 0, -0.1]}
-          position={[0, -7, -30]}
-          scale={[20, 20, 20]}
-        >
-          <group rotation={[Math.PI / 2, 0.1, 0]}>
-            <group rotation={[0, 0, Math.PI / 2]} scale={[0.16, 0.02, 0.16]}>
-              {/* hears */}
-              <mesh
-                geometry={nodes.Object_4.geometry}
-                material={materials["Material.010"]}
-              >
-                <RobotMaterial />
-              </mesh>
-            </group>
+  const Random = () => {
+    const colors = [
+      [10.5, 1, 4],
+      [2.5, 1, 8],
+      [5.5, 1, 3],
+      [7.5, 1, 6],
+    ];
+    return colors[Math.trunc(Math.random() * colors.length)];
+  };
 
-            {/* head */}
-            <mesh
-              geometry={nodes.Object_6.geometry}
-              material={materials["Material.007"]}
-            >
-              <RobotMaterial />
-            </mesh>
-            <group scale={[0.85, 1, 1]} receiveShadow castShadow>
-              {/* nose */}
+  return (
+    <>
+      <TransformControls>
+        <group {...props} dispose={null} ref={CowBoy} castShadow receiveShadow>
+          <group
+            rotation={[-Math.PI / 2, 0, -0.1]}
+            position={[0, -7, -30]}
+            scale={[20, 20, 20]}
+            onClick={v => {
+              v.object.material.color = new THREE.Color(Random());
+              v.stopPropagation();
+            }}
+            onPointerEnter={() => {
+              document.body.style.cursor = "pointer";
+            }}
+            onPointerLeave={() => {
+              document.body.style.cursor = "default";
+            }}
+          >
+            <group rotation={[Math.PI / 2, 0.1, 0]}>
+              <group rotation={[0, 0, Math.PI / 2]} scale={[0.16, 0.02, 0.16]}>
+                {/* hears */}
+                <mesh
+                  geometry={nodes.Object_4.geometry}
+                  material={materials["Material.010"]}
+                >
+                  <RobotMaterial />
+                </mesh>
+              </group>
+
+              {/* head */}
               <mesh
-                geometry={nodes.Object_8.geometry}
-                material={materials["Material.024"]}
+                geometry={nodes.Object_6.geometry}
+                material={materials["Material.007"]}
+              >
+                <RobotMaterial />
+              </mesh>
+              <group scale={[0.85, 1, 1]} receiveShadow castShadow>
+                {/* nose */}
+                <mesh
+                  geometry={nodes.Object_8.geometry}
+                  material={materials["Material.024"]}
+                >
+                  <RobotMaterial />
+                </mesh>
+              </group>
+              {/* mask */}
+              <mesh
+                geometry={nodes.Object_10.geometry}
+                material={materials["Material.011"]}
+              >
+                <RobotMaterial />
+              </mesh>
+              {/* chin */}
+              <mesh
+                geometry={nodes.Object_11.geometry}
+                material={materials["Material.034"]}
+              >
+                <RobotMaterial />
+              </mesh>
+              <group scale={[1.17, 1.29, 1]}>
+                {/* glasses */}
+                <mesh
+                  geometry={nodes.Object_13.geometry}
+                  material={materials["Material.030"]}
+                >
+                  <RobotMaterial />
+                </mesh>
+              </group>
+              <group rotation={[0.12, -0.01, -0.01]} scale={[0.58, 0.58, 1.01]}>
+                <mesh
+                  geometry={nodes.Object_15.geometry}
+                  material={materials["Material.001"]}
+                >
+                  <RobotMaterial />
+                </mesh>
+                <mesh
+                  geometry={nodes.Object_16.geometry}
+                  material={materials["Material.033"]}
+                >
+                  <RobotMaterial />
+                </mesh>
+              </group>
+              <mesh
+                geometry={nodes.Object_18.geometry}
+                material={materials["Material.031"]}
+              >
+                <RobotMaterial />
+              </mesh>
+              <mesh
+                geometry={nodes.Object_20.geometry}
+                material={materials["Material.029"]}
+              >
+                <RobotMaterial />
+              </mesh>
+              <mesh
+                geometry={nodes.Object_22.geometry}
+                material={materials["Material.028"]}
               >
                 <RobotMaterial />
               </mesh>
             </group>
-            {/* mask */}
-            <mesh
-              geometry={nodes.Object_10.geometry}
-              material={materials["Material.011"]}
-            >
-              <RobotMaterial />
-            </mesh>
-            {/* chin */}
-            <mesh
-              geometry={nodes.Object_11.geometry}
-              material={materials["Material.034"]}
-            >
-              <RobotMaterial />
-            </mesh>
-            <group scale={[1.17, 1.29, 1]}>
-              {/* glasses */}
-              <mesh
-                geometry={nodes.Object_13.geometry}
-                material={materials["Material.030"]}
-              >
-                <RobotMaterial />
-              </mesh>
-            </group>
-            <group rotation={[0.12, -0.01, -0.01]} scale={[0.58, 0.58, 1.01]}>
-              <mesh
-                geometry={nodes.Object_15.geometry}
-                material={materials["Material.001"]}
-              >
-                <RobotMaterial />
-              </mesh>
-              <mesh
-                geometry={nodes.Object_16.geometry}
-                material={materials["Material.033"]}
-              >
-                <RobotMaterial />
-              </mesh>
-            </group>
-            <mesh
-              geometry={nodes.Object_18.geometry}
-              material={materials["Material.031"]}
-            >
-              <RobotMaterial />
-            </mesh>
-            <mesh
-              geometry={nodes.Object_20.geometry}
-              material={materials["Material.029"]}
-            >
-              <RobotMaterial />
-            </mesh>
-            <mesh
-              geometry={nodes.Object_22.geometry}
-              material={materials["Material.028"]}
-            >
-              <RobotMaterial />
-            </mesh>
           </group>
         </group>
-      </group>
-      <Html>Deo Madingu</Html>
-    </TransformControls>
+      </TransformControls>
+    </>
   );
 };
 
@@ -321,6 +351,54 @@ export const Plane = ({ positions }) => {
     </mesh>
   );
 };
+
+export const MacBook = () => {
+  const laptop = useGLTF(
+    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/macbook/model.gltf"
+  );
+
+  return (
+    <primitive object={laptop.scene}>
+      <Html transform className="html-wrapper" distanceFactor={1.17}>
+        <iframe src="https://deomads.netlify.app/" />
+      </Html>
+    </primitive>
+  );
+};
+
+export const Branch = props => {
+  const { nodes, materials } = useGLTF("./model/tree_branch.glb");
+  const material = new THREE.MeshStandardMaterial({ color: "#092b72" });
+
+  return (
+    <group {...props} dispose={null}>
+      <group rotation={[-Math.PI / 2, 0, 0]}>
+        <group rotation={[Math.PI / 2, 0, 0]}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_7.geometry}
+            material={material}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_6.geometry}
+            material={material}
+          ></mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Object_4.geometry}
+            material={material}
+          />
+        </group>
+      </group>
+    </group>
+  );
+};
+
+useGLTF.preload("./model/tree_branch.glb");
 
 // preloads
 

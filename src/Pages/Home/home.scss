@@ -11,38 +11,96 @@
   width: 100%;
   height: 100%;
   background: transparent;
-  position: absolute;
+  // position: absolute;
   // left: 0;
   // top: 0;
   z-index: 3;
   pointer-events: none;
 }
 
-.page2 {
+.project_page {
   width: 100%;
   height: 100%;
-  background: transparent;
-  position: absolute;
+  // position: absolute;
   // left: 0;
   // top: 0;
-  z-index: 3;
-  pointer-events: none;
-  // border: solid 3px red;
+  // z-index: 3;
+  // pointer-events: none;
+}
+
+// GOOD CODE BELOW
+
+// Welcome text
+.headline_text {
+  position: absolute;
+  top: 10.5%;
+  right: 17.5%;
+}
+
+.subheadline {
+  font-size: 80px;
+  color: var(--rock-blue);
+  font-weight: bold;
+}
+
+// About me paragraph
+.introduction {
+  position: absolute;
+  width: 400px;
+  left: 15%;
+  .intro_text {
+    padding: 1em;
+    line-height: 1.5em;
+    .intro_text_title {
+      margin-bottom: 1em;
+      color: var(--rock-blue);
+    }
+
+    .intro_text_paragrah {
+      color: var(--regent-gray);
+    }
+  }
 }
 
 .portfolio {
   overflow: hidden;
   position: relative;
-  height: 100vh;
+  height: 300vh;
   width: 100%;
   perspective: 100px;
+  z-index: 3;
+  pointer-events: none;
+  // background-image: url("../../assets//Pictures/nightbackground.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
+
+  .logo {
+    position: absolute;
+    left: 12%;
+    top: 1%;
+    h3 {
+      font-size: var(--ft-xtra);
+      color: var(--rock-blue);
+    }
+
+    h6 {
+      text-align: justify;
+      padding-top: 0.5em;
+      color: var(--regent-gray);
+    }
+  }
+
+  .introduction {
+    position: absolute;
+    top: 100vh;
+  }
 
   .Presentation {
-    width: 300px;
-    height: 550px;
-    position: absolute;
-    left: 0%;
-    top: 15%;
+    width: 100%;
+    height: 100%;
+    // position: absolute;
+    // left: 0%;
+    // top: 15%;
     perspective: 100px;
     outline: solid 1px rgba(255, 255, 255, 0.205);
     outline-offset: 5px;
@@ -112,6 +170,7 @@
       font-size: var(--ft-lg);
       @include flex(center, center, column, 0);
       margin-top: 0.5em;
+      position: relative;
 
       &:hover {
         background-color: grey;
@@ -399,21 +458,6 @@
   }
 }
 
-// .control_01 {
-//   top: 16%;
-//   right: 30%;
-// }
-
-// .control_02 {
-//   top: 16%;
-//   left: 35%;
-// }
-
-// .control_03 {
-//   top: 16%;
-//   right: 30%;
-// }
-
 .section_project {
   border: solid 1px rgba(255, 255, 255, 0.205);
   background: rgba(0, 0, 0, 0.075);
@@ -443,15 +487,75 @@
   }
 }
 
-// .list_of_tools_01 {
-//   left: 30%;
-//   bottom: 5%;
-// }
-// .list_of_tools_02 {
-//   left: 5%;
-//   bottom: 5%;
-// }
-// .list_of_tools_03 {
-//   left: 30%;
-//   bottom: 5%;
-// }
+.points {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+
+  .point {
+    cursor: pointer;
+    .label {
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      left: -20px;
+      top: -20px;
+      background: white;
+      border-radius: 50%;
+      @include flex(center, center, row, 0);
+      font-size: 25px;
+    }
+
+    &:hover .text {
+      opacity: 1;
+    }
+
+    .text {
+      position: absolute;
+      width: 300px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 30%);
+      padding: 1em;
+      background: white;
+      color: var(--orange);
+      line-height: 1.5em;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+    }
+  }
+}
+
+.html-wrapper iframe {
+  width: 1024px;
+  height: 670px;
+}
+
+// ******  NEW START
+
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("../../assets//Pictures/nightbackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.portfolio_sections {
+  @include flex(center, center, column, 1em);
+
+  .section_page:nth-child(n) {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+.portfolio_section_intro {
+  background: transparent;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: solid 1px orange;
+}

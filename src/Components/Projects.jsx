@@ -33,7 +33,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 
 const Projects = () => {
   return (
-    <div className="landing_page page2" id="nav">
+    <div className="landing_page project_page" id="nav">
       <div className="work_projects">
         <div className="My_Projects">
           <Fade>
