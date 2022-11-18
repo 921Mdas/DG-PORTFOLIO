@@ -11,6 +11,7 @@ import {
   Html,
   useTexture,
   Float,
+  Clone,
 } from "@react-three/drei";
 import { gsap } from "gsap";
 import Shader from "./shaders/Shader";
@@ -27,6 +28,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
 import bakedTexture from "../../assets/models/baked.jpg";
 import NovaModel from "../../assets/models/Nova.glb";
 import Novatexture from "../../assets/models/xxy.jpg";
+import JS from "../../assets/js.png";
 
 const vertexShader = `
         uniform mat4 projectionMatrix;
@@ -366,12 +368,15 @@ export const MacBook = () => {
   );
 };
 
-export const Branch = props => {
+export const Branch = ({ scale, position, color }) => {
   const { nodes, materials } = useGLTF("./model/tree_branch.glb");
-  const material = new THREE.MeshStandardMaterial({ color: "#092b72" });
+  const material = new THREE.MeshStandardMaterial({
+    color: `#092b72`,
+    wireframe: true,
+  });
 
   return (
-    <group {...props} dispose={null}>
+    <group scale={scale} position={position} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh

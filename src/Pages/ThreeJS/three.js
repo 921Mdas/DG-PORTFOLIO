@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+// external
+import React, { useEffect, useState, useRef } from "react";
 import * as THREE from "three";
-import { TextureLoader } from "three";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   useProgress,
@@ -9,54 +9,118 @@ import {
   Environment,
   Float,
   Sparkles,
-  Text,
+  MarchingCubes,
+  MarchingCube,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { useThree } from "react-three-fiber";
+import gsap from "gsap";
 
-// basics
-
-// models
+// Internal
 import { Branch } from "./ThreeComponents";
 import Apple from "./shaders/BlobShader";
-import { Debug, Physics, RigidBody, CuboidCollider } from "@react-three/rapier";
-import { useMemo } from "react";
+import { R3FCameraAnimatedEvents } from "../../Helper/helper";
+import { RigidBody, Physics, Debug, BallCollider } from "@react-three/rapier";
+import Shader from "./shaders/Shader";
 
-const Scene = () => {
-  const [mouseMoveCoords, setMouseMoveCoords] = useState({});
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const { camera } = useThree();
+const vec = new THREE.Vector3();
 
-  useEffect(() => {
-    window.addEventListener("scroll", e => {
-      console.log(window.scrollY);
-    });
+const Ball = ({ color, ...props }) => {
+  // subtract is how much foam we get around balls
+  // strength is how big the balls are
+  // ball colliders are physical representation and args how big they are
+  // make it a sensor type
+  const vec = new THREE.Vector3();
 
-    window.addEventListener("mousemove", e => {
-      if (!e) return;
-      const { clientX, clientY } = e;
-      let ratioWidth = clientX / width;
-      let ratioHeight = clientY / height;
+  const api = useRef();
+  const bulb = useRef();
 
-      camera.position.x += (ratioWidth - camera.position.x) * 0.1;
-      camera.position.y += (ratioHeight - camera.position.y) * 0.1;
-    });
-
-    return () => {
-      window.removeEventListener("scroll", window);
-      window.removeEventListener("mousemove", window);
-    };
-  }, []);
+  useFrame((state, delta) => {
+    const coords = api.current.translation();
+    let x = coords.x + 0.5;
+    let y = coords.y;
+    let z = coords.z;
+    api.current.applyImpulse(
+      vec
+        .copy({ x, y, z })
+        .normalize()
+        .multiplyScalar(delta * -0.05)
+    );
+  });
 
   return (
-    <Float floatingRange={[0, 0.2]} rotationIntensity={0.2} floatIntensity={3}>
-      <Physics gravity={[0, -5, 0]}>
+    <RigidBody
+      ref={api}
+      colliders={false}
+      {...props}
+      linearDamping={2}
+      angularDamping={0.95}
+    >
+      <MarchingCube strength={0.5} subtract={6} color={color} ref={bulb} />
+      <BallCollider
+        args={[0.1]}
+        type="dynamic"
+        onClick={() => {
+          alert("hello");
+        }}
+      />
+    </RigidBody>
+  );
+};
+
+// main scene + models
+const Scene = () => {
+  // marchingcubes resolution is about how round they look
+  // maxpolycounts is how many triangles and marchingcube will form
+  // enable colors so the marchingcubes accept color
+
+  return (
+    <>
+      <Physics gravity={[0, 2, 0]}>
         <Debug />
-        <Branch scale={0.5} position={[-4, 0, 0.7]} />
-        <Apple scale={0.01} position={[-2, 0.75, 1.05]} />
+        <MarchingCubes
+          resolution={64}
+          maxPolyCount={200000}
+          enableUvs={false}
+          enableColors
+        >
+          <meshStandardMaterial vertexColors roughness={0} metalness={1} />
+          <Float
+            floatingRange={[0, 1]}
+            rotationIntensity={0.2}
+            floatIntensity={3}
+          >
+            <Ball color="lightblue" position={[-2, 1, 0.5]} />
+          </Float>
+
+          <Ball color="#7EC8E3" position={[-1, -1, -0.5]} />
+          <Ball color="#338BA8" position={[2, 2, 0.5]} />
+          <Ball color="orange" position={[-2, -2, -0.5]} />
+          <Ball color="white" position={[3, 3, 0.5]} />
+          <Ball color="#000C66" position={[-3, -3, -0.5]} />
+        </MarchingCubes>
       </Physics>
-    </Float>
+      {/* <MarchingCubes></MarchingCubes> */}
+      {/* <Physics>
+        <Debug />
+
+        <Float
+          floatingRange={[0, 0.2]}
+          rotationIntensity={0.2}
+          floatIntensity={3}
+        >
+          <Branch scale={0.5} position={[-5, 0, 0.7]} />
+          <Apple scale={0.01} position={[-3, 0.75, 1.05]} />
+          <RigidBody
+            colliders="hull"
+            position={[-2, 1.2, 1.05]}
+            gravityScale={0.3}
+          >
+            <Apple scale={0.01} />
+          </RigidBody>
+        </Float>
+      </Physics> */}
+      <R3FCameraAnimatedEvents />
+    </>
   );
 };
 
@@ -66,7 +130,7 @@ const ThreeJS = ({ handleWork, handleAbout, handleContact, rotateWork }) => {
       <Canvas
         flat
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 6], fov: 75, near: 0.1, far: 1000 }}
+        camera={{ position: [0, 0, 3], fov: 25 }}
         shadows
         gl={{
           physicallyCorrectLights: true,

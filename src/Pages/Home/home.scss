@@ -62,6 +62,18 @@
   }
 }
 
+.achievement {
+  width: max-content;
+  margin-left: 1em;
+  color: var(--rock-blue);
+  p {
+    margin-bottom: 0.5em;
+  }
+  span {
+    margin-right: 1em;
+  }
+}
+
 .portfolio {
   overflow: hidden;
   position: relative;
@@ -176,45 +188,6 @@
         background-color: grey;
       }
     }
-
-    .presentation_social {
-      @include flex(center, center, column, 0);
-      background: rgba(255, 255, 255, 0.178);
-      margin-top: 0.5em;
-      padding: 1em;
-
-      .presentation_social_icon {
-        @include flex(center, center, row, 1em);
-
-        .social a {
-          color: white;
-          font-size: var(--ft-22xtra);
-          transition: all 0.5s ease-in-out;
-          position: relative;
-
-          &::after {
-            content: attr(data-content);
-            position: absolute;
-            bottom: -15%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 10px;
-            opacity: 0;
-            transition: all 0.5s ease-in-out;
-          }
-
-          &:hover {
-            color: var(--orange);
-          }
-
-          &:hover:after {
-            transform: translate(-50%, 10%);
-            opacity: 1;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -305,13 +278,13 @@
 
 .my_skills_intro {
   position: absolute;
-  top: 55%;
-  left: 0;
+  top: 60%;
+  right: 0%;
   opacity: 1;
   color: var(--rock-blue);
   padding: 10px 0;
   width: 800px;
-  height: 150px;
+  height: 300px;
   overflow: hidden;
   transition: all 0.5s ease-in-out;
 
@@ -343,6 +316,11 @@
       }
     }
   }
+}
+
+.intro_skills_title {
+  text-align: center;
+  margin-bottom: 1.5em;
 }
 
 .presentation:hover {
@@ -558,4 +536,40 @@
   left: 0;
   top: 0;
   border: solid 1px orange;
+}
+
+.presentation_social {
+  margin-top: 0.5em;
+
+  .presentation_social_icon {
+    @include flex(flex-start, center, row, 1em);
+
+    .social a {
+      color: var(--regent-gray);
+      font-size: var(--ft-22xtra);
+      transition: all 0.5s ease-in-out;
+      position: relative;
+
+      &::after {
+        content: attr(data-content);
+        position: absolute;
+        bottom: -15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 10px;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+      }
+
+      &:hover {
+        color: var(--orange);
+      }
+
+      &:hover:after {
+        transform: translate(-50%, 10%);
+        opacity: 1;
+      }
+    }
+  }
 }

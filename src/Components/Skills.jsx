@@ -19,6 +19,7 @@ import { SiDjango } from "react-icons/si";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdOutlineContactMail } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { SiJest } from "react-icons/si";
 
 import { AiOutlineArrowUp } from "react-icons/ai";
 import { GiSwordSpade } from "react-icons/gi";
@@ -28,12 +29,16 @@ import { FaGithubSquare } from "react-icons/fa";
 import { BsArrowLeftRight } from "react-icons/bs";
 import { Fade, Slide } from "react-awesome-reveal";
 import { GiSwordSmithing } from "react-icons/gi";
+import { FiPlay } from "react-icons/fi";
 import { useThree } from "@react-three/fiber";
+
 import { gsap } from "gsap";
 
 const Skills = () => {
   return (
     <div className="my_skills_intro">
+      <h3 className="intro_skills_title">What I've Learned</h3>
+
       <div className="stacks">
         <div className={`stacks_list`}>
           <div className="stack_list1 stack_skill">
@@ -42,12 +47,14 @@ const Skills = () => {
             <Skill Icon={TbBrandJavascript} skilltitle={"Javascript"} />
           </div>
           <div className="stack_list2 stack_skill">
+            <Skill Icon={SiJest} skilltitle={"Jest"} />
             <Skill Icon={FaReact} skilltitle={"ReactJs"} />
             <Skill Icon={HiOutlineDeviceMobile} skilltitle={"React Native"} />
             <Skill Icon={SiRedux} skilltitle={"Redux"} />
-            <Skill Icon={SiMongodb} skilltitle={"MongoDB"} />
+            <Skill Icon={FiPlay} skilltitle={"React-Three-Fiber"} />
           </div>
           <div className="stack_list2 stack_skill">
+            <Skill Icon={SiMongodb} skilltitle={"MongoDB"} />
             <Skill Icon={AiOutlineConsoleSql} skilltitle={"PostgreSQL"} />
             <Skill Icon={SiDjango} skilltitle={"Django"} />
             <Skill Icon={BiGitBranch} skilltitle={"Git"} />
