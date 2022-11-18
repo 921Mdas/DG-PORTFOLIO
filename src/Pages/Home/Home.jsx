@@ -64,7 +64,8 @@ import Nav from "../../Components/Nav";
 import IntroMenu from "../../Components/IntroMenu";
 import Projects from "../../Components/Projects";
 import Contact from "../../Components/Contact";
-
+import Achievement from "../../Components/Achievement";
+import SocialLink from "../../Components/SocialLink";
 // helper functions
 import { MovePagePos, MovePageNeg } from "../../Helper/helper";
 import { Scrambler } from "../../Helper/helper";
@@ -125,23 +126,15 @@ const Main = () => {
         />
 
         <div className="headline_text">
-          <div className="headline_top subheadline">
-            <Scrambler
-              phrases={["I TEST", "I DEBUG", "I BUILD"]}
-              className="scrambler"
-            />
-          </div>
+          <div className="headline_top subheadline">I BUILD</div>
 
-          <div className="headline subheadline">
-            <Scrambler
-              phrases={["FRONT END", "BACK END", "QUALITY"]}
-              className="scrambler"
-            />
-          </div>
+          <div className="headline subheadline">QUALITY</div>
 
           <div className="headline_bottom subheadline">
             WEB <br /> APPS
           </div>
+
+          <SocialLink />
         </div>
 
         <div className="introduction">
@@ -158,6 +151,14 @@ const Main = () => {
               in any team setting.
             </p>
           </div>
+
+          <Achievement text={"Bootcamp graduate 3.8 GPA"} />
+          <Achievement text={"5 Full-stack projects"} />
+          <Achievement text={"Freelancer"} />
+        </div>
+
+        <div className="skills_section">
+          <Skills />
         </div>
 
         {/* <div className="page1" ref={page1}>
