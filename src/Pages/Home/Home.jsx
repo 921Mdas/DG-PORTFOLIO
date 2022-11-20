@@ -126,16 +126,19 @@ const Main = () => {
         />
 
         <div className="headline_text">
-          <div className="headline_top subheadline">I BUILD</div>
+          <div className="headline_top subheadline">CREATIVE</div>
 
-          <div className="headline subheadline">QUALITY</div>
+          <div className="headline subheadline">AGILE</div>
 
           <div className="headline_bottom subheadline">
-            WEB <br /> APPS
+            <em>CURIOUS</em> <br />
+            FLEXIBLE
           </div>
 
           <SocialLink />
         </div>
+
+        <div className="filler_circle"></div>
 
         <div className="introduction">
           <div className="intro_text">

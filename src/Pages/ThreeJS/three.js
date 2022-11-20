@@ -11,6 +11,7 @@ import {
   Sparkles,
   MarchingCubes,
   MarchingCube,
+  Text,
 } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import gsap from "gsap";
@@ -21,8 +22,9 @@ import Apple from "./shaders/BlobShader";
 import { R3FCameraAnimatedEvents } from "../../Helper/helper";
 import { RigidBody, Physics, Debug, BallCollider } from "@react-three/rapier";
 import Shader from "./shaders/Shader";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const vec = new THREE.Vector3();
+gsap.registerPlugin(ScrollTrigger);
 
 const Ball = ({ color, ...props }) => {
   // subtract is how much foam we get around balls
@@ -33,12 +35,14 @@ const Ball = ({ color, ...props }) => {
 
   const api = useRef();
   const bulb = useRef();
+  const { camera } = useThree();
 
   useFrame((state, delta) => {
-    const coords = api.current.translation();
-    let x = coords.x + 0.5;
-    let y = coords.y;
-    let z = coords.z;
+    const coords = api.current?.translation();
+    let x = coords?.x + 0.5;
+    let y = coords?.y + 0.1;
+    let z = coords?.z;
+
     api.current.applyImpulse(
       vec
         .copy({ x, y, z })
@@ -47,23 +51,44 @@ const Ball = ({ color, ...props }) => {
     );
   });
 
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".headline_text",
+      toggleActions: "play none none none",
+      scrub: 2,
+      start: "top 25%",
+      end: "bottom 30%",
+      markers: true,
+    },
+  });
+
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      tl.to(bulb.current?.position, {
+        duration: 3,
+        x: Math.random() * 3,
+      }).to(bulb.current.position, {
+        duration: 2,
+        z: 3,
+      });
+
+      return () => ctx.revert();
+    }, [tl]);
+  });
+
   return (
-    <RigidBody
-      ref={api}
-      colliders={false}
-      {...props}
-      linearDamping={2}
-      angularDamping={0.95}
-    >
-      <MarchingCube strength={0.5} subtract={6} color={color} ref={bulb} />
-      <BallCollider
-        args={[0.1]}
-        type="dynamic"
-        onClick={() => {
-          alert("hello");
-        }}
-      />
-    </RigidBody>
+    <>
+      <RigidBody
+        ref={api}
+        colliders={false}
+        {...props}
+        linearDamping={2}
+        angularDamping={0.95}
+      >
+        <MarchingCube strength={0.5} subtract={6} color={color} ref={bulb} />
+        <BallCollider args={[0.1]} type="dynamic" />
+      </RigidBody>
+    </>
   );
 };
 
@@ -72,6 +97,7 @@ const Scene = () => {
   // marchingcubes resolution is about how round they look
   // maxpolycounts is how many triangles and marchingcube will form
   // enable colors so the marchingcubes accept color
+  // testing gsap
 
   return (
     <>
@@ -84,21 +110,19 @@ const Scene = () => {
           enableColors
         >
           <meshStandardMaterial vertexColors roughness={0} metalness={1} />
-          <Float
-            floatingRange={[0, 1]}
-            rotationIntensity={0.2}
-            floatIntensity={3}
-          >
-            <Ball color="lightblue" position={[-2, 1, 0.5]} />
-          </Float>
-
           <Ball color="#7EC8E3" position={[-1, -1, -0.5]} />
+          <Ball color="lightblue" position={[-2, 1, 0.5]} />
           <Ball color="#338BA8" position={[2, 2, 0.5]} />
           <Ball color="orange" position={[-2, -2, -0.5]} />
           <Ball color="white" position={[3, 3, 0.5]} />
           <Ball color="#000C66" position={[-3, -3, -0.5]} />
         </MarchingCubes>
+        <Text fontSize={0.25} color={"#7c86a2"} position={[-0.5, -0.05, 0]}>
+          I'M
+          <meshBasicMaterial side={THREE.DoubleSide} />
+        </Text>
       </Physics>
+      <R3FCameraAnimatedEvents />
       {/* <MarchingCubes></MarchingCubes> */}
       {/* <Physics>
         <Debug />
@@ -119,7 +143,7 @@ const Scene = () => {
           </RigidBody>
         </Float>
       </Physics> */}
-      <R3FCameraAnimatedEvents />
+      {/* <R3FCameraAnimatedEvents /> */}
     </>
   );
 };
@@ -143,14 +167,14 @@ const ThreeJS = ({ handleWork, handleAbout, handleContact, rotateWork }) => {
       >
         <Perf position="bottom-left" />
         {/* <OrbitControls enableZoom={false} /> */}
-        <Environment preset="forest" />
+        <Environment preset="night" />
         <Scene />
-        <Sparkles
+        {/* <Sparkles
           count={200}
           scale={[5, 2, 3]}
           position={[-3, 2, 1]}
           color={"#fcba03"}
-        />
+        /> */}
       </Canvas>
     </div>
   );
