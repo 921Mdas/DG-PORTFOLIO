@@ -152,16 +152,18 @@
   z-index: 100;
   width: 250px;
   @include flex(space-between, center, row, 1em);
+  cursor: pointer;
 }
 
 .nav-index1 {
   &::after {
     content: "About Me";
     transition: all 0.5s ease-in-out;
+    color: var(--regent-gray);
   }
 
   &:hover:after {
-    color: var(--orange);
+    color: var(--rock-blue);
   }
 }
 
@@ -169,21 +171,22 @@
   &::after {
     content: "My Work";
     transition: all 0.5s ease-in-out;
+    color: var(--regent-gray);
   }
 
   &:hover:after {
-    color: var(--orange);
-    transition: all 0.5s ease-in-out;
+    color: var(--rock-blue);
   }
 }
 
 .nav-index3 {
   &::after {
     content: "Contact Me";
+    color: var(--regent-gray);
   }
 
   &:hover:after {
-    color: var(--orange);
+    color: var(--rock-blue);
     transition: all 0.5s ease-in-out;
   }
 }
