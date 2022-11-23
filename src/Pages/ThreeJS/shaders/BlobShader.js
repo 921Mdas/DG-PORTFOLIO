@@ -114,7 +114,7 @@ const fragmentShader = `
 
 `;
 
-const Apple = props => {
+export const Apple = props => {
   const sphereRef = useRef();
   const sphereGeoRef = useRef();
   const [shaderState, setShaderState] = useState();
@@ -125,7 +125,13 @@ const Apple = props => {
   }, []);
 
   return (
-    <group {...props} dispose={null} ref={sphereRef} scale={5.2}>
+    <group
+      {...props}
+      dispose={null}
+      ref={sphereRef}
+      scale={200}
+      position={[0, -2, -2]}
+    >
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.08}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group rotation={[-Math.PI / 2, 0, Math.PI]}>
@@ -148,4 +154,24 @@ const Apple = props => {
   );
 };
 
-export default Apple;
+export const SphereShader = props => {
+  const sphereRef = useRef();
+  const sphereGeoRef = useRef();
+  const [shaderState, setShaderState] = useState();
+
+  useEffect(() => {
+    setShaderState(sphereGeoRef.current);
+  }, []);
+  return (
+    <mesh
+      {...props}
+      dispose={null}
+      ref={sphereRef}
+      scale={10}
+      position={[0, 0, 0]}
+    >
+      <sphereGeometry args={[15, 32, 16]} />
+      {/* {shaderState ? <Shader element={shaderState} /> : <meshBasicMaterial />} */}
+    </mesh>
+  );
+};

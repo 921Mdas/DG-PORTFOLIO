@@ -4,6 +4,8 @@ import { useFrame, useThree } from "react-three-fiber";
 import { useEffect } from "react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export const Scrambler = ({ phrases, speed, pauseTime }) => {
   return (
@@ -30,6 +32,18 @@ export const MovePageNeg = (page, perc) => {
 export const R3FCameraAnimatedEvents = () => {
   const height = window.innerHeight;
   const { camera } = useThree();
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".portfolio",
+      toggleActions: "play none none none",
+      scrub: 2,
+      start: "10% 15%",
+      end: "center 30%",
+      markers: true,
+    },
+  });
+
+  tl.to(camera.position, { duration: 3, z: 3.5 });
 
   window.addEventListener("scroll", e => {
     const scrollRatio = window.scrollY / height;

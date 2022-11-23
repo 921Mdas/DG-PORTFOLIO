@@ -45,11 +45,11 @@
 
 .My_Projects {
   width: 40vw;
-  height: 100vh;
-  position: relative;
+  height: 350vh;
+  position: absolute;
   left: -10%;
   padding-top: 2.5em;
-
+  @include flex(space-between, center, row, 0.5em);
   .project {
     // border: solid 1px white;
     width: 150px;

@@ -113,18 +113,13 @@ const Main = () => {
 
   return (
     <>
+      <Nav
+        navigateHome={navigateHome}
+        navigateProject={navigateProject}
+        navigateContact={navigateContact}
+      />
+
       <div className="portfolio">
-        <div className="logo">
-          <h3>deomadingu</h3>
-          <h6>SOFTWARE DEVELOPER</h6>
-        </div>
-
-        <Nav
-          navigateHome={navigateHome}
-          navigateProject={navigateProject}
-          navigateContact={navigateContact}
-        />
-
         <div className="headline_text">
           <div className="headline_top subheadline">CREATIVE</div>
 
@@ -138,7 +133,9 @@ const Main = () => {
           <SocialLink />
         </div>
 
-        <div className="filler_circle"></div>
+        <div className="filler_circle">
+          <div className="IAM">I'M</div>
+        </div>
 
         <div className="introduction">
           <div className="intro_text">
@@ -163,6 +160,8 @@ const Main = () => {
         <div className="skills_section">
           <Skills />
         </div>
+
+        <div className="project_section">{/* <Projects />f */}</div>
 
         {/* <div className="page1" ref={page1}>
         <IntroMenu />

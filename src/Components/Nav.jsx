@@ -37,28 +37,35 @@ import { gsap } from "gsap";
 
 const Nav = ({ navigateHome, navigateProject, navigateContact }) => {
   return (
-    <div className="navigation_btn">
-      <button
-        onClick={() => navigateHome()}
-        class="navigation-index nav-index1"
-        content-data="About Me"
-      >
-        <BsFillPersonFill />
-      </button>
-      <button
-        onClick={() => navigateProject()}
-        class="navigation-index nav-index2"
-        content-data="Projects"
-      >
-        <AiFillFolderOpen />
-      </button>
-      <button
-        onClick={() => navigateContact()}
-        class="navigation-index nav-index3"
-        content-data="Contact Me"
-      >
-        <MdOutlineContactMail />
-      </button>
+    <div id="navigation_bar">
+      <div className="logo">
+        <h3>deomadingu</h3>
+        <h6>SOFTWARE DEVELOPER</h6>
+      </div>
+
+      <div className="navigation_btn">
+        <button
+          onClick={() => navigateHome()}
+          class="navigation-index nav-index1"
+          content-data="About Me"
+        >
+          <BsFillPersonFill />
+        </button>
+        <button
+          onClick={() => navigateProject()}
+          class="navigation-index nav-index2"
+          content-data="Projects"
+        >
+          <AiFillFolderOpen />
+        </button>
+        <button
+          onClick={() => navigateContact()}
+          class="navigation-index nav-index3"
+          content-data="Contact Me"
+        >
+          <MdOutlineContactMail />
+        </button>
+      </div>
     </div>
   );
 };

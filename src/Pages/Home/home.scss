@@ -48,6 +48,7 @@
   position: absolute;
   width: 400px;
   left: 15%;
+  top: 110vh;
   .intro_text {
     padding: 1em;
     line-height: 1.5em;
@@ -74,21 +75,22 @@
   }
 }
 
-.portfolio {
-  overflow: hidden;
-  position: relative;
-  height: 300vh;
+#navigation_bar {
+  @include flex(space-between, center, row, 1em);
+  padding: 0 5em;
   width: 100%;
-  perspective: 100px;
-  z-index: 3;
-  // pointer-events: none;  // background-image: url("../../assets//Pictures/nightbackground.jpg");
-  // background-repeat: no-repeat;
-  // background-size: cover;
+  height: 10vh;
+  z-index: 100;
+  position: fixed;
+  z-index: 100;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
   .logo {
-    position: absolute;
-    left: 12%;
-    top: 1%;
+    // position: fixed !important;
+    // left: 20%;
+    // top: 0%;
+    // z-index: 10;
     h3 {
       font-size: var(--ft-xtra);
       color: var(--rock-blue);
@@ -100,11 +102,27 @@
       color: var(--regent-gray);
     }
   }
+}
 
-  .introduction {
-    position: absolute;
-    top: 100vh;
-  }
+.IAM {
+  position: absolute;
+  z-index: 100;
+  font-size: var(--ft-giant);
+  color: var(--rock-blue);
+}
+
+.portfolio {
+  overflow: hidden;
+  position: relative;
+  height: 300vh;
+  width: 100%;
+  perspective: 100px;
+  z-index: 3;
+  border: solid 1px red;
+  pointer-events: none;
+  // pointer-events: none;  // background-image: url("../../assets//Pictures/nightbackground.jpg");
+  // background-repeat: no-repeat;
+  // background-size: cover;
 
   .Presentation {
     width: 100%;
@@ -277,7 +295,7 @@
 
 .my_skills_intro {
   position: absolute;
-  top: 60%;
+  top: 200vh;
   right: 0%;
   opacity: 1;
   color: var(--rock-blue);
@@ -517,7 +535,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("../../assets//Pictures/nightbackground.jpg");
+  background-image: url("../../assets//Pictures/darknight.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   // pointer-events: none;
@@ -588,4 +606,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.sticky_item {
+  position: fixed !important;
+  border: solid 1px red !important;
+  left: 12%;
+  top: 1%;
+  background-color: white;
 }
