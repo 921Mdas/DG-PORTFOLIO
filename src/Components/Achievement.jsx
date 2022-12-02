@@ -1,5 +1,7 @@
 import React from "react";
-import { AiFillTrophy } from "react-icons/ai";
+import { ICON } from "../Helper/Icons";
+
+const { AiFillTrophy } = ICON;
 
 const Achievement = ({ text }) => {
   return (

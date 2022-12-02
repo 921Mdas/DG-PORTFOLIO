@@ -119,9 +119,9 @@
 }
 
 .navigation-index {
-  width: 50px;
+  width: 70px;
   height: 50px;
-  padding: 10px 0;
+  padding: 0px 10px;
   font-size: var(--ft-xtra);
   color: var(--rock-blue);
   font-weight: bold;
@@ -135,9 +135,10 @@
   &::after {
     position: absolute;
     left: 50%;
-    bottom: -30%;
+    bottom: -10%;
     transform: translate(-50%, 0);
     font-size: 10px;
+    width: 100%;
   }
 }
 
@@ -146,13 +147,12 @@
 }
 
 .navigation_btn {
-  position: absolute;
-  right: 5%;
-  top: 0.5%;
-  z-index: 100;
   width: 250px;
+  height: 8vh;
   @include flex(space-between, center, row, 1em);
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-index1 {

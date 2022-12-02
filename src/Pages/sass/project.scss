@@ -1,9 +1,5 @@
 @import "../../index.scss";
 
-.work_projects {
-  position: relative;
-}
-
 .section_project_01,
 .section_project_02,
 .section_project_03 {
@@ -41,35 +37,6 @@
   top: 5%;
   transform: translateX(-50%);
   font-weight: bold;
-}
-
-.My_Projects {
-  width: 40vw;
-  height: 100vh;
-  position: relative;
-  left: -10%;
-  padding-top: 2.5em;
-
-  .project {
-    // border: solid 1px white;
-    width: 150px;
-    height: 150px;
-    // border-radius: 15px;
-  }
-
-  .section_description {
-    width: 400px;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: var(--rock-blue);
-    font-size: var(--ft-lg);
-    line-height: 1.5em;
-
-    h3 {
-      margin-bottom: 0.5em;
-      color: var(--orange);
-    }
-  }
 }
 
 .projects {

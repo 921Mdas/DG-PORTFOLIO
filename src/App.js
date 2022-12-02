@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import Greet from "./Pages/Home/Home";
+import Main from "./Pages/Home/Home";
 
 function App() {
   const [pos, setPos] = useState(0);
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div className="Main">
-      <Greet />
+      <Main />
     </div>
   );
 }
