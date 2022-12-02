@@ -148,8 +148,11 @@
 
 .navigation_btn {
   width: 250px;
+  height: 8vh;
   @include flex(space-between, center, row, 1em);
   cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .nav-index1 {

@@ -6,7 +6,6 @@ import * as THREE from "three";
 const LightScene = () => {
   const directionLightRef = useRef(null);
   useHelper(directionLightRef, THREE.DirectionalLightHelper, 1);
-
   const { dirIntensity, dirPosition, ambientLight, dirColor } = useControls(
     "light",
     {
