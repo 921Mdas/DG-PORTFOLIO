@@ -34,9 +34,9 @@ const Main = () => {
           <Intro />
           <SocialLink />
         </div>
-        <div className="filler_circle">
+        {/* <div className="filler_circle">
           <div className="IAM">I'M</div>
-        </div>
+        </div> */}
       </div>
 
       <div className="about_me">
@@ -57,11 +57,9 @@ const Main = () => {
 
       <div className="project_section">
         <Projects />
+        {/* <Contact /> */}
       </div>
 
-      <div className="contact_section">
-        <Contact />
-      </div>
       <Loader />
       <div className="canvas">
         <Suspense fallback={<Loader />}>

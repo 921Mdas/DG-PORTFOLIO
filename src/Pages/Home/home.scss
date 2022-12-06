@@ -229,7 +229,7 @@
 
   // skills
   .skills_section {
-    // border: solid 3px rgb(219, 86, 108);
+    border: solid 3px rgb(219, 86, 108);
     @extend .section_reset;
     @extend .zposition;
 
@@ -237,7 +237,7 @@
       width: 50vw;
       $border-margin: var(--border-margin);
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: calc(35% + $border-margin);
       transform: translateY(-50%);
 
@@ -275,7 +275,7 @@
 
   // projects
   .project_section {
-    // border: solid 1px saddlebrown;
+    border: solid 3px saddlebrown;
     @extend .section_reset;
     @extend .zposition;
 
@@ -284,11 +284,23 @@
       width: 100%;
       margin-top: 1em;
       transition: all 1s ease-in-out;
-      @include flex(flex-start, center, column, 10px);
+      @include flex(center, center, column, 10px);
+      border: solid 1px red;
 
       .My_Projects {
         width: 100%;
-        @include flex(center, center, row, 1em);
+        @include flex(center, center, column, 1em);
+        padding-left: 5em;
+        border: solid 1px red;
+        position: absolute;
+        top: 0%;
+
+        .intro_projects_title {
+          text-align: center;
+          border: solid 1px red;
+          width: 100%;
+          color: var(--rock-blue);
+        }
 
         .tools_used ul {
           @include flex(center, center, row, 0.5em);
@@ -373,10 +385,13 @@
 
   .my_contact_section {
     width: 100%;
-    height: 100vh;
-    position: absolute;
-    bottom: -25%;
-    @extend .zposition;
+    // height: 10vh;
+    // border: solid 1px red;
+    // position: absolute;
+    // z-index: 2000;
+    // bottom: -25%;
+    // @extend .zposition;
+    // border: solid 1px red;
 
     .contact_me {
       font-size: var(--ft-2xtra);

@@ -10,6 +10,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import IslandScene from "./IslandScene";
 import Loader from "./Loader";
 import { useProgress, Html, OrbitControls } from "@react-three/drei";
+import LightScene from "./Light";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +34,6 @@ const ThreeJS = () => {
         sRGB={true}
       >
         <Perf position="bottom-left" />
-        {/* <OrbitControls enableZoom={false} /> */}
         <Environment background>
           <Lightformer
             position={[0, 0, 10]}

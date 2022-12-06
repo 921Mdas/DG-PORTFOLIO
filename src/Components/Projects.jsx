@@ -6,6 +6,7 @@ const Projects = () => {
   return (
     <div className="landing_page project_page">
       <div className="My_Projects">
+        <h3 className="intro_projects_title">What I've Built</h3>
         {projectData.map((project, idx) => {
           return <Project key={idx} {...project} />;
         })}

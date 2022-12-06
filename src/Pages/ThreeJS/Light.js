@@ -10,8 +10,8 @@ const LightScene = () => {
     "light",
     {
       directional: folder({
-        dirIntensity: { value: 2, min: 0, max: 5, step: 0.1 },
-        dirPosition: { x: 1, y: 2, z: 3 },
+        dirIntensity: { value: 5, min: 0, max: 5, step: 0.1 },
+        dirPosition: { x: 0, y: 0, z: 0 },
         dirColor: "#ff0303",
       }),
       ambient: folder({
@@ -25,6 +25,11 @@ const LightScene = () => {
       <ambientLight intensity={ambientLight} />
       <directionalLight
         ref={directionLightRef}
+        position={[dirPosition.x, dirPosition.y, dirPosition.z]}
+        intensity={dirIntensity}
+        color={dirColor}
+      />
+      <pointLight
         position={[dirPosition.x, dirPosition.y, dirPosition.z]}
         intensity={dirIntensity}
         color={dirColor}

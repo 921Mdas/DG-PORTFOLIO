@@ -39,6 +39,16 @@ export const R3FCameraAnimatedEvents = () => {
     const scrollRatio = window.scrollY / height;
     camera.position.y = -scrollRatio * 1.5;
   });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".welcome_section",
+      toggleActions: "play none none none",
+      scrub: 2,
+      start: "center 45%",
+      markers: true,
+    },
+  });
 };
 
 export const AwesomeReveal = ({ Fx, children, delay, direction = "up" }) => {
