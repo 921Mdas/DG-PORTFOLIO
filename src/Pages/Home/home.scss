@@ -242,6 +242,17 @@
         }
       }
     }
+
+    .image_filler {
+      img {
+        width: 40vw;
+        position: absolute;
+        right: 10%;
+        bottom: 0%;
+        filter: invert(100%);
+        opacity: 0.1;
+      }
+    }
   }
 
   // skills
@@ -287,6 +298,17 @@
 
       color: var(--rock-blue);
       padding: 10px 0;
+    }
+
+    .image_filler {
+      img {
+        width: 30vw;
+        position: absolute;
+        left: 10%;
+        bottom: 20%;
+        filter: invert(100%);
+        opacity: 0.1;
+      }
     }
   }
 
@@ -396,6 +418,16 @@
         }
       }
     }
+    .image_filler {
+      img {
+        width: 30vw;
+        position: absolute;
+        right: 0%;
+        bottom: 50%;
+        filter: invert(100%);
+        opacity: 0.1;
+      }
+    }
   }
 
   // contact me
@@ -409,6 +441,10 @@
     // bottom: -25%;
     // @extend .zposition;
     // border: solid 1px red;
+
+    .contact_end {
+      border: solid 1px yellow;
+    }
 
     .contact_me {
       font-size: var(--ft-2xtra);

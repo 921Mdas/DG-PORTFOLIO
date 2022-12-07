@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import * as THREE from "three";
-import { useControls } from "leva";
+import { useControls, Leva } from "leva";
 import { useFrame } from "react-three-fiber";
 
 const vertexShader = `
@@ -130,8 +130,6 @@ const Shader = ({ element }) => {
   useEffect(() => {
     const count = element.geometry.attributes.position.count;
 
-    console.log(element);
-
     const uvArray = new Float32Array(count);
     for (let i = 0; i < count; i++) {
       uvArray[i] = Math.random();
@@ -163,7 +161,9 @@ const Shader = ({ element }) => {
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
+        side={THREE.DoubleSide}
       />
+      <Leva hidden={true} />
     </>
   );
 };

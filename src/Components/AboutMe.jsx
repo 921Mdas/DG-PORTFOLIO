@@ -7,13 +7,15 @@ const AboutMe = () => {
       <div className="intro_text">
         <h3 className="intro_text_title">Who Am I?</h3>
         <p className="intro_text_paragrah">
-          I'm a software developer based out of Toronto. I enjoy learning and
-          combining creative and well crafted logic to achieve unique results.{" "}
-          <br /> <br /> I work and contribute to front-end and back-end
+          I'm a software developer based out of Toronto. I enjoy learning,
+          combining creative processes and logic to achieve unique results. My
+          background in bilingual client-facing roles allowed me to develop
+          communication proficiency and client-focused skills that I can use to
+          support any industry.
+          <br /> <br /> I can work to contribute to front-end and back-end
           processes and believe in treating testing code as good as development
-          code for better results. <br /> <br /> My background in client-facing
-          roles allowed me to develop bilingual communication proficiency and
-          client-focused skills that i can use in any team setting.
+          code for better results. <br /> <br /> Outside of work, I love taking
+          nature walks and spending time with friends and family.
         </p>
       </div>
     </Slide>

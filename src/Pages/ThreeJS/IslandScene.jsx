@@ -59,7 +59,7 @@ const IslandScene = () => {
           position={[-0.1, -0.8, 1]}
           rotation={[0, -0.5, 0]}
         />
-        <Plane scale={5} position={[0, 0, -1]} rotation={[0, 0, 0]} />
+        <Plane position={[0, 0, -2]} rotation={[0, 0, 0]} />
       </Physics>
       <R3FCameraAnimatedEvents />
     </>
