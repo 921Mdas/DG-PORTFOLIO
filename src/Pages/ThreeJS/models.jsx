@@ -1,5 +1,5 @@
 // external
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import * as THREE from "three";
 import { useThree, useFrame } from "@react-three/fiber";
 import {
@@ -44,6 +44,7 @@ import TunnelSceneTexture from "../../assets/models/person/Tunnel.jpg";
 import Shibaku from "../../assets/models/person/shibaku.glb";
 
 import { SIMPLEGSAP } from "../../Helper/helper";
+import Shader from "./shaders/Shader";
 
 const Floater = (props, { speed, RInt, FlInt }) => {
   return (
@@ -59,14 +60,15 @@ const Floater = (props, { speed, RInt, FlInt }) => {
 };
 
 const count = 10;
+const randomSpeed = 0.6;
+const randomRotationIntensity = 0.5;
+const randomFloatIntensity = 0.4;
 
 export const IntroScene = props => {
   const { nodes, materials } = useGLTF(FirstScene);
   const bakedTexture = useTexture(FirstSceneTexture);
   bakedTexture.flipY = false;
-  const randomSpeed = 0.6;
-  const randomRotationIntensity = 0.5;
-  const randomFloatIntensity = 0.4;
+
   return (
     <group {...props} dispose={null}>
       <Floater
@@ -406,9 +408,24 @@ export const Furnace = props => {
   const { nodes, materials } = useGLTF(FurnaceScene);
   const bakedTexture = useTexture(FurnaceSceneTexture);
   bakedTexture.flipY = false;
+  const ref = useRef();
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".welcome_section",
+      toggleActions: "play none none none",
+      scrub: 2,
+      start: "center top",
+      end: "300% top",
+      markers: false,
+    },
+  });
+
+  useEffect(() => {
+    tl.to(ref?.current?.rotation, { duration: 5, y: 10 });
+  }, [tl]);
   return (
     <>
-      <group {...props} dispose={null}>
+      <group {...props} dispose={null} ref={ref}>
         <mesh
           castShadow
           receiveShadow
@@ -499,21 +516,21 @@ export const MineScene = props => {
   bakedTexture.flipY = false;
 
   const ref = useRef();
-
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: ".skills_section",
+      trigger: ".welcome_section",
       toggleActions: "play none none none",
       scrub: 2,
-      start: "center 50%",
-      end: "bottom top",
+      start: "center top",
+      end: "300% top",
       markers: false,
     },
   });
 
   useEffect(() => {
-    tl.to(ref?.current?.rotation, { duration: 5, y: -0.9 });
+    tl.to(ref?.current?.rotation, { duration: 5, y: 10 });
   }, [tl]);
+
   return (
     <group {...props} dispose={null} ref={ref}>
       <mesh
@@ -593,13 +610,13 @@ export const Island = props => {
       toggleActions: "play none none none",
       scrub: 2,
       start: "center top",
-      end: "bottom top",
-      markers: false,
+      end: "300% top",
+      // markers: true,
     },
   });
 
   useEffect(() => {
-    tl.to(ref?.current?.rotation, { duration: 5, y: 0.5 });
+    tl.to(ref?.current?.rotation, { duration: 5, y: 10 });
   }, [tl]);
 
   return (
@@ -722,7 +739,7 @@ export const IslandTwo = props => {
       toggleActions: "play none none none",
       scrub: 2,
       start: "center 30%",
-      end: "bottom top",
+      end: "300% top",
       markers: false,
     },
   });
@@ -914,11 +931,20 @@ export const Ball = ({ color, ...props }) => {
   );
 };
 
+export const SphereX = props => {
+  return (
+    <mesh {...props}>
+      <sphereGeometry args={[1, 16, 16]} />
+      <meshStandardMaterial color={"FF9D00"} />
+    </mesh>
+  );
+};
+
 export const Tensei = props => {
   const group = useRef();
   const { nodes, materials } = useGLTF(Shibaku);
   const ref = useRef();
-  const distribution = 2;
+  const distribution = 20;
 
   useEffect(() => {
     ref.current.children.forEach(child => {
@@ -929,7 +955,7 @@ export const Tensei = props => {
           scrub: 2,
           start: "bottom 99%",
           end: "bottom top",
-          markers: true,
+          markers: false,
         },
         duration: 2,
         y:
@@ -952,7 +978,7 @@ export const Tensei = props => {
           scrub: 2,
           start: "bottom 99%",
           end: "bottom top",
-          markers: true,
+          markers: false,
         },
         duration: 2,
         y:
@@ -2246,11 +2272,21 @@ export const Tensei = props => {
 };
 
 export const Plane = props => {
+  const [shaderState, setShaderState] = useState();
+  const planeRef = useRef();
+  useEffect(() => {
+    setShaderState(planeRef.current);
+  }, []);
+
   return (
     <RigidBody type="fixed">
-      <mesh {...props}>
+      <mesh {...props} ref={planeRef}>
         <planeGeometry />
-        <meshBasicMaterial side={THREE.DoubleSide} />
+        {shaderState ? (
+          <Shader element={shaderState} />
+        ) : (
+          <meshStandardMaterial side={THREE.DoubleSide} color={props.color} />
+        )}
       </mesh>
     </RigidBody>
   );

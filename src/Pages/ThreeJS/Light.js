@@ -1,10 +1,12 @@
 import { useControls, folder } from "leva";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useHelper } from "@react-three/drei";
 import * as THREE from "three";
+import gsap from "gsap";
 
 const LightScene = () => {
   const directionLightRef = useRef(null);
+  const ref = useRef();
   useHelper(directionLightRef, THREE.DirectionalLightHelper, 1);
   const { dirIntensity, dirPosition, ambientLight, dirColor } = useControls(
     "light",
@@ -20,20 +22,41 @@ const LightScene = () => {
     }
   );
 
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".welcome_section",
+      toggleActions: "play none none none",
+      scrub: 2,
+      start: "center top",
+      end: "bottom top",
+      markers: false,
+    },
+  });
+
+  useEffect(() => {
+    tl.to(ref?.current?.position, { duration: 5, x: 1 }, "+=0.2").to(
+      ref?.current?.position,
+      { duration: 5, x: -1 },
+      "+=0.2"
+    );
+  }, [tl]);
+
   return (
     <>
-      <ambientLight intensity={ambientLight} />
+      {/* <ambientLight intensity={ambientLight} /> */}
       <directionalLight
         ref={directionLightRef}
         position={[dirPosition.x, dirPosition.y, dirPosition.z]}
         intensity={dirIntensity}
         color={dirColor}
+        ref={ref}
       />
-      <pointLight
+      {/* <pointLight
         position={[dirPosition.x, dirPosition.y, dirPosition.z]}
         intensity={dirIntensity}
         color={dirColor}
-      />
+        ref={ref}
+      /> */}
     </>
   );
 };

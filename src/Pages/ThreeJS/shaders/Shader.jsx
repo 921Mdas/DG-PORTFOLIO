@@ -88,7 +88,7 @@ float cnoise(vec3 P){
 
   void main(){
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-    float elevation = sin(modelPosition.x * uElevation * uTime * 0.1) * sin(modelPosition.z * uElevation * uTime * 0.1);
+    float elevation = sin(modelPosition.x * uElevation * uTime * 0.1) * cos(modelPosition.z * uElevation * uTime * 0.1);
     elevation += abs(cnoise(vec3(modelPosition.x,modelPosition.z,0.0)));
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
@@ -114,13 +114,13 @@ const fragmentShader = `
 const Shader = ({ element }) => {
   const { depth, surface } = useControls("Standardcolors", {
     depth: {
-      value: "#fcba03",
+      value: "#5c0425",
       onChange: v => {
         uniforms.uDepthColor.value = new THREE.Color(v);
       },
     },
     surface: {
-      value: "#41025e",
+      value: "#131d4e",
       onChange: v => {
         uniforms.uSurfaceColor.value = new THREE.Color(v);
       },

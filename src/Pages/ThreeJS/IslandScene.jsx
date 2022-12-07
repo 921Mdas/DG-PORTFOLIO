@@ -20,6 +20,7 @@ import {
   Tunnel,
   Tensei,
   Plane,
+  SphereX,
 } from "./models";
 
 const IslandScene = () => {
@@ -34,78 +35,31 @@ const IslandScene = () => {
   return (
     <>
       <Physics gravity={[0, 0, 0]}>
-        <Debug />
+        {/* <Debug /> */}
         <Tensei
           scale={0.3}
-          position={[-0.5, objectZero + 1.1, 0]}
+          position={[0, objectZero + 1.1, 0]}
           rotation={[1, 0, 0]}
         />
+        <SphereX scale={0.05} position={[0, objectZero + 1.1, 0]} />
         <Island
-          scale={0.25}
-          position={[0.5, objectOne, 0]}
-          rotation={[0, -0.5, 0]}
-        />
-        <MineScene
           scale={0.1}
-          position={[0.35, objectThree + 0.2, 1]}
-          rotation={[0, -1.0, 0]}
+          position={[-0.2, -0.7, -0.3]}
+          rotation={[0, -0.5, 0]}
         />
 
         <Furnace
-          scale={0.1}
-          position={[-0.5, objectThree + 0.55, 1]}
-          rotation={[0, -0.9, 0]}
+          scale={0.05}
+          position={[-0.2, -0.55, 1]}
+          rotation={[0, -0.5, 0]}
         />
 
-        <Foundation
-          scale={0.1}
-          position={[0, objectThree + 0.2, 1]}
-          rotation={[0, -0.9, 0]}
+        <MineScene
+          scale={0.05}
+          position={[-0.1, -0.8, 1]}
+          rotation={[0, -0.5, 0]}
         />
-
-        {/* <Sparkles
-          count={20}
-          speed={0.2}
-          position={[0.7, objectThree, 0]}
-          scale={[0.1, 0.1, 0.3]}
-        /> */}
-
-        {/* <IslandTwo
-          scale={0.22}
-          position={[-0.5, objectTwo, 0.3]}
-          rotation={[0, 0, 0]}
-          // rotation={[0, 0.5, 0]}
-        /> */}
-
-        <OttoStep
-          scale={0.25}
-          position={[-0.1, -3.43, 0.3]}
-          rotation={[0, 0, 0]}
-          // rotation={[0, 0.5, 0]}
-        />
-
-        {/* <Person scale={0.4} position={[0.33, -3.34, 0]} rotation={[0, 2, 0]} /> */}
-
-        {/* <MarchingCubes
-          resolution={64}
-          maxPolyCount={200000}
-          enableUvs={false}
-          enableColors
-        >
-          <meshStandardMaterial
-            vertexColors
-            roughness={0}
-            metalness={0}
-            color={"#c9d1f1"}
-          />
-
-          <Ball color="#c9d1f1" position={[-1, -1, -0.5]} />
-          <Ball color="#c9d1f1" position={[-2, 1, 0.5]} />
-          <Ball color="#c9d1f1" position={[2, 2, 0.5]} />
-          <Ball color="#c9d1f1" position={[-2, -2, -0.5]} />
-          <Ball color="#c9d1f1" position={[3, 3, 0.5]} />
-          <Ball color="#c9d1f1" position={[-3, -3, -0.5]} />
-        </MarchingCubes> */}
+        <Plane scale={5} position={[0, 0, -1]} rotation={[0, 0, 0]} />
       </Physics>
       <R3FCameraAnimatedEvents />
     </>

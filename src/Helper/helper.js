@@ -37,7 +37,7 @@ export const R3FCameraAnimatedEvents = () => {
 
   window.addEventListener("scroll", e => {
     const scrollRatio = window.scrollY / height;
-    camera.position.y = -scrollRatio * 1.5;
+    // camera.position.y = -scrollRatio * 1.5;
   });
 
   const tl = gsap.timeline({
@@ -46,9 +46,14 @@ export const R3FCameraAnimatedEvents = () => {
       toggleActions: "play none none none",
       scrub: 2,
       start: "center 45%",
-      markers: true,
+      // markers: true,
     },
   });
+
+  tl.to(camera.rotation, { duration: 5, z: Math.PI * 0.03 }).to(
+    camera.position,
+    { duration: 5, y: Math.PI * 0.5 }
+  );
 };
 
 export const AwesomeReveal = ({ Fx, children, delay, direction = "up" }) => {
