@@ -52,9 +52,26 @@
 // Welcome text
 
 .subheadline {
-  font-size: 80px;
+  font-size: 50px;
   color: var(--rock-blue);
   font-weight: bold;
+}
+
+.curveOne {
+  transform: rotateZ(70deg) translate(0%, 90%);
+  position: absolute;
+  top: -100%;
+}
+.curveTwo {
+  transform: rotateZ(180deg) translate(90%, 65%);
+  position: absolute;
+  top: 100%;
+}
+
+.curveThree {
+  transform: rotateZ(280deg) translate(60%, -135%);
+  position: absolute;
+  top: 100%;
 }
 
 // resetter classes
@@ -128,7 +145,7 @@
 
   // headline welcome
   .welcome_section {
-    border: solid 3px rgb(0, 153, 255);
+    // border: solid 3px rgb(0, 153, 255);
     @extend .section_reset;
     @extend .zposition;
 
@@ -192,7 +209,7 @@
 
   //  about me
   .about_me {
-    border: solid 3px green;
+    // border: solid 3px green;
     @extend .section_reset;
     @extend .zposition;
 
@@ -229,7 +246,7 @@
 
   // skills
   .skills_section {
-    border: solid 3px rgb(219, 86, 108);
+    // border: solid 3px rgb(219, 86, 108);
     @extend .section_reset;
     @extend .zposition;
 
@@ -237,7 +254,7 @@
       width: 50vw;
       $border-margin: var(--border-margin);
       position: absolute;
-      top: 30%;
+      top: 50%;
       left: calc(35% + $border-margin);
       transform: translateY(-50%);
 
@@ -274,8 +291,15 @@
   }
 
   // projects
+  .intro_projects_title {
+    text-align: center;
+    width: 100%;
+    color: var(--rock-blue);
+    position: absolute;
+    top: 30%;
+  }
   .project_section {
-    border: solid 3px saddlebrown;
+    // border: solid 3px saddlebrown;
     @extend .section_reset;
     @extend .zposition;
 
@@ -285,22 +309,15 @@
       margin-top: 1em;
       transition: all 1s ease-in-out;
       @include flex(center, center, column, 10px);
-      border: solid 1px red;
+      // border: solid 1px red;
 
       .My_Projects {
         width: 100%;
-        @include flex(center, center, column, 1em);
-        padding-left: 5em;
-        border: solid 1px red;
-        position: absolute;
-        top: 0%;
-
-        .intro_projects_title {
-          text-align: center;
-          border: solid 1px red;
-          width: 100%;
-          color: var(--rock-blue);
-        }
+        @include flex(center, center, row, 1em);
+        // padding-left: 5em;
+        // border: solid 1px red;
+        // position: absolute;
+        // top: 0%;
 
         .tools_used ul {
           @include flex(center, center, row, 0.5em);
@@ -317,8 +334,7 @@
         }
 
         .section_project {
-          border: solid 1px rgba(255, 255, 255, 0.952);
-          background: rgba(0, 0, 0, 0.075);
+          background: rgb(2, 0, 32);
           transition: all 0.5s ease-in-out;
           height: 25vh;
           margin-bottom: 0.5em;
@@ -351,6 +367,7 @@
           h3 {
             margin-bottom: 1em;
             color: var(--orange);
+            padding-left: 2em;
           }
         }
 
@@ -396,11 +413,11 @@
     .contact_me {
       font-size: var(--ft-2xtra);
       color: var(--rock-blue);
-      border: solid 1px rgba(255, 255, 255, 0.219);
+      // border: solid 1px rgba(255, 255, 255, 0.219);
       padding: 1em;
       text-align: center;
       position: absolute;
-      bottom: 10%;
+      bottom: 5%;
       left: 50%;
       transform: translateX(-50%);
       transition: all 0.5s ease-in-out;
@@ -428,7 +445,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("../../assets//Pictures/darknight.jpeg");
+  // background-image: url("../../assets//Pictures/darknight.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
 }

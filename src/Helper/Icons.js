@@ -23,6 +23,7 @@ import { BsCodeSlash } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
 import { MdOutlineContactMail } from "react-icons/md";
 import { AiFillFolderOpen } from "react-icons/ai";
+import { BsGearFill } from "react-icons/bs";
 
 export const ICON = {
   AiFillTrophy,
@@ -49,4 +50,5 @@ export const ICON = {
   BsFillPersonFill,
   MdOutlineContactMail,
   AiFillFolderOpen,
+  BsGearFill,
 };

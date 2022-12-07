@@ -39,7 +39,7 @@ const Main = () => {
         </div> */}
       </div>
 
-      <div className="about_me">
+      <div className="about_me" id="abtme">
         <div className="introducing_me">
           <AboutMe />
 
@@ -51,13 +51,13 @@ const Main = () => {
         </div>
       </div>
 
-      <div className="skills_section">
+      <div className="skills_section" id="prject">
         <Skills />
       </div>
 
-      <div className="project_section">
+      <div className="project_section" id="ctcme">
         <Projects />
-        {/* <Contact /> */}
+        <Contact />
       </div>
 
       <Loader />

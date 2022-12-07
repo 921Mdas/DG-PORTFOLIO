@@ -3,9 +3,9 @@ const {
   GrLinkedinOption,
   FaGithubSquare,
   AiFillInstagram,
-  MdOutlineContactMail,
   AiFillFolderOpen,
   BsFillPersonFill,
+  BsGearFill,
 } = ICON;
 
 export const socialData = [
@@ -60,7 +60,7 @@ export const projectData = [
 ];
 
 export const NavData = [
-  { title: "About Me", idx: 1, Icon: BsFillPersonFill },
-  { title: "Projects", idx: 2, Icon: AiFillFolderOpen },
-  { title: "Contact Me", idx: 3, Icon: MdOutlineContactMail },
+  { title: "About Me", idx: 1, Icon: BsFillPersonFill, id: "#abtme" },
+  { title: "Skills", idx: 2, Icon: BsGearFill, id: "#prject" },
+  { title: "Projects", idx: 3, Icon: AiFillFolderOpen, id: "#ctcme" },
 ];
