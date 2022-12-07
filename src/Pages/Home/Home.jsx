@@ -22,6 +22,10 @@ import Intro from "../../Components/Intro";
 import AboutMe from "../../Components/AboutMe";
 import Loader from "../ThreeJS/Loader";
 
+import machineImage from "../../assets/tattoo.png";
+import walkinWood from "../../assets/wood.png";
+import pileofBooks from "../../assets/books.png";
+
 const Main = () => {
   return (
     <div className="portfolio">
@@ -49,14 +53,24 @@ const Main = () => {
             <Achievement text={"Freelancer"} />
           </Slide>
         </div>
+        <div className="image_filler">
+          <img src={walkinWood} alt="" />
+        </div>
       </div>
 
       <div className="skills_section" id="prject">
         <Skills />
+        <div className="image_filler">
+          <img src={pileofBooks} alt="" />
+        </div>
       </div>
 
       <div className="project_section" id="ctcme">
         <Projects />
+        <div className="image_filler">
+          <img src={machineImage} alt="" />
+        </div>
+
         <Contact />
       </div>
 

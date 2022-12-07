@@ -50,10 +50,7 @@ export const R3FCameraAnimatedEvents = () => {
     },
   });
 
-  tl.to(camera.rotation, { duration: 5, z: Math.PI * 0.03 }).to(
-    camera.position,
-    { duration: 5, y: Math.PI * 0.5 }
-  );
+  tl.to(camera.position, { duration: 5, y: Math.PI * -1 });
 };
 
 export const AwesomeReveal = ({ Fx, children, delay, direction = "up" }) => {

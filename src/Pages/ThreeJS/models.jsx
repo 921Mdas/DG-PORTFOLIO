@@ -944,7 +944,7 @@ export const Tensei = props => {
   const group = useRef();
   const { nodes, materials } = useGLTF(Shibaku);
   const ref = useRef();
-  const distribution = 20;
+  const distribution = 12;
 
   useEffect(() => {
     ref.current.children.forEach(child => {
@@ -2281,9 +2281,9 @@ export const Plane = props => {
   return (
     <RigidBody type="fixed">
       <mesh {...props} ref={planeRef}>
-        <planeGeometry />
+        <planeGeometry args={[10, 40]} />
         {shaderState ? (
-          <Shader element={shaderState} />
+          <Shader element={shaderState} side={THREE.DoubleSide} />
         ) : (
           <meshStandardMaterial side={THREE.DoubleSide} color={props.color} />
         )}
