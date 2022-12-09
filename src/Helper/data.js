@@ -33,9 +33,9 @@ export const projectData = [
     project_description: `Banaleo is a community of jazz and rumba aficionados that
                 contributes musicians to our library, allowing us to compile a
                 collection of African Jazz.`,
-    tools: ["React", "MongoDB", "JWT", "AWS"],
-    giturl: "www.google.com",
-    weburl: "www.google.com",
+    tools: ["React", "MongoDB", "JWT", "AWS", "Canvas"],
+    giturl: "https://github.com/921Mdas/Bana-Leo-BNLmusic-",
+    weburl: "https://banaleo.onrender.com/",
   },
   {
     project_number: "02",
@@ -43,19 +43,17 @@ export const projectData = [
     project_description: `A press release tool to create, edit and
                 publish content. It incorporates a dashboard, a favorite article
                 section and a chat room using web socket.`,
-    tools: ["React", "MongoDB", "JWT", "AWS"],
-    giturl: "www.google.com",
-    weburl: "www.google.com",
+    tools: ["React", "MongoDB", "JWT"],
+    giturl: "https://github.com/921Mdas/Daily-News-DN-",
+    weburl: "https://banaleo.onrender.com/",
   },
   {
     project_number: "03",
     project_title: "PendArt",
-    project_description: `A press release tool to create, edit and publish
-                content. It incorporates a dashboard, a favorite article section
-                and a chat room using web socket.`,
-    tools: ["React", "MongoDB", "JWT", "AWS"],
-    giturl: "www.google.com",
-    weburl: "www.google.com",
+    project_description: `Virtual market application for African Art where users can view collections, purchase and access transaction history`,
+    tools: ["React Native", "MongoDB", "Express", "Redux"],
+    giturl: "https://github.com/921Mdas/PENDART",
+    weburl: "https://imgur.com/a/ePzRvSl",
   },
 ];
 
