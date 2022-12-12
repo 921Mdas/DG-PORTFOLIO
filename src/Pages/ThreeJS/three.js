@@ -33,7 +33,7 @@ const ThreeJS = () => {
         outputEncoding={THREE.sRGBEncoding}
         sRGB={true}
       >
-        <Perf position="bottom-left" />
+        {/* <Perf position="bottom-left" /> */}
         <Environment background>
           <Lightformer
             position={[0, 1, 3]}

@@ -39,13 +39,11 @@ export const projectData = [
   },
   {
     project_number: "02",
-    project_title: "Daily News",
-    project_description: `A press release tool to create, edit and
-                publish content. It incorporates a dashboard, a favorite article
-                section and a chat room using web socket.`,
-    tools: ["React", "MongoDB", "JWT"],
-    giturl: "https://github.com/921Mdas/Daily-News-DN-",
-    weburl: "https://banaleo.onrender.com/",
+    project_title: "CleanReader",
+    project_description: `A duplicate removing tool that can help clean lists, and export data in a txt format`,
+    tools: ["React", "Javascript"],
+    giturl: "https://github.com/921Mdas/CleanReader",
+    weburl: "https://cleanreader.netlify.app/",
   },
   {
     project_number: "03",
