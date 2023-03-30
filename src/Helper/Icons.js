@@ -13,6 +13,7 @@ import { HiOutlineDeviceMobile } from "react-icons/hi";
 import { SiDjango } from "react-icons/si";
 import { SiJest } from "react-icons/si";
 import { FiPlay } from "react-icons/fi";
+import { SiTypescript } from "react-icons/si";
 
 import { GrLinkedinOption } from "react-icons/gr";
 import { FaGithubSquare } from "react-icons/fa";
@@ -51,4 +52,5 @@ export const ICON = {
   MdOutlineContactMail,
   AiFillFolderOpen,
   BsGearFill,
+  SiTypescript,
 };

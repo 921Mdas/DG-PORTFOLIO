@@ -1,0 +1,26 @@
+// @import "../index.scss";
+
+.intro_boundless {
+  font-size: calc(var(--ft-giant) * 1.5);
+  position: relative;
+
+  .first {
+    position: absolute;
+    top: -10vh;
+    left: 0px;
+    color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: whitesmoke;
+    opacity: 0.5;
+  }
+}
+
+.second {
+  position: absolute;
+  left: -10vh;
+  right: 0px;
+  font-size: calc(var(--ft-giant) * 1.5);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: whitesmoke;
+  opacity: 0.3;
+}

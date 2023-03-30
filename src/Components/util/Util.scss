@@ -1,0 +1,9 @@
+.cursor {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #fbfbfb;
+  mix-blend-mode: difference;
+  z-index: 99999;
+}

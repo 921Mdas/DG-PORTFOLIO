@@ -53,6 +53,14 @@ export const projectData = [
     giturl: "https://github.com/921Mdas/PENDART",
     weburl: "https://imgur.com/a/ePzRvSl",
   },
+  {
+    project_number: "04",
+    project_title: "PendArt",
+    project_description: `Virtual market application for African Art where users can view collections, purchase and access transaction history`,
+    tools: ["React Native", "MongoDB", "Express", "Redux"],
+    giturl: "https://github.com/921Mdas/PENDART",
+    weburl: "https://imgur.com/a/ePzRvSl",
+  },
 ];
 
 export const NavData = [

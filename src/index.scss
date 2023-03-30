@@ -14,18 +14,21 @@ html {
   scroll-behavior: smooth;
 }
 
-body,
-html,
-#root {
-  // background-image: url("../public/assets/nightbackground.jpg");
-  // background-image: url("https://source.unsplash.com/galaxy");
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 :root {
+  // new colors
+  --bfbg: #044a57;
+  --bfbgd: #024150;
+  --clred: #e01e22;
+  --clorange: #f1602a;
+  --clgreen: #26fcdb;
+  --dullgray02: rgba(255, 255, 255, 0.246);
+  --dullgray05: rgba(255, 255, 255, 0.507);
+
+  // ******** final colors
+  --purple: #9fa8ff;
+  --limegreen: #6ae050;
+  // ***********
+
   --firefly: #0c1c2f;
   --bunting: #132442;
   --rock-blue: #c9d1f1;
@@ -95,6 +98,34 @@ html {
 
 .Main {
   background-color: var(--smoke);
+}
+
+// resets
+
+.OutlineX {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: whitesmoke;
+  opacity: 0.5;
+}
+
+.zposition {
+  z-index: 100;
+}
+
+.section_reset {
+  $height: var(--page-height);
+  $section_number: var(--number-ofsections);
+  height: calc($height/$section_number);
+  position: relative;
+  width: 100vw;
+}
+
+@mixin absolutePos {
+  position: absolute;
+}
+
+@mixin zIndexTop {
+  z-index: 1000;
 }
 
 @mixin flex($jc, $ai, $fd, $gap) {
