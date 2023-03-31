@@ -11,7 +11,11 @@ import RobotoReg from "../../../assets/Fonts/Rbtr.ttf";
 import { Vector3 } from "three";
 import { useThree } from "react-three-fiber";
 import { useFrame } from "react-three-fiber";
-import Shader from "../Util/Shader";
+import { useInView } from "react-intersection-observer";
+import { Particles } from "./Particles";
+
+import "../Util/simulationMaterial";
+
 const initPos = 28;
 const targetPos = initPos - 34;
 const headNum = 0.4;
@@ -42,7 +46,6 @@ const Logo = () => {
 const Intro = () => {
   return (
     <>
-      <Shader />
       <Scroll>
         <ParagraphHelper
           scale={headNum}
@@ -426,232 +429,6 @@ const ProjectsPart = () => {
         {data.map((pc, i) => {
           return <ProjectCard {...pc} key={i} />;
         })}
-        {/* <ProjectCard
-          posx={1}
-          posy={0.4}
-          posz={1}
-          col="#6c1eff"
-          size={size}
-          imgurl={"/headphones.jpeg"}
-          anchSize={0.34}
-          anchorX={31}
-          anchorY={initPos + 68}
-          text={`BANALEO`}
-          skillScale={headNum - 0.36}
-          SkillAnchX={43.5}
-          skillAnchY={initPos + 127}
-          skills={`REACT / MONGODB / AWS `}
-          codeScale={headNum - 0.35}
-          codeAnchX={33}
-          codeAnchY={initPos + 92}
-          viewScale={headNum - 0.35}
-          viewAnchX={29.5}
-          viewAnchY={initPos + 92}
-          codeUrl={"https://github.com/921Mdas/Bana-Leo-BNLmusic-"}
-          viewUrl={"https://banaleo.onrender.com/"}
-        /> */}
-        {/* <group position-x={1} position-y={0.4} position-z={1}>
-          <PlaneGeo
-            newPos={[-1.5, initPos - 34, 0]}
-            newCol="#6c1eff"
-            size={size}
-          />
-
-          <Image
-            url="/headphones.jpeg"
-            position={[-1.5, initPos - 34, 0]}
-            transparent
-            opacity={0.2}
-            scale={size}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.34}
-            lineHeight={1.5}
-            anchorX={31}
-            anchorY={initPos + 68}
-            font={RobotoCondensed}
-            text={`BANALEO`}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.36}
-            lineHeight={1.5}
-            anchorX={43.5}
-            anchorY={initPos + 127}
-            text={`REACT / MONGODB / AWS `}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={33}
-            anchorY={initPos + 92}
-            text={`CODE`}
-            fnOver={() => Over()}
-            fnClick={() => {
-              window.open(
-                "https://github.com/921Mdas/Bana-Leo-BNLmusic-",
-                "_blank"
-              );
-            }}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={29.5}
-            anchorY={initPos + 92}
-            text={`VIEW`}
-            fnClick={() => {
-              window.open("https://banaleo.onrender.com/", "_blank");
-            }}
-          />
-        </group> */}
-        {/* <group>
-          <PlaneGeo
-            newPos={[-1.5, initPos - 34, 0]}
-            newCol={"#448f33"}
-            size={size}
-          />
-          <Image
-            url="/bool.jpeg"
-            position={[-1.5, initPos - 34, 0]}
-            transparent
-            opacity={0.2}
-            scale={size}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.34}
-            lineHeight={1.5}
-            anchorX={31}
-            anchorY={initPos + 68}
-            text={`BOOLFORGE`}
-            font={RobotoCondensed}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.36}
-            lineHeight={1.5}
-            anchorX={42.5}
-            anchorY={initPos + 127}
-            text={`REACT / REDUX / JEST `}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={33}
-            anchorY={initPos + 92}
-            text={`CODE`}
-            fnClick={() => {
-              window.open("https://github.com/921Mdas/DBoolean", "_blank");
-            }}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={29.5}
-            anchorY={initPos + 92}
-            text={`VIEW`}
-            fnClick={() => {
-              window.open("https://boolforge.netlify.app/", "_blank");
-            }}
-          />
-        </group> */}
-        {/* <group position-x={0.8} position-y={-0.3} position-z={0.5}>
-          <PlaneGeo
-            newPos={[-1.5, initPos - 34, 0]}
-            newCol={"red"}
-            size={size}
-          />
-          <Image
-            url="/audiov.jpeg"
-            position={[-1.5, initPos - 34, 0]}
-            transparent
-            opacity={0.2}
-            scale={size}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.34}
-            lineHeight={1.5}
-            anchorX={31}
-            anchorY={initPos + 68}
-            font={RobotoCondensed}
-            text={`AUDIOVIEW`}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.36}
-            lineHeight={1.5}
-            anchorX={43}
-            anchorY={initPos + 127}
-            text={`REACT / R3F / ZUSTAND `}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={33}
-            anchorY={initPos + 92}
-            text={`CODE`}
-            fnClick={() => {
-              window.open("https://github.com/921Mdas/DBoolean", "_blank");
-            }}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={29.5}
-            anchorY={initPos + 92}
-            text={`VIEW`}
-            fnClick={() => {
-              window.open("https://rodeomads01.netlify.app/", "_blank");
-            }}
-          />
-        </group> */}
-        {/* <group position-x={0.1} position-y={-0.7} position-z={0.5}>
-          <PlaneGeo
-            newPos={[-1.5, initPos - 34, 0]}
-            newCol={"red"}
-            size={size}
-          />
-
-          <Image
-            url="/headphones.jpeg"
-            position={[-1.5, initPos - 34, 0]}
-            transparent
-            opacity={0.2}
-            scale={size}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.34}
-            lineHeight={1.5}
-            anchorX={31}
-            anchorY={initPos + 68}
-            font={RobotoCondensed}
-            text={`CSV CLEANER`}
-          />
-          <ParagraphHelper
-            scale={headNum - 0.36}
-            lineHeight={1.5}
-            anchorX={42.5}
-            anchorY={initPos + 127}
-            text={`REACT / SASS / JEST `}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={33}
-            anchorY={initPos + 92}
-            text={`CODE`}
-            fnClick={() => {
-              window.open("https://github.com/921Mdas/CleanReader", "_blank");
-            }}
-          />
-          <LinkHelper
-            scale={headNum - 0.35}
-            lineHeight={1.5}
-            anchorX={29.5}
-            anchorY={initPos + 92}
-            text={`VIEW`}
-            fnClick={() => {
-              window.open("https://cleanreader.netlify.app/", "_blank");
-            }}
-          />
-        </group> */}
       </Scroll>
     </>
   );
@@ -706,6 +483,7 @@ const ContactPart = () => {
           }}
         />
       </Scroll>
+      <Particles focus={5.1} speed={100} aperture={1.8} fov={50} curl={0.25} />
     </group>
   );
 };
@@ -718,7 +496,6 @@ const ThreeText = () => {
       <SkillPart />
       <ProjectsPart />
       <ContactPart />
-      {/* <Cursor /> */}
     </>
   );
 };
