@@ -13,6 +13,7 @@ import { useThree } from "react-three-fiber";
 import { useFrame } from "react-three-fiber";
 import { useInView } from "react-intersection-observer";
 import { Particles } from "./Particles";
+import { useControls } from "leva";
 
 import "../Util/simulationMaterial";
 
@@ -22,24 +23,44 @@ const headNum = 0.4;
 
 const Logo = () => {
   return (
-    <>
+    <Scroll>
       <ParagraphHelper
-        scale={headNum - 0.32}
+        scale={headNum}
         lineHeight={1.5}
-        anchorX={28}
-        anchorY={initPos - 43.2}
+        anchorX={0}
+        anchorY={-0.9}
         font={RobotoCondensed}
-        text={`deomadingu`}
+        text={`DEO`}
+        shade={true}
       />
       <ParagraphHelper
+        scale={headNum}
+        lineHeight={1.5}
+        anchorX={0}
+        anchorY={0}
+        font={RobotoCondensed}
+        text={`MADINGU`}
+        shade={true}
+      />
+      <ParagraphHelper
+        scale={headNum - 0.3}
+        lineHeight={1.5}
+        anchorX={0}
+        anchorY={5}
+        font={RobotoCondensed}
+        text={`SOFTWARE DEVELOPER`}
+        shade={true}
+      />
+
+      {/* <ParagraphHelper
         scale={headNum - 0.36}
         lineHeight={1.5}
         anchorX={56}
         anchorY={initPos - 55.9}
         font={RobotoCondensed}
         text={`SOFTWARE DEVELOPER`}
-      />
-    </>
+      /> */}
+    </Scroll>
   );
 };
 
@@ -54,6 +75,7 @@ const Intro = () => {
           anchorY={initPos - 24}
           font={RobotoCondensed}
           text={`01`}
+          shade={true}
         />
         <ParagraphHelper
           scale={0.06}
@@ -97,6 +119,7 @@ const SkillPart = () => {
           anchorY={initPos - 20.5}
           font={RobotoCondensed}
           text={`02`}
+          shade={true}
         />
 
         <ParagraphHelper
@@ -425,6 +448,7 @@ const ProjectsPart = () => {
           anchorY={initPos - 16}
           font={RobotoCondensed}
           text={`03`}
+          shade={true}
         />
         {data.map((pc, i) => {
           return <ProjectCard {...pc} key={i} />;
@@ -435,6 +459,13 @@ const ProjectsPart = () => {
 };
 
 const ContactPart = () => {
+  const props = useControls("particles", {
+    focus: { value: 3, min: 3, max: 7, step: 0.01 },
+    speed: { value: 8.9, min: 0.1, max: 100, step: 0.1 },
+    aperture: { value: 5.5, min: 1, max: 5.6, step: 0.1 },
+    fov: { value: 200, min: 0, max: 200 },
+    curl: { value: 0.25, min: 0.01, max: 0.5, step: 0.01 },
+  });
   return (
     <group position-y={-0.7}>
       <Scroll>
@@ -483,7 +514,7 @@ const ContactPart = () => {
           }}
         />
       </Scroll>
-      <Particles focus={5.1} speed={100} aperture={1.8} fov={50} curl={0.25} />
+      <Particles {...props} />
     </group>
   );
 };

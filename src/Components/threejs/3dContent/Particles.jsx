@@ -19,8 +19,10 @@ export function Particles({
   // Set up FBO
   const [scene] = useState(() => new THREE.Scene());
   const [camera] = useState(
-    () => new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1)
+    () =>
+      new THREE.OrthographicCamera(-2, 0.1, 0.5, 0, 0.5 / Math.pow(2, 53), 0.5)
   );
+
   const [positions] = useState(
     () =>
       new Float32Array([
@@ -78,7 +80,7 @@ export function Particles({
     );
   });
   return (
-    <>
+    <group position={[0, 0.6, 0]}>
       {/* Simulation goes into a FBO/Off-buffer */}
       {createPortal(
         <mesh>
@@ -112,6 +114,6 @@ export function Particles({
           />
         </bufferGeometry>
       </points>
-    </>
+    </group>
   );
 }

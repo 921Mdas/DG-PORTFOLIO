@@ -17,9 +17,9 @@ function getSphere(count, size, p = new THREE.Vector4()) {
 class SimulationMaterial extends THREE.ShaderMaterial {
   constructor() {
     const positionsTexture = new THREE.DataTexture(
-      getSphere(512 * 512, 128),
-      512,
-      512,
+      getSphere(256 * 256, 128),
+      256,
+      256,
       THREE.RGBAFormat,
       THREE.FloatType
     );
@@ -47,7 +47,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         curlPos += curl(curlPos * uCurlFreq * 4.0) * 0.25;
         curlPos += curl(curlPos * uCurlFreq * 8.0) * 0.125;
         curlPos += curl(pos * uCurlFreq * 16.0) * 0.0625;
-        gl_FragColor = vec4(mix(pos, curlPos, noise(pos + t)), 1.0);
+        gl_FragColor = vec4(mix(pos, curlPos , noise(pos + t)), 1.0);
       }`,
       uniforms: {
         positions: { value: positionsTexture },

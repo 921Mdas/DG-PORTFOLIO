@@ -93,11 +93,9 @@ const ParagraphHelper: React.FC<Paragraph> = ({
   const mat = shade
     ? shaderMat
     : new THREE.MeshStandardMaterial({
-        color: "red",
+        color: "whitesmoke",
         toneMapped: true,
         blending: THREE.AdditiveBlending,
-        roughness: 0,
-        metalness: 0.2,
       });
 
   return (
@@ -112,6 +110,7 @@ const ParagraphHelper: React.FC<Paragraph> = ({
       ref={grp}
       shade={shade}
       ref={geomRef}
+      material={mat}
     >
       {text}
     </Text>

@@ -14,7 +14,7 @@ const AboutMe = () => {
         <h1 className="title_ami">AM I ?</h1>
       </div>
 
-      <Slide direction="up" cascade={true} triggerOnce delay={0} damping={0.2}>
+      {/* <Slide direction="up" cascade={true} triggerOnce delay={0} damping={0.2}>
         <p>
           Hi there! I'm Deo and I am a software developer who is passionate
           about learning and building unique experiences.
@@ -30,7 +30,7 @@ const AboutMe = () => {
           <Achievement text={"Open & Personal projects"} />
           <Achievement text={"Freelancing"} />
         </span>
-      </Slide>
+      </Slide> */}
     </div>
   );
 };
