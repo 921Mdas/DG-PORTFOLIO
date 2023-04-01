@@ -1,104 +1,4 @@
 @import "../../index.scss";
-// @import "../../footer.scss";
-// @import "../../intro.scss";
-// @import "../../nav.scss";
-// @import "../../projects.scss";
-// @import "../../skills.scss";
-// @import "../aboutme.scss";
-// .canvas {
-//   width: 100%;
-//   height: 100vh;
-//   position: absolute;
-//   left: 0;
-// }
-// .loading_screen {
-//   background-color: var(--bfbg);
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   z-index: 1000;
-//   height: var(--page-height);
-//   width: 100vw;
-// }
-
-// .loading_bar {
-//   border: solid 1px white;
-//   width: 300px;
-//   height: 1vh;
-//   position: absolute;
-//   top: 12.5%;
-//   left: 50%;
-//   transform: translateX(-50%);
-//   overflow: hidden;
-// }
-
-// .progress {
-//   width: 0%;
-//   height: 100%;
-//   background: white;
-//   transition: all 0.5s ease-in-out;
-// }
-
-// .page1 {
-//   width: 100%;
-//   height: 100%;
-//   background: transparent;
-//   z-index: 3;
-// }
-
-// .project_page {
-//   width: 100%;
-//   height: 100%;
-// }
-
-// // GOOD CODE BELOW
-
-// // Welcome text
-
-// .subheadline {
-//   font-size: 50px;
-//   color: var(--rock-blue);
-//   font-weight: bold;
-// }
-
-// .curveOne {
-//   transform: rotateZ(70deg) translate(0%, 90%);
-//   position: absolute;
-//   top: -100%;
-// }
-// .curveTwo {
-//   transform: rotateZ(180deg) translate(90%, 65%);
-//   position: absolute;
-//   top: 100%;
-// }
-
-// .curveThree {
-//   transform: rotateZ(280deg) translate(60%, -135%);
-//   position: absolute;
-//   top: 100%;
-// }
-
-// // resetter classes
-// .blur {
-//   backdrop-filter: blur(4px);
-//   -webkit-backdrop-filter: blur(4px);
-// }
-
-// .align_content_right {
-//   $border-margin: var(--border-margin);
-//   position: absolute;
-//   top: 50%;
-//   left: calc(50% + $border-margin);
-//   transform: translateY(-50%);
-// }
-
-// .align_content_left {
-//   $border-margin: var(--border-margin);
-//   position: absolute;
-//   top: 50%;
-//   right: calc(50% + $border-margin);
-//   transform: translateY(-50%);
-// }
 
 .widthnheight {
   width: 100vw;
@@ -108,6 +8,7 @@
 .portfolio {
   @extend .widthnheight;
   position: relative;
+  background-color: #000000;
 
   .welcome_section {
     @extend .section_reset;
@@ -153,5 +54,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  background-color: #000000;
 }
 // ******  CANVAS

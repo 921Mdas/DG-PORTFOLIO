@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.15.5",
-    "@emotion/react": "^11.10.4",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.15",
     "@react-three/cannon": "^6.4.0",
     "@react-three/csg": "^2.1.1",
     "@react-three/drei": "^9.57.1",

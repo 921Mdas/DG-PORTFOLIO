@@ -2,8 +2,8 @@ import * as THREE from "three";
 import { useMemo, useState, useRef } from "react";
 import { createPortal, useFrame } from "@react-three/fiber";
 import { useFBO } from "@react-three/drei";
-import "../Util/simulationMaterial";
-import "../Util/dofPointsMaterial";
+import "../Effect/Shaders/simulationMaterial";
+import "../Effect/Shaders/dofPointsMaterial";
 
 export function Particles({
   speed,
@@ -80,7 +80,7 @@ export function Particles({
     );
   });
   return (
-    <group position={[0, 0.6, 0]}>
+    <group position={[0, 0, 0]}>
       {/* Simulation goes into a FBO/Off-buffer */}
       {createPortal(
         <mesh>
