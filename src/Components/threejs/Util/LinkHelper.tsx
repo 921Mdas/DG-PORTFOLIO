@@ -2,15 +2,20 @@ import React, { useEffect, useState, useRef } from "react";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
 import { Vector3 } from "three";
-import Rubik from "../../../assets/Fonts/RubikBold.ttf";
 
 interface Paragraph {
   text: string;
   color: string;
   scale: number;
   lineHeight: number;
-  anchorX: 'number | "center" | "left" | "right"';
-  anchorY: 'number | "center" | "left" | "right"';
+  anchorX?: number | "center" | "left" | "right";
+  anchorY?:
+    | number
+    | "bottom"
+    | "top"
+    | "middle"
+    | "top-baseline"
+    | "bottom-baseline";
   position: Vector3;
   font?: any;
   fnOver?: () => any;
@@ -31,12 +36,11 @@ const LinkHelper: React.FC<Paragraph> = ({
   fnOut,
   fnClick,
 }) => {
+  const ref = useRef<any>();
+  const [hovered, setHovered] = useState<boolean>(false);
   const material = new THREE.MeshStandardMaterial({
     color: "whitesmoke",
   });
-
-  const [hovered, setHovered] = useState(false);
-  const ref = useRef<any>();
 
   useEffect(() => {
     if (hovered) {
@@ -45,6 +49,7 @@ const LinkHelper: React.FC<Paragraph> = ({
     }
     return () => {
       document.body.style.cursor = "auto";
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       ref.current.color = "whitesmoke";
     };
   }, [hovered]);

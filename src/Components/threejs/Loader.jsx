@@ -1,36 +1,40 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useProgress } from "@react-three/drei";
+import { useProgress, Html } from "@react-three/drei";
 
-const Loader = props => {
+function Loader() {
   const { progress } = useProgress();
-  const [showLoader, setShowLoader] = useState(true);
-  const ref = useRef();
-  const hideLoader = () => {
-    setShowLoader(false);
-  };
-  const timeOut = setTimeout(hideLoader, 500);
-
-  useEffect(() => {
-    const geneRateLoader = async () => {
-      ref.current.style.width = `${progress}%`;
-      if (progress === 100) {
-        hideLoader();
-      }
-    };
-    geneRateLoader();
-  }, [progress]);
 
   return (
-    <>
-      {showLoader ? (
-        <div className="loading_screen">
-          <div className="loading_bar">
-            <div className="progress" ref={ref}></div>
-          </div>
-        </div>
-      ) : null}
-    </>
+    <Html center>
+      {/* <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background: "black",
+          width: "100vw",
+          height: "100vh",
+        }}
+      >
+        <div
+          style={{ display: "flex", alignItems: "center", marginRight: "10px" }}
+        >
+          <div
+            className="dot"
+            style={{
+              animationDelay: "0s",
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+            }}
+          ></div>
+          <div className="dot" style={{ animationDelay: "0.2s" }}></div>
+          <div className="dot" style={{ animationDelay: "0.4s" }}></div>
+        </div> */}
+      {/* </div> */}
+      <div className="OutlineX">{Math.round(progress)}%</div>
+    </Html>
   );
-};
+}
 
 export default Loader;
