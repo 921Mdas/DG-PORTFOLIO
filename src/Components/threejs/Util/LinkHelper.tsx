@@ -45,7 +45,7 @@ const LinkHelper: React.FC<Paragraph> = ({
   useEffect(() => {
     if (hovered) {
       document.body.style.cursor = "pointer";
-      ref.current.color = "#28283e";
+      ref.current.color = "#26fcdb";
     }
     return () => {
       document.body.style.cursor = "auto";

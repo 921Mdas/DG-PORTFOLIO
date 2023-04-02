@@ -103,7 +103,7 @@ const SkillPart = ({ headNum, initPos, material }) => {
         <ParagraphHelper
           scale={0.07}
           lineHeight={1.5}
-          anchorX={-20}
+          anchorX={-18}
           anchorY={(initPos + 1.5) * 2}
           text={`${skillsArr[8]}`}
           position={new Vector3(0.1, 0.1, 0.2)}

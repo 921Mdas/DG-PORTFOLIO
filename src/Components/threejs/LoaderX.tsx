@@ -38,32 +38,32 @@ function CircularProgressWithLabel(
         <Typography
           variant="caption"
           component="div"
-          sx={{ color: "white", fontSize: "4rem" }}
+          sx={{ color: "white", fontSize: "1rem" }}
         >{`${Math.round(props.value)}%`}</Typography>
-        <Typography
+        {/* <Typography
           variant="caption"
           component="div"
           className="righttop"
           sx={{
-            color: "white",
-            fontSize: "3.5rem",
+            color: "#26fcdb",
+            fontSize: "1.5rem",
             position: "absolute",
             bottom: "10%",
             left: "30%",
           }}
-        >{`+=`}</Typography>
-        <Typography
+        >{`+=`}</Typography> */}
+        {/* <Typography
           variant="caption"
           component="div"
           className="leftbottom"
           sx={{
-            color: "white",
-            fontSize: "4.5rem",
+            color: "#e01e22",
+            fontSize: "1.5rem",
             position: "absolute",
             top: "10%",
             right: "30%",
           }}
-        >{`</>`}</Typography>
+        >{`</>`}</Typography> */}
       </Box>
     </Box>
   );

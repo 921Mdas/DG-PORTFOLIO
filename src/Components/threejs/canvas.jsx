@@ -51,7 +51,7 @@ const ThreeJS = () => {
         <Parallax perfSucks={perfSucks} />
         <Suspense fallback={<LoaderX />}>
           <color attach="background" args={["#000000"]} />
-          <Perf position="bottom-left" hidden={true} />
+          {/* <Perf position="bottom-left" hidden={true} /> */}
           <LightScene />
           <ScrollControls pages={4} damping={0.2} distance={0.5}>
             <FrustumCulledObject>

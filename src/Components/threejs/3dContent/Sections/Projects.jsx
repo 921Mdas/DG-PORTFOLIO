@@ -52,7 +52,7 @@ const ProjectCard = ({
   return (
     <group position-x={posx} position-y={posy} position-z={posz}>
       <PlaneGeo
-        newPos={[-1.5, initPos - 34, 0]}
+        newPos={[-1.5, initPos - 34, -0.1]}
         newCol={col}
         size={size}
         material={material}
@@ -60,7 +60,7 @@ const ProjectCard = ({
 
       <Image
         url={imgurl}
-        position={[-1.5, initPos - 34, 0]}
+        position={[-1.5, initPos - 34, -0.1]}
         transparent
         opacity={0.2}
         scale={size}
@@ -189,7 +189,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
       posz: 0.5,
       col: "orangered",
       size: size,
-      imgurl: "/headphones.jpeg",
+      imgurl: "/broom.jpeg",
       anchSize: headNum - 0.34,
       anchorX: 31,
       anchorY: initPos + 68,
