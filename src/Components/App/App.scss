@@ -16,35 +16,30 @@
     @include flex(center, center, row, 0);
     @extend .widthnheight;
     color: whitesmoke;
-    overflow: hidden;
   }
 
   .about_me {
     @extend .section_reset;
     @extend .zposition;
     @extend .widthnheight;
-    overflow-x: hidden;
   }
 
   .skills_section {
     @extend .section_reset;
     @extend .zposition;
     @extend .widthnheight;
-    overflow-x: hidden;
   }
 
   .project_section {
     @extend .section_reset;
     @extend .zposition;
     @extend .widthnheight;
-    overflow-x: hidden;
   }
 
   .footer_sec {
     @extend .section_reset;
     @extend .zposition;
     height: 8vh;
-    overflow-x: hidden;
   }
 }
 
@@ -56,4 +51,4 @@
   height: 100vh;
   background-color: #000000;
 }
-// ******  CANVAS
+// // ******  CANVAS

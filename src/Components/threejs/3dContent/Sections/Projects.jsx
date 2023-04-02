@@ -211,20 +211,18 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
 
   return (
     <>
-      <Scroll>
-        <ParagraphHelper
-          scale={headNum}
-          lineHeight={1.5}
-          anchorX={4.6}
-          anchorY={initPos - 16}
-          font={RobotoCondensed}
-          text={`03`}
-          material={material}
-        />
-        {data.map((pc, i) => {
-          return <ProjectCard {...pc} key={i} material={material} />;
-        })}
-      </Scroll>
+      <ParagraphHelper
+        scale={headNum}
+        lineHeight={1.5}
+        anchorX={4.6}
+        anchorY={initPos - 16}
+        font={RobotoCondensed}
+        text={`03`}
+        material={material}
+      />
+      {data.map((pc, i) => {
+        return <ProjectCard {...pc} key={i} material={material} />;
+      })}
     </>
   );
 };

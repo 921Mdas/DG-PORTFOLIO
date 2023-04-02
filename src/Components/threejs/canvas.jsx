@@ -1,4 +1,10 @@
-import React, { Suspense, useState } from "react";
+import React, {
+  Suspense,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import { ScrollControls } from "@react-three/drei";
 import * as THREE from "three";
 import { Canvas, useThree } from "@react-three/fiber";
@@ -12,6 +18,14 @@ import Background from "./Background/Background.tsx";
 import Content from "./3dContent/Content";
 import LoaderX from "./LoaderX.tsx";
 import Parallax from "./Effect/Parallax";
+import { useFrame } from "react-three-fiber";
+import Animations from "../Animations/Animations";
+
+// ******
+import { gsap } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { scrollBar } from "smooth-scrollbar";
+gsap.registerPlugin(ScrollTrigger);
 
 const FrustumCulledObject = ({ children }) => {
   const { camera } = useThree();
@@ -32,7 +46,17 @@ const ThreeJS = () => {
   const [showLoader, setShowLoader] = useState(true);
 
   return (
-    <div className="canvas">
+    <div
+      className="canvas"
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        overflow: "hidden",
+      }}
+    >
       <Canvas
         performance={{ min: 0.1 }}
         gl={{
@@ -54,12 +78,7 @@ const ThreeJS = () => {
           {/* <Perf position="bottom-left" hidden={true} /> */}
           <LightScene />
           <ScrollControls pages={4} damping={0.2} distance={0.5}>
-            <FrustumCulledObject>
-              <Background perfSucks={perfSucks} />
-            </FrustumCulledObject>
-            <FrustumCulledObject>
-              <Content />
-            </FrustumCulledObject>
+            <HHC perfSucks={perfSucks} />
           </ScrollControls>
           <VFX />
           <PerformanceMonitor onDecline={() => deprecate(true)} />
@@ -71,5 +90,18 @@ const ThreeJS = () => {
     </div>
   );
 };
+
+const HHC = React.forwardRef(({ perfSucks }, ref) => {
+  return (
+    <>
+      <FrustumCulledObject>
+        <Background perfSucks={perfSucks} />
+      </FrustumCulledObject>
+      <FrustumCulledObject>
+        <Content />
+      </FrustumCulledObject>
+    </>
+  );
+});
 
 export default ThreeJS;
