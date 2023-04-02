@@ -23,9 +23,9 @@ const App = () => {
       {isLoading ? (
         <div className="loader">...</div>
       ) : (
-        <div className="canvas">
+        <>
           <ThreeJS />
-        </div>
+        </>
       )}
     </div>
   );

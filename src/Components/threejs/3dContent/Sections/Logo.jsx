@@ -5,7 +5,7 @@ import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
 
 const Logo = ({ headNum, material, _ }) => {
   return (
-    <Scroll>
+    <>
       <ParagraphHelper
         scale={headNum}
         lineHeight={1.5}
@@ -33,7 +33,7 @@ const Logo = ({ headNum, material, _ }) => {
         text={`SOFTWARE DEVELOPER`}
         material={material}
       />
-    </Scroll>
+    </>
   );
 };
 
