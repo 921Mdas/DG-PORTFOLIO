@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Scroll, Image } from "@react-three/drei";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
@@ -6,10 +6,10 @@ import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
 
 const initPos = 28;
 
-const PlaneGeo = ({ newCol, newPos, size }) => {
+const PlaneGeo = ({ newCol, newPos, size, _ }) => {
   return (
     <mesh position={newPos}>
-      <planeGeometry args={[size, size, 2, 2]} />
+      <planeGeometry args={[size, size, 1, 1]} />
       <meshStandardMaterial color={newCol} flatShading={true} />
     </mesh>
   );
@@ -39,14 +39,24 @@ const ProjectCard = ({
   viewScale,
   viewAnchX,
   viewAnchY,
+  material,
 }) => {
-  const Over = () => {
-    document.body.style.cursor = "pointer";
-    return (document.body.style.cursor = "auto");
-  };
+  const Over = useMemo(() => {
+    const overFn = () => {
+      document.body.style.cursor = "pointer";
+      setTimeout(() => (document.body.style.cursor = "auto"), 100);
+    };
+    return overFn;
+  }, []);
+
   return (
     <group position-x={posx} position-y={posy} position-z={posz}>
-      <PlaneGeo newPos={[-1.5, initPos - 34, 0]} newCol={col} size={size} />
+      <PlaneGeo
+        newPos={[-1.5, initPos - 34, 0]}
+        newCol={col}
+        size={size}
+        material={material}
+      />
 
       <Image
         url={imgurl}
@@ -61,6 +71,7 @@ const ProjectCard = ({
         anchorX={SkillAnchX - 6}
         anchorY={skillAnchY - 40}
         text={text}
+        font={RobotoCondensed}
       />
       <ParagraphHelper
         scale={skillScale}
@@ -79,6 +90,7 @@ const ProjectCard = ({
         fnClick={() => {
           window.open(`${codeUrl}`, "_blank");
         }}
+        font={RobotoCondensed}
       />
       <LinkHelper
         scale={viewScale}
@@ -86,6 +98,7 @@ const ProjectCard = ({
         anchorX={viewAnchX}
         anchorY={viewAnchY}
         text={`VIEW`}
+        font={RobotoCondensed}
         fnClick={() => {
           window.open(`${viewUrl}`, "_blank");
         }}
@@ -96,7 +109,8 @@ const ProjectCard = ({
 
 const ProjectsPart = ({ material, headNum, initPos }) => {
   const size = 0.6;
-  const data = [
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const data = useMemo(() => [
     {
       posx: 1,
       posy: 0.4,
@@ -193,7 +207,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
       codeUrl: "https://github.com/921Mdas/CleanReader",
       viewUrl: "https://cleanreader.netlify.app/",
     },
-  ];
+  ]);
 
   return (
     <>
@@ -208,7 +222,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
           material={material}
         />
         {data.map((pc, i) => {
-          return <ProjectCard {...pc} key={i} />;
+          return <ProjectCard {...pc} key={i} material={material} />;
         })}
       </Scroll>
     </>

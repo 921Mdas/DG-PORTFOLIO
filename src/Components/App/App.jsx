@@ -2,22 +2,31 @@
 import "./App.scss";
 
 // external imports
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ThreeJS from "../threejs/canvas";
 
-// components
-import LoaderX from "../threejs/LoaderX.tsx";
-
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(loadingTimeout);
   }, []);
 
   return (
     <div className="portfolio">
-      <div className="canvas">
-        <ThreeJS />
-      </div>
+      {isLoading ? (
+        <div className="loader">...</div>
+      ) : (
+        <div className="canvas">
+          <ThreeJS />
+        </div>
+      )}
     </div>
   );
 };

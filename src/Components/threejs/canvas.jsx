@@ -1,40 +1,31 @@
-// external
-import React, { Suspense, useState, useRef, useEffect } from "react";
+import React, { Suspense, useState } from "react";
 import { ScrollControls } from "@react-three/drei";
 import * as THREE from "three";
-import { Canvas } from "@react-three/fiber";
-// import { Environment, Lightformer } from "@react-three/drei";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
-import gsap from "gsap";
-import Animations from "../Animations/Animations";
-
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import IslandScene from "../../Components/trash/IslandScene";
-// import { useProgress, Html, OrbitControls, Stage } from "@react-three/drei";
 import LightScene from "./Light/Light";
-// import Images from "../../Components/trash/Image";
-import Lens from "./3d cursor/Lens.tsx";
-import {
-  PerformanceMonitor,
-  OrbitControls,
-  AdaptiveDpr,
-} from "@react-three/drei";
-// import { useControls } from "leva";
-// import GridLine from "../../Components/GridLine";
-// import Background from "./Background.jsx";
+import useCull from "./Util/useCull";
+import { PerformanceMonitor, AdaptiveDpr } from "@react-three/drei";
 import VFX from "./Effect/VFX.jsx";
 import { Leva } from "leva";
-// import { useThree } from "react-three-fiber";
-
-// gsap.registerPlugin(ScrollTrigger);
 import Background from "./Background/Background.tsx";
 import Content from "./3dContent/Content";
-import Loader from "./Loader";
 import LoaderX from "./LoaderX.tsx";
+import Parallax from "./Effect/Parallax";
 
-// main scene + models
-// leva can be here
-// implement zustand for state management or redux toolkit
+const FrustumCulledObject = ({ children }) => {
+  const { camera } = useThree();
+  const frustum = useCull();
+
+  return (
+    <group frustumCulled={false}>
+      <frustum args={[camera]} frustumCulled={false} />
+      <group frustumCulled={false} visible={frustum}>
+        {children}
+      </group>
+    </group>
+  );
+};
 
 const ThreeJS = () => {
   const [perfSucks, deprecate] = useState(false);
@@ -57,17 +48,21 @@ const ThreeJS = () => {
         shadows
         onCreated={() => setShowLoader(false)}
       >
+        <Parallax perfSucks={perfSucks} />
         <Suspense fallback={<LoaderX />}>
           <color attach="background" args={["#000000"]} />
-          <Perf position="bottom-left" />
+          <Perf position="bottom-left" hidden={true} />
           <LightScene />
           <ScrollControls pages={4} damping={0.2} distance={0.5}>
-            <Background />
-            <Content />
+            <FrustumCulledObject>
+              <Background perfSucks={perfSucks} />
+            </FrustumCulledObject>
+            <FrustumCulledObject>
+              <Content />
+            </FrustumCulledObject>
           </ScrollControls>
           <VFX />
           <PerformanceMonitor onDecline={() => deprecate(true)} />
-
           <AdaptiveDpr pixelated />
           <Leva hidden={true} />
         </Suspense>
