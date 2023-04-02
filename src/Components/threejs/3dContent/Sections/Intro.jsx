@@ -21,7 +21,7 @@ const Intro = ({ headNum, material, initPos }) => {
           lineHeight={1.5}
           anchorX={30}
           anchorY={initPos + 8}
-          text={`I'm a software developer${"\n"}who is passionate about learning and${"\n"}building unique experiences.
+          text={`I'm a software developer${"\n"}passionate about learning and${"\n"}building unique experiences with${"\n"}future technologies.
         ${"\n"} I thrive on the satisfaction${"\n"} of impressing myself and reaching${"\n"} for the unusual.`}
         />
       </Scroll>

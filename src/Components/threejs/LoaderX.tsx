@@ -45,8 +45,8 @@ function CircularProgressWithLabel(
           component="div"
           className="righttop"
           sx={{
-            color: "white",
-            fontSize: "3.5rem",
+            color: "#26fcdb",
+            fontSize: "1.5rem",
             position: "absolute",
             bottom: "10%",
             left: "30%",
@@ -57,8 +57,8 @@ function CircularProgressWithLabel(
           component="div"
           className="leftbottom"
           sx={{
-            color: "white",
-            fontSize: "4.5rem",
+            color: "#e01e22",
+            fontSize: "1.5rem",
             position: "absolute",
             top: "10%",
             right: "30%",
