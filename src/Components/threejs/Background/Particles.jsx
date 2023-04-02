@@ -4,6 +4,7 @@ import { createPortal, useFrame } from "@react-three/fiber";
 import { useFBO } from "@react-three/drei";
 import "../Effect/Shaders/simulationMaterial";
 import "../Effect/Shaders/dofPointsMaterial";
+import { Float16BufferAttribute } from "three";
 
 export function Particles({
   speed,
@@ -11,26 +12,27 @@ export function Particles({
   aperture,
   focus,
   curl,
-  size = 512,
+  size = 256,
   ...props
 }) {
   const simRef = useRef();
   const renderRef = useRef();
   // Set up FBO
-  const [scene] = useState(() => new THREE.Scene());
-  const [camera] = useState(
-    () =>
-      new THREE.OrthographicCamera(-2, 0.1, 0.5, 0, 0.5 / Math.pow(2, 53), 0.5)
-  );
+  const scene = useRef(new THREE.Scene()).current;
+  const camera = useRef(
+    new THREE.OrthographicCamera(-2, 0.1, 0.5, 0, 0.5 / Math.pow(2, 53), 0.5)
+  ).current;
 
-  const [positions] = useState(
+  const positions = useMemo(
     () =>
       new Float32Array([
         -1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0,
-      ])
+      ]),
+    []
   );
-  const [uvs] = useState(
-    () => new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0])
+  const uvs = useMemo(
+    () => new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]),
+    []
   );
   const target = useFBO(size, size, {
     minFilter: THREE.NearestFilter,

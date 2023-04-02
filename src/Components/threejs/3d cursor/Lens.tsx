@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { Mesh, MeshStandardMaterial, Vector3 } from "three";
-import { useFrame } from "react-three-fiber";
-import { easing } from "maath";
+import { Mesh, Vector3 } from "three";
+
 import {
   MeshTransmissionMaterial,
   Decal,

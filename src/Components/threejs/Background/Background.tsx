@@ -19,7 +19,7 @@ const HoloGram = () => {
   );
 };
 
-const Background = () => {
+const Background = ({ perfSucks }) => {
   const props = useControls("particles", {
     focus: { value: 3, min: 3, max: 7, step: 0.01 },
     speed: { value: 8.9, min: 0.1, max: 100, step: 0.1 },
@@ -27,6 +27,7 @@ const Background = () => {
     fov: { value: 200, min: 0, max: 200 },
     curl: { value: 0.25, min: 0.01, max: 0.5, step: 0.01 },
   });
+
   return (
     <>
       <HoloGram />

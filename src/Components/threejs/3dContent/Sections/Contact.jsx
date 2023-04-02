@@ -2,17 +2,20 @@ import React from "react";
 import { Scroll } from "@react-three/drei";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
+import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
 
-const ContactPart = ({ headNum, initPos }) => {
+const ContactPart = ({ headNum, initPos, material }) => {
   return (
     <group position-y={-0.5}>
       <Scroll>
         <ParagraphHelper
-          scale={headNum - 0.3}
+          scale={headNum - 0.27}
           lineHeight={1.5}
-          anchorX={-15}
-          anchorY={initPos + 45}
-          text={`Say hello`}
+          anchorX={-11}
+          anchorY={initPos + 27.8}
+          text={`SAY HELLO`}
+          font={RobotoCondensed}
+          material={material}
         />
         <ParagraphHelper
           scale={headNum - 0.35}
