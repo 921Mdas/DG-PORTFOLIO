@@ -210,7 +210,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
   ]);
 
   return (
-    <>
+    <group>
       <ParagraphHelper
         scale={headNum}
         lineHeight={1.5}
@@ -223,7 +223,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
       {data.map((pc, i) => {
         return <ProjectCard {...pc} key={i} material={material} />;
       })}
-    </>
+    </group>
   );
 };
 

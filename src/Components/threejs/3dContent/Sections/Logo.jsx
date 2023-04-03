@@ -5,7 +5,7 @@ import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
 
 const Logo = ({ headNum, material, _ }) => {
   return (
-    <>
+    <group position-y={0.5}>
       <ParagraphHelper
         scale={headNum}
         lineHeight={1.5}
@@ -13,7 +13,7 @@ const Logo = ({ headNum, material, _ }) => {
         anchorY={-0.9}
         font={RobotoCondensed}
         text={`DEO`}
-        material={material}
+        // material={material}
       />
       <ParagraphHelper
         scale={headNum}
@@ -22,7 +22,7 @@ const Logo = ({ headNum, material, _ }) => {
         anchorY={0}
         font={RobotoCondensed}
         text={`MADINGU`}
-        material={material}
+        // material={material}
       />
       <ParagraphHelper
         scale={headNum - 0.3}
@@ -33,7 +33,7 @@ const Logo = ({ headNum, material, _ }) => {
         text={`SOFTWARE DEVELOPER`}
         material={material}
       />
-    </>
+    </group>
   );
 };
 

@@ -6,10 +6,12 @@ import {
   Decal,
   Instance,
   Instances,
+  useGLTF,
 } from "@react-three/drei";
 import { useControls } from "leva";
 import * as THREE from "three";
 import TextureShape from "../Util/TextureRender.tsx";
+import face from "../../../assets/models/face.glb";
 
 interface LensProps {
   color?: string;
@@ -40,14 +42,18 @@ export const LensesInstances = () => {
   );
 };
 
-const Lens: React.FC<LensProps> = ({
-  scale = 1,
-  position = new Vector3(0, 0, 0),
-  text = "Hi!",
-  textSize = 1,
-  font = "",
-}) => {
+const Lens: React.FC<LensProps> = (
+  {
+    scale = 1,
+    position = new Vector3(0, 0, 0),
+    text = "Hi!",
+    textSize = 1,
+    font = "",
+  },
+  props
+) => {
   const lensRef = useRef<Mesh>(null);
+  const { nodes, materials } = useGLTF(face);
 
   const transmissionProps = useControls("Lens", {
     backside: true,
@@ -60,16 +66,62 @@ const Lens: React.FC<LensProps> = ({
   });
 
   return (
-    <group>
-      <mesh scale={scale} position={position} ref={lensRef} renderOrder={1}>
-        <sphereGeometry />
+    <>
+      <group>
+        <directionalLight intensity={1} />
+        <mesh scale={scale} position={position} ref={lensRef} renderOrder={2}>
+          <group
+            {...props}
+            dispose={null}
+            scale={0.02}
+            position={[8, 0.4, 0]}
+            rotation={[0, 0.6, 0]}
+          >
+            <group rotation={[1.96, 1.34, 2.53]}>
+              <mesh castShadow receiveShadow geometry={nodes.Object_2.geometry}>
+                <MeshTransmissionMaterial
+                  side={THREE.DoubleSide}
+                  {...transmissionProps}
+                />
+              </mesh>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_3.geometry}
+                material={materials.material_0}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_4.geometry}
+                material={materials.material_0}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_5.geometry}
+                material={materials.material_0}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_6.geometry}
+                material={materials.material_0}
+              />
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_7.geometry}
+                material={materials.material_0}
+              />
+            </group>
+          </group>
+          <MeshTransmissionMaterial
+            side={THREE.DoubleSide}
+            {...transmissionProps}
+          />
 
-        <MeshTransmissionMaterial
-          side={THREE.DoubleSide}
-          {...transmissionProps}
-        />
-
-        <Decal position={[0, 0, 1]} rotation={0} scale={1.25}>
+          {/* <Decal position={[0, 0, 1]} rotation={0} scale={1.25}>
           <meshBasicMaterial
             transparent
             polygonOffset
@@ -80,9 +132,10 @@ const Lens: React.FC<LensProps> = ({
           >
             <TextureShape text={text} size={textSize} font={font} />
           </meshBasicMaterial>
-        </Decal>
-      </mesh>
-    </group>
+        </Decal> */}
+        </mesh>
+      </group>
+    </>
   );
 };
 

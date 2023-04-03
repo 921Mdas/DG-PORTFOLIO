@@ -83,7 +83,7 @@ const ThreeJS = () => {
           <VFX />
           <PerformanceMonitor onDecline={() => deprecate(true)} />
           <AdaptiveDpr pixelated />
-          <Leva hidden={true} />
+          {/* <Leva hidden={true} /> */}
         </Suspense>
         {showLoader && <LoaderX />}
       </Canvas>
