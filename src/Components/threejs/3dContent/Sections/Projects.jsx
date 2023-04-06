@@ -3,14 +3,15 @@ import { Scroll, Image } from "@react-three/drei";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
 import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
+import { useTransmissionProps } from "../../Util/Transmission";
+import * as THREE from "three";
 
 const initPos = 28;
 
-const PlaneGeo = ({ newCol, newPos, size, _ }) => {
+const PlaneGeo = ({ newCol, newPos, size, material }) => {
   return (
-    <mesh position={newPos}>
+    <mesh position={newPos} material={material}>
       <planeGeometry args={[size, size, 1, 1]} />
-      <meshStandardMaterial color={newCol} flatShading={true} />
     </mesh>
   );
 };
@@ -39,7 +40,7 @@ const ProjectCard = ({
   viewScale,
   viewAnchX,
   viewAnchY,
-  material,
+  mat,
 }) => {
   const Over = useMemo(() => {
     const overFn = () => {
@@ -49,29 +50,49 @@ const ProjectCard = ({
     return overFn;
   }, []);
 
+  const material = new THREE.MeshStandardMaterial({
+    transparent: true,
+    opacity: 1,
+    color: "black",
+    roughness: 0.5,
+    metalness: 0,
+    side: THREE.FrontSide,
+    blending: THREE.AdditiveBlending,
+    polygonOffset: true,
+    polygonOffsetFactor: 1,
+    envMapIntensity: 2,
+  });
+
   return (
     <group position-x={posx} position-y={posy} position-z={posz}>
       <PlaneGeo
         newPos={[-1.5, initPos - 34, -0.1]}
         newCol={col}
         size={size}
-        material={material}
+        material={
+          new THREE.MeshBasicMaterial({
+            color: "black",
+            opacity: 0.8,
+            transparent: true,
+          })
+        }
       />
 
       <Image
         url={imgurl}
-        position={[-1.5, initPos - 34, -0.1]}
+        position={[-1.5, initPos - 34, -0.2]}
         transparent
         opacity={0.2}
         scale={size}
       />
       <ParagraphHelper
-        scale={codeScale}
+        scale={codeScale + 0.03}
         lineHeight={1.5}
-        anchorX={SkillAnchX - 6}
-        anchorY={skillAnchY - 40}
+        anchorX={SkillAnchX - 20}
+        anchorY={skillAnchY - 83}
         text={text}
         font={RobotoCondensed}
+        material={mat}
       />
       <ParagraphHelper
         scale={skillScale}
@@ -210,7 +231,7 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
   ]);
 
   return (
-    <>
+    <group position={[0, 0, -1.5]}>
       <ParagraphHelper
         scale={headNum}
         lineHeight={1.5}
@@ -221,9 +242,9 @@ const ProjectsPart = ({ material, headNum, initPos }) => {
         material={material}
       />
       {data.map((pc, i) => {
-        return <ProjectCard {...pc} key={i} material={material} />;
+        return <ProjectCard {...pc} key={i} mat={material} />;
       })}
-    </>
+    </group>
   );
 };
 

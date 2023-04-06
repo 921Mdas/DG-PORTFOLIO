@@ -11,7 +11,7 @@ const VFX = () => {
     width,
     height,
   } = useControls("bloom", {
-    intensity: { value: 0.55, min: 0, max: 1, step: 0.01 },
+    intensity: { value: 1, min: 0, max: 1, step: 0.01 },
     luminanceTheightreshold: { value: 0, min: 0, max: 1, step: 0.01 },
     luminanceSmoothing: { value: 0.02, min: 0, max: 1, step: 0.01 },
     radius: { value: 0.79, min: 0, max: 1, step: 0.01 },

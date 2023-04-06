@@ -20,6 +20,7 @@ import LoaderX from "./LoaderX.tsx";
 import Parallax from "./Effect/Parallax";
 import { useFrame } from "react-three-fiber";
 import Animations from "../Animations/Animations";
+import { OrbitControls } from "@react-three/drei";
 
 // ******
 import { gsap } from "gsap/all";
@@ -72,7 +73,7 @@ const ThreeJS = () => {
         shadows
         onCreated={() => setShowLoader(false)}
       >
-        <Parallax perfSucks={perfSucks} />
+        {/* <Parallax perfSucks={perfSucks} /> */}
         <Suspense fallback={<LoaderX />}>
           <color attach="background" args={["#000000"]} />
           {/* <Perf position="bottom-left" hidden={true} /> */}
@@ -80,6 +81,7 @@ const ThreeJS = () => {
           <ScrollControls pages={4} damping={0.2} distance={0.5}>
             <HHC perfSucks={perfSucks} />
           </ScrollControls>
+          {/* <OrbitControls /> */}
           <VFX />
           <PerformanceMonitor onDecline={() => deprecate(true)} />
           <AdaptiveDpr pixelated />
