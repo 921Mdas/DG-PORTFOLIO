@@ -7,11 +7,13 @@ import {
   Instance,
   Instances,
   useGLTF,
+  Environment,
 } from "@react-three/drei";
 import { useControls } from "leva";
 import * as THREE from "three";
 import TextureShape from "../Util/TextureRender.tsx";
 import face from "../../../assets/models/face.glb";
+import { useTransmissionProps } from "../Util/Transmission";
 
 interface LensProps {
   color?: string;
@@ -54,7 +56,6 @@ const Lens: React.FC<LensProps> = (
 ) => {
   const lensRef = useRef<Mesh>(null);
   const { nodes, materials } = useGLTF(face);
-
   const transmissionProps = useControls("Lens", {
     backside: true,
     ior: { value: 1.54, min: 1, max: 5, step: 0.01 },
@@ -65,10 +66,20 @@ const Lens: React.FC<LensProps> = (
     temporalDistortion: { value: 0, min: 0, max: 1, step: 0.01 },
   });
 
+  const { material, propsies } = useTransmissionProps();
+
+  const glassMaterial = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(1, 1, 1), // Set color to white
+    metalness: 0.3, // Set metalness to 1 for a reflective effect
+    roughness: 0.1, // Set roughness to 0.1 for a slightly rough surface
+    transparent: true, // Set transparent to true to allow for transparency
+    opacity: 1, // Set opacity to 0.5 to make the material semi-transparent
+  });
+
   return (
     <>
       <group>
-        <directionalLight intensity={1} />
+        <directionalLight intensity={2} color={"white"} />
         <mesh scale={scale} position={position} ref={lensRef} renderOrder={2}>
           <group
             {...props}
@@ -78,49 +89,50 @@ const Lens: React.FC<LensProps> = (
             rotation={[0, 0.6, 0]}
           >
             <group rotation={[1.96, 1.34, 2.53]}>
-              <mesh castShadow receiveShadow geometry={nodes.Object_2.geometry}>
-                <MeshTransmissionMaterial
-                  side={THREE.DoubleSide}
-                  {...transmissionProps}
-                />
-              </mesh>
+              <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.Object_2.geometry}
+                material={glassMaterial}
+              />
+
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_3.geometry}
-                material={materials.material_0}
+                material={glassMaterial}
               />
+
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_4.geometry}
-                material={materials.material_0}
+                material={glassMaterial}
               />
+
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_5.geometry}
-                material={materials.material_0}
+                material={glassMaterial}
               />
+
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_6.geometry}
-                material={materials.material_0}
+                material={glassMaterial}
               />
+
               <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Object_7.geometry}
-                material={materials.material_0}
+                material={glassMaterial}
               />
             </group>
           </group>
-          <MeshTransmissionMaterial
-            side={THREE.DoubleSide}
-            {...transmissionProps}
-          />
-
+          {material}
           {/* <Decal position={[0, 0, 1]} rotation={0} scale={1.25}>
           <meshBasicMaterial
             transparent

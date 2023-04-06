@@ -21,6 +21,7 @@ interface Paragraph {
   fnOver?: () => any;
   fnOut?: () => any;
   fnClick?: () => any;
+  material: any;
 }
 
 const LinkHelper: React.FC<Paragraph> = ({
@@ -35,22 +36,25 @@ const LinkHelper: React.FC<Paragraph> = ({
   fnOver,
   fnOut,
   fnClick,
+  material = new THREE.MeshStandardMaterial({
+    color: "whitesmoke",
+  }),
 }) => {
   const ref = useRef<any>();
   const [hovered, setHovered] = useState<boolean>(false);
-  const material = new THREE.MeshStandardMaterial({
-    color: "whitesmoke",
-  });
+  // const material = new THREE.MeshStandardMaterial({
+  //   color: "whitesmoke",
+  // });
 
   useEffect(() => {
     if (hovered) {
       document.body.style.cursor = "pointer";
-      ref.current.color = "#26fcdb";
+      ref.current.color = "26#fcdb";
     }
     return () => {
       document.body.style.cursor = "auto";
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      ref.current.color = "whitesmoke";
+      // ref.current.color = "whitesmoke";
     };
   }, [hovered]);
 

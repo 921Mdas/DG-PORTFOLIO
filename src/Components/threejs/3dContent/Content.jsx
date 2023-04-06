@@ -24,35 +24,37 @@ const textShaderMaterial = new THREE.ShaderMaterial({
 
 const ThreeText = () => {
   return (
-    <Scroll>
-      <group position={[0, 0, 0]}>
-        <Logo
-          headNum={headNum}
-          material={textShaderMaterial}
-          initPos={initPos}
-        />
-        <Intro
-          headNum={headNum}
-          material={textShaderMaterial}
-          initPos={initPos}
-        />
-        <SkillPart
-          headNum={headNum}
-          material={textShaderMaterial}
-          initPos={initPos}
-        />
-        <ProjectsPart
-          headNum={headNum}
-          material={textShaderMaterial}
-          initPos={initPos}
-        />
-        <ContactPart
-          headNum={headNum}
-          material={textShaderMaterial}
-          initPos={initPos}
-        />
-      </group>
-    </Scroll>
+    <>
+      <Scroll>
+        <group position={[0, 0, 0]}>
+          <Logo
+            headNum={headNum}
+            material={textShaderMaterial}
+            initPos={initPos}
+          />
+          <Intro
+            headNum={headNum}
+            material={textShaderMaterial}
+            initPos={initPos}
+          />
+          <SkillPart
+            headNum={headNum}
+            material={textShaderMaterial}
+            initPos={initPos}
+          />
+          <ProjectsPart
+            headNum={headNum}
+            material={textShaderMaterial}
+            initPos={initPos}
+          />
+        </group>
+      </Scroll>
+      <ContactPart
+        headNum={headNum}
+        material={textShaderMaterial}
+        initPos={initPos}
+      />
+    </>
   );
 };
 

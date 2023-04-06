@@ -12,6 +12,7 @@ import { useControls } from "leva";
 import * as THREE from "three";
 import TextureShape from "../Util/TextureRender.tsx";
 import face from "../../../assets/models/face.glb";
+import { useTransmissionProps } from "../Util/Transmission";
 
 const Bulb = () => {
   const transmissionProps = useControls("Lenx", {
@@ -24,13 +25,12 @@ const Bulb = () => {
     temporalDistortion: { value: 0, min: 0, max: 1, step: 0.01 },
   });
 
+  const { material, props } = useTransmissionProps();
+
   return (
-    <mesh scale={2} position={[0, -1, -15]}>
+    <mesh scale={1} position={[0.1, 1.5, -4]}>
       <sphereGeometry />
-      <MeshTransmissionMaterial
-        side={THREE.DoubleSide}
-        {...transmissionProps}
-      />
+      {material}
     </mesh>
   );
 };

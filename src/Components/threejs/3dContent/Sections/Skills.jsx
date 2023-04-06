@@ -24,7 +24,7 @@ const SkillPart = ({ headNum, initPos, material }) => {
   ];
 
   return (
-    <>
+    <group position={[0, 0, -1]}>
       <ParagraphHelper
         scale={headNum}
         lineHeight={1.5}
@@ -156,7 +156,7 @@ const SkillPart = ({ headNum, initPos, material }) => {
         text={`${skillsArr[14]}`}
         position={new Vector3(-0.4, -0.3, 0.1)}
       />
-    </>
+    </group>
   );
 };
 
