@@ -17,7 +17,7 @@ function CircularProgressWithLabel(
   return (
     <Box sx={{ position: "relative", display: "inline-flex" }}>
       <WhiteCircularProgress
-        size={500}
+        size={200}
         variant="determinate"
         color="inherit"
         {...props}
@@ -38,32 +38,8 @@ function CircularProgressWithLabel(
         <Typography
           variant="caption"
           component="div"
-          sx={{ color: "white", fontSize: "1rem" }}
+          sx={{ color: "white", fontSize: "2rem" }}
         >{`${Math.round(props.value)}%`}</Typography>
-        {/* <Typography
-          variant="caption"
-          component="div"
-          className="righttop"
-          sx={{
-            color: "#26fcdb",
-            fontSize: "1.5rem",
-            position: "absolute",
-            bottom: "10%",
-            left: "30%",
-          }}
-        >{`+=`}</Typography> */}
-        {/* <Typography
-          variant="caption"
-          component="div"
-          className="leftbottom"
-          sx={{
-            color: "#e01e22",
-            fontSize: "1.5rem",
-            position: "absolute",
-            top: "10%",
-            right: "30%",
-          }}
-        >{`</>`}</Typography> */}
       </Box>
     </Box>
   );
