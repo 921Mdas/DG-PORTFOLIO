@@ -37,6 +37,8 @@ const TextElement: React.FC<TextEl> = props => {
     distortionScale: { value: 0, min: 0.01, max: 1, step: 0.01 },
     temporalDistortion: { value: 0, min: 0, max: 1, step: 0.01 },
   });
+  const material = new Materials();
+
   return (
     <Text {...props}>
       {props.glass ? (

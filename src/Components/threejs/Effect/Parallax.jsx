@@ -1,22 +1,23 @@
 import React, { useRef } from "react";
 import { useFrame } from "react-three-fiber";
-import { easing } from "maath";
+import * as THREE from "three";
 
-const Parallax = ({ perfSucks }) => {
+const Parallax = () => {
+  const targetPosition = useRef(new THREE.Vector3());
+
   useFrame((state, delta) => {
-    // Animate the environment as well as the camera
-    const val = 10;
-
-    easing.damp3(
-      state.camera.position,
-      [
-        Math.sin(state.pointer.x / val),
-        state.pointer.y / val,
-        Math.cos(state.pointer.x / val) * 6,
-      ],
-      0.3,
-      delta
+    // Calculate the target position based on the pointer input.
+    targetPosition.current.set(
+      -Math.sin(state.pointer.x / 4) * 9,
+      1.25 - state.pointer.y,
+      Math.cos(state.pointer.x / 4) * 9
     );
+
+    // Use easing to interpolate the camera position smoothly.
+    const lerpFactor = 0.1; // Adjust this value to control the smoothness (lower value = smoother)
+    state.camera.position.lerp(targetPosition.current, lerpFactor);
+
+    // Make the camera look at the origin (0, 0, 0).
     state.camera.lookAt(0, 0, 0);
   });
 

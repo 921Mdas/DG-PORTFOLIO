@@ -12,21 +12,28 @@ import { Perf } from "r3f-perf";
 import LightScene from "./Light/Light";
 import useCull from "./Util/useCull";
 import { PerformanceMonitor, AdaptiveDpr } from "@react-three/drei";
-import VFX from "./Effect/VFX.jsx";
+import VFX from "./Effect/BloomVFX.jsx";
+import DepthVFX from "./Effect/DepthVFX";
 import { Leva } from "leva";
-import Background from "./Background/Background.tsx";
-import Content from "./3dContent/Content";
+import Background from "./3dHelpers/Background";
+import Content from "./3dContent/MainSection";
 import LoaderX from "./LoaderX.tsx";
 import Parallax from "./Effect/Parallax";
 import { useFrame } from "react-three-fiber";
 import Animations from "../Animations/Animations";
 import { OrbitControls } from "@react-three/drei";
-
+import CameraIntroMovement from "./3dHelpers/CameraIntro.tsx";
+import LinkHelper from "./Util/LinkHelper.tsx";
+import RobotoCondensed from "../../assets/Fonts/Rbtc.ttf";
+import RobotoCondensedBold from "../../assets/Fonts/RbtcBold.ttf";
+import { Text } from "@react-three/drei";
+import Landing from "./3dContent/Sections/WelcomePage.tsx";
 // ******
 import { gsap } from "gsap/all";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { scrollBar } from "smooth-scrollbar";
-gsap.registerPlugin(ScrollTrigger);
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { scrollBar } from "smooth-scrollbar";
+import imagez from "../../assets/Images/girl.png";
+// gsap.registerPlugin(ScrollTrigger);
 
 const FrustumCulledObject = ({ children }) => {
   const { camera } = useThree();
@@ -45,6 +52,9 @@ const FrustumCulledObject = ({ children }) => {
 const ThreeJS = () => {
   const [perfSucks, deprecate] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
+  const [showLoadingPage, SetShowLoadingPage] = useState(true);
+
+  // ** particles
 
   return (
     <div
@@ -67,26 +77,34 @@ const ThreeJS = () => {
         }}
         dpr={[1, perfSucks ? 1.5 : 2]}
         camera={{
-          position: [0, 0, 6],
+          position: [0, 0, 8],
           fov: 25,
         }}
         shadows
         onCreated={() => setShowLoader(false)}
       >
-        {/* <Parallax perfSucks={perfSucks} /> */}
-        <Suspense fallback={<LoaderX />}>
-          <color attach="background" args={["#000000"]} />
-          {/* <Perf position="bottom-left" hidden={true} /> */}
-          <LightScene />
-          <ScrollControls pages={4} damping={0.2} distance={0.5}>
-            <HHC perfSucks={perfSucks} />
-          </ScrollControls>
-          {/* <OrbitControls /> */}
-          <VFX />
-          <PerformanceMonitor onDecline={() => deprecate(true)} />
-          <AdaptiveDpr pixelated />
-          <Leva hidden={true} />
-        </Suspense>
+        {showLoadingPage ? (
+          <Suspense fallback={<LoaderX />}>
+            <Landing SetShowLoadingPage={SetShowLoadingPage} />
+            <Leva hidden={true} />
+          </Suspense>
+        ) : (
+          <Suspense>
+            <color attach="background" args={["#000000"]} />
+            {/* <Perf position="bottom-left" hidden={true} /> */}
+            <LightScene />
+            {/* <CameraIntroMovement /> */}
+            <ScrollControls pages={5} damping={0.2} distance={0.5}>
+              <HHC perfSucks={perfSucks} />
+            </ScrollControls>
+            {/* <PerformanceMonitor onDecline={() => deprecate(true)} /> */}
+            <OrbitControls />
+            {/* <Parallax /> */}
+            <AdaptiveDpr pixelated />
+            <Leva hidden={true} />
+          </Suspense>
+        )}
+
         {showLoader && <LoaderX />}
       </Canvas>
     </div>

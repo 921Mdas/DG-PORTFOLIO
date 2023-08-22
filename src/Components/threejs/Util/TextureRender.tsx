@@ -5,9 +5,16 @@ interface TextShape {
   text: string;
   size: number;
   font?: any;
+  color?: string;
+  fnClick: () => void;
 }
 
-const TextureShape: React.FC<TextShape> = ({ text, size = 1, font = "" }) => {
+const TextureShape: React.FC<TextShape> = ({
+  text,
+  size = 1,
+  font = "",
+  color,
+}) => {
   const textRef = useRef();
 
   return (
@@ -22,7 +29,7 @@ const TextureShape: React.FC<TextShape> = ({ text, size = 1, font = "" }) => {
         {/* <color attach="background" args={["#35c19f"]} /> */}
         <Text
           fontSize={size}
-          color="#35c19f"
+          color={color}
           ref={textRef}
           rotation={[0, Math.PI, 0]}
           font={font}

@@ -1,10 +1,4 @@
-import {
-  MeshTransmissionMaterial,
-  Decal,
-  Instance,
-  Instances,
-  useGLTF,
-} from "@react-three/drei";
+import { MeshTransmissionMaterial } from "@react-three/drei";
 import { useControls } from "leva";
 import * as THREE from "three";
 
