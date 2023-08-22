@@ -30,10 +30,10 @@ import { Text } from "@react-three/drei";
 import Landing from "./3dContent/Sections/WelcomePage.tsx";
 // ******
 import { gsap } from "gsap/all";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { scrollBar } from "smooth-scrollbar";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { scrollBar } from "smooth-scrollbar";
 import imagez from "../../assets/Images/girl.png";
-gsap.registerPlugin(ScrollTrigger);
+// gsap.registerPlugin(ScrollTrigger);
 
 const FrustumCulledObject = ({ children }) => {
   const { camera } = useThree();
@@ -94,9 +94,9 @@ const ThreeJS = () => {
             {/* <Perf position="bottom-left" hidden={true} /> */}
             <LightScene />
             {/* <CameraIntroMovement /> */}
-            {/* <ScrollControls pages={5} damping={0.2} distance={0.5}> */}
-            <HHC perfSucks={perfSucks} />
-            {/* </ScrollControls> */}
+            <ScrollControls pages={5} damping={0.2} distance={0.5}>
+              <HHC perfSucks={perfSucks} />
+            </ScrollControls>
             {/* <PerformanceMonitor onDecline={() => deprecate(true)} /> */}
             <OrbitControls />
             {/* <Parallax /> */}
@@ -117,9 +117,9 @@ const HHC = React.forwardRef(({ perfSucks }, ref) => {
       <FrustumCulledObject>
         <Background perfSucks={perfSucks} />
       </FrustumCulledObject>
-      {/* <FrustumCulledObject>
+      <FrustumCulledObject>
         <Content />
-      </FrustumCulledObject> */}
+      </FrustumCulledObject>
     </>
   );
 });

@@ -6,6 +6,7 @@ import TextureShape from "../../Util/TextureRender.tsx";
 import { useControls } from "leva";
 import { Materials } from "../../MaterialsHHC/Materials";
 import LandingContact from "./LandingContact";
+import FuckYuri from "../../3dHelpers/FuckYuri";
 
 export const BubbleButton = ({ fnClick }) => {
   const config = useControls({
@@ -79,6 +80,7 @@ const Landing = ({ SetShowLoadingPage }) => {
     <group>
       <WelcomeLight />
       <BubbleButton fnClick={() => SetShowLoadingPage(false)} />
+      <FuckYuri />
       <group position={[-2.5, 1.5, 0]}>
         <Text scale={0.07} anchorX={2} font={RobotoCondensedBold}>
           {"DEO"}

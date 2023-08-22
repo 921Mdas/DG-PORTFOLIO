@@ -34,8 +34,8 @@ import bust from "../../../assets/models/bust.glb";
 import SftCurve from "../../../assets/models/softwaretextcurve.glb";
 import EyeBall from "../../../assets/models/robotic.glb";
 import ComputerRoom from "../../../assets/models/computers.glb";
-import BlobFrag from "../Effect/Shaders/blobfrag";
-import BlobVert from "../Effect/Shaders/blobvert";
+import BlobFrag from "../../../glsl/blobfrag";
+import BlobVert from "../../../glsl/blobvert";
 import { Stars } from "@react-three/drei";
 // Glb models
 export const Foundation = props => {

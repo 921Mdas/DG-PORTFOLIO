@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useRef } from "react";
 import * as THREE from "three";
-import { vertexShader, fragmentShader } from "../Effect/Shaders/TextShader";
+import { vertexShader, fragmentShader } from "../../../glsl/TextShader";
 import { useFrame } from "react-three-fiber";
 import Logo from "./Sections/Headline";
 import About from "./Sections/About";

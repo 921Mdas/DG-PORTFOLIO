@@ -1,29 +1,32 @@
 // external imports
-import React, { useRef, useLayoutEffect, useEffect } from "react";
+import React, { useRef, useLayoutEffect, useEffect, useMemo } from "react";
 import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { Debug, Physics, RigidBody } from "@react-three/rapier";
-import { CloudMaze, Eye } from "./BgcModels.jsx";
+import ForgiveYuri from "./ForgiveYuri";
+// import { Debug, Physics, RigidBody } from "@react-three/rapier";
+// import { CloudMaze, Eye } from "./BgcModels.jsx";
 // import Particles from "./BrunoParticles.jsx";
-import {
-  TextureLoader,
-  Vector3,
-  RepeatWrapping,
-  LinearFilter,
-  Euler,
-} from "three";
-import { useControls } from "leva";
+// import {
+//   TextureLoader,
+//   Vector3,
+//   RepeatWrapping,
+//   LinearFilter,
+//   Euler,
+// } from "three";
+// import { useControls } from "leva";
+import FBOParticles from "./FBO";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Float, Html, useScroll } from "@react-three/drei";
-import { useFrame } from "react-three-fiber";
+import { useFrame, Canvas } from "react-three-fiber";
 import * as THREE from "three";
+import Scene from "./FBO";
 // components
 import CustomCursor from "../Cursors/Cursor.jsx";
 // import Particles from "./Particles";
-import { Blob, Cells, CylinderWall, Line } from "./BgcModels.jsx";
-import VideoWrap from "./Video.jsx";
-import VFX from "../Effect/BloomVFX.jsx";
-import imageTexture from "../../../assets/Images/girl.png";
+// import { Blob, Cells, CylinderWall, Line } from "./BgcModels.jsx";
+// import VideoWrap from "./Video.jsx";
+// import VFX from "../Effect/BloomVFX.jsx";
+// import imageTexture from "../../../assets/Images/girl.png";
 // import xfrag from "../Effect/Shaders/xfrag";
 // import xvert from "../Effect/Shaders/xvert";
 // import vertexShader from "../Effect/Shaders/xvert";
@@ -79,6 +82,8 @@ const AboutSectionItems = () => {
 };
 
 const Background = () => {
+  // const pointRef = useRef(null);
+
   // *** particles
   // const props = useControls({
   //   focus: { value: 6.23, min: 3, max: 7, step: 0.01 },
@@ -135,12 +140,64 @@ const Background = () => {
   //   });
   // }, []);
 
+  // const count = 2000;
+  // const particlesPosition = useMemo(() => {
+  //   const positions = new Float32Array(count * 3);
+  //   const distance = 1;
+  //   for (let i = 0; i < count; i++) {
+  //     const theta = THREE.MathUtils.randFloatSpread(360);
+  //     const phi = THREE.MathUtils.randFloatSpread(360);
+
+  //     let x = distance * Math.sin(theta) * Math.cos(phi);
+  //     let y = distance * Math.sin(theta) * Math.sin(phi);
+  //     let z = distance * Math.cos(theta);
+
+  //     positions.set([x, y, z], i * 3);
+  //   }
+
+  //   return positions;
+  // }, [count]);
+
+  // useFrame(state => {
+  //   const { clock } = state;
+
+  //   for (let i = 0; i < count; i++) {
+  //     const i3 = i * 3;
+
+  //     pointRef.current.geometry.attributes.position.array[i3] +=
+  //       Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
+  //     pointRef.current.geometry.attributes.position.array[i3 + 1] +=
+  //       Math.cos(clock.elapsedTime + Math.random() * 10) * 0.01;
+  //     pointRef.current.geometry.attributes.position.array[i3 + 2] +=
+  //       Math.sin(clock.elapsedTime + Math.random() * 10) * 0.01;
+  //   }
+
+  //   pointRef.current.geometry.attributes.position.needsUpdate = true;
+  // });
+
   return (
     <>
-      <FuckYuri />
+      <Scene />
+      {/* <points ref={pointRef}>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            count={particlesPosition.length / 3}
+            array={particlesPosition}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <pointsMaterial
+          color="#5786F5"
+          size={0.015}
+          sizeAttenuation
+          depthWrite={false}
+        />
+      </points> */}
+      {/* <FuckYuri /> */}
       {/* <Experimental /> */}
       {/* <Physics gravity={[0, 0, 5]}> */}
-      {/* <CustomCursor /> */}
+      <CustomCursor />
       {/* <group position={[0, 0, -0.5]} rotation={[0, 0, 5.5]}>
           <Particles {...props} position={[0, 0, 1]} />
         </group> */}
@@ -149,18 +206,19 @@ const Background = () => {
           <Particles src={imageTexture} />
         </group> */}
       {/* 
-        <mesh scale={1} position={[0, 0, 0]}>
-          <sphereGeometry />
-          <meshBasicMaterial toneMapped="false">
-            <VideoWrap />
-          </meshBasicMaterial>
-        </mesh> */}
+      <mesh scale={1} position={[0, 0, 0]}>
+        <sphereGeometry />
+        <meshBasicMaterial toneMapped="false">
+          <VideoWrap />
+        </meshBasicMaterial>
+      </mesh> */}
       {/* <VFX /> */}
       {/* <RigidBody colliders="ball" gravityScale={0.5}>
           <Cells />
           
         </RigidBody> */}
       {/* </Physics> */}
+      {/* <ForgiveYuri /> */}
     </>
   );
 };
