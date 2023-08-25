@@ -1,6 +1,7 @@
 import React from "react";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import { Vector3 } from "three";
+import { Materials } from "../../MaterialsHHC/Materials";
 
 const SkillPart = ({ _headNum, initPos, _material }) => {
   const skillsArr = [
@@ -23,9 +24,10 @@ const SkillPart = ({ _headNum, initPos, _material }) => {
   ];
 
   const SpacePace = 1.5;
+  const material = new Materials().standard2();
 
   return (
-    <group position={[0, -2.5, 0.5]}>
+    <group position={[0.3, -2.5, 0.5]}>
       <ParagraphHelper
         scale={0.06}
         lineHeight={1.5}
@@ -33,6 +35,7 @@ const SkillPart = ({ _headNum, initPos, _material }) => {
         anchorY={(initPos + SpacePace) * 2}
         text={`${skillsArr[0]}`}
         position={new Vector3(0, 0, 0)}
+        material={material}
       />
       <ParagraphHelper
         scale={0.06}

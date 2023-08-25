@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import RobotoCondensedBold from "../../../../assets/Fonts/RbtcBold.ttf";
 import { DoubleSide } from "three";
 import { Decal, Text, MeshTransmissionMaterial } from "@react-three/drei";
@@ -31,16 +31,28 @@ export const BubbleButton = ({ fnClick }) => {
     toneMapped: false,
   });
   const material = new Materials();
+  const [hovered, setHovered] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (hovered) {
+      document.body.style.cursor = "pointer";
+    }
+    return () => {
+      document.body.style.cursor = "auto";
+    };
+  }, [hovered]);
   return (
     <mesh
       onClick={() => {
         fnClick();
       }}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
       scale={0.3}
     >
       <sphereGeometry />
       {material.glass(config)}
-      <Decal position={[0, 0, 1]} rotation={0} scale={1.25}>
+      <Decal position={[0, 0, 1]} scale={1.25}>
         <meshBasicMaterial
           transparent
           polygonOffset
@@ -76,10 +88,15 @@ const WelcomeLight = () => {
 const Landing = ({ SetShowLoadingPage }) => {
   const initPos = 0;
   const headNum = 0.4;
+
   return (
     <group>
       <WelcomeLight />
-      <BubbleButton fnClick={() => SetShowLoadingPage(false)} />
+      <BubbleButton
+        fnClick={() => {
+          SetShowLoadingPage(false);
+        }}
+      />
       <FuckYuri />
       <group position={[-2.5, 1.5, 0]}>
         <Text scale={0.07} anchorX={2} font={RobotoCondensedBold}>

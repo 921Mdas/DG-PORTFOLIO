@@ -1,5 +1,6 @@
 const fragmentSimulation = `
 uniform sampler2D uTexturePosition;
+uniform sampler2D uTexture;
 uniform float time;
 
 vec3 mod289(vec3 x) {
@@ -119,7 +120,10 @@ vec3 curl(float	x,	float	y,	float	z)
                 float amplitude = 0.01;
                 vec3 target = pos + amplitude * curl(f*pos.x, f*pos.y, f*pos.z);
 			
-				gl_FragColor = vec4(target, 1.0);
+				 vec4 modelTextureColor = texture2D(uTexture, uv); // Sample the model texture
+                 vec3 finalColor = target * modelTextureColor.rgb; // Modify target position based on the model texture
+
+                gl_FragColor = vec4(finalColor, 1.0);
 
 			}
 

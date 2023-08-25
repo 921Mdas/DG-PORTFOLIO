@@ -1,29 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFBO, useGLTF } from "@react-three/drei";
 import { useFrame, extend, createPortal, Canvas } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
-import woman from "../../../assets/models/woman.glb";
 import SimulationMaterial from "./SimulationMaterial";
+import woman from "../../../assets/models/woman.glb";
+import trialglb from "../../../assets/models/envelope.glb";
 import vertexShader from "../../../glsl/fbovertex";
 import fragmentShader from "../../../glsl/fbofragment";
+import Imaginez from "./Image";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 extend({ SimulationMaterial: SimulationMaterial });
 
 const FBOParticles = () => {
+  let Root = null;
   const size = 128;
   const points = useRef();
   const simulationMaterialRef = useRef();
-  const { nodes } = useGLTF(woman, false);
+  // const { nodes } = useGLTF(woman, false);
+  const { nodes } = useGLTF(trialglb, false);
+  const loader = new GLTFLoader();
+  loader.load(trialglb, gltf => {
+    Root = gltf.scene;
+    console.log("root", Root);
+  });
 
   // traverse the model
-  const model = nodes.Root.children[1].children[0];
-  const scalemodel = 0.05;
-  model.geometry.scale(scalemodel, scalemodel, scalemodel);
-  const facePos = model.geometry.attributes.position.array;
-  const faceNumber = facePos.length / 3;
+  const model =
+    nodes.Sketchfab_Scene.children[0].children[0].children[0].children[0];
+  const geometry = model.geometry.attributes.position.array;
+  // const model = nodes.Root.children[1].children[0];
+  // const scalemodel = 0.09;
+  // model.geometry.scale(scalemodel, scalemodel, scalemodel);
+  // let facePos =
+  // nodes?.Root.children[1].children[3].geometry.attributes.position.array;
 
-  console.log(facePos);
+  // const faceNumber = facePos?.length / 3;
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(
@@ -48,27 +61,6 @@ const FBOParticles = () => {
   });
 
   //  instead of particles position
-  const fillPositions = texture => {
-    let arr = texture.image.data;
-
-    //   the array of texture data has about 4096 length
-    // meaning each particle has 4 data it carries
-    for (let i = 0; i < arr.length; i = i + 4) {
-      //   here we set the particles positions
-      // next we create random values to assign to each of 4 data positions;
-      let rand = Math.floor(Math.random() * faceNumber);
-      let x = facePos[i * rand];
-      let y = facePos[i * rand + 1];
-      let z = facePos[i * rand + 2];
-      // for each particle, fill it's position with these random values at each iteration
-      arr[i] = x;
-      arr[i + 1] = y;
-      arr[i + 2] = z;
-      arr[i + 3] = 1;
-    }
-
-    return arr;
-  };
 
   const particlesPosition = useMemo(() => {
     const length = size * size;
@@ -81,10 +73,31 @@ const FBOParticles = () => {
     return particles;
   }, [size]);
 
+  let modelTexture = null;
+  useEffect(() => {
+    loader.load(trialglb, gltf => {
+      Root = gltf.scene;
+      gltf.scene.traverse(node => {
+        if (node.isMesh) {
+          const material = node.material;
+          if (material && material.map) {
+            modelTexture = material.map;
+          }
+        }
+      });
+    });
+  }, []);
+
   const uniforms = useMemo(
     () => ({
       uPositions: {
         value: null,
+      },
+      uTexture: {
+        value: null,
+      },
+      uTime: {
+        value: 0,
       },
     }),
     []
@@ -99,8 +112,11 @@ const FBOParticles = () => {
     gl.setRenderTarget(null);
 
     points.current.material.uniforms.uPositions.value = renderTarget.texture;
-
     simulationMaterialRef.current.uniforms.uTime.value = clock.elapsedTime;
+
+    if (modelTexture) {
+      simulationMaterialRef.current.uniforms.uTexture.value = modelTexture; // Add this line
+    }
   });
 
   return (
@@ -148,10 +164,10 @@ const FBOParticles = () => {
 
 const Scene = () => {
   return (
-    <>
+    <group position={[0, 0, 0]}>
       <ambientLight intensity={0.5} />
       <FBOParticles />
-    </>
+    </group>
   );
 };
 

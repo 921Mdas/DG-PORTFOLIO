@@ -7,13 +7,15 @@ const LightScene = () => {
     ambient: folder({
       ambientLight: { value: 1, min: 0, max: 1, step: 0.01 },
       directionalLight: { value: 0, min: 0, max: 1, step: 0.01 },
-      aColor: "white",
+      aColor: "blue",
     }),
   });
 
   return (
     <>
       <ambientLight intensity={ambientLight} color={aColor} />
+      <directionalLight intensity={2} color={"blue"} position={[0, 0, 0]} />
+      <spotLight />
     </>
   );
 };

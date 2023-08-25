@@ -26,7 +26,7 @@ interface Paragraph {
 
 const LinkHelper: React.FC<Paragraph> = ({
   text = "Hello",
-  color = "whitesmoke",
+  color = "grey",
   scale = 0.5,
   lineHeight = 1,
   anchorX = 0,
@@ -37,7 +37,7 @@ const LinkHelper: React.FC<Paragraph> = ({
   fnOut,
   fnClick,
   material = new THREE.MeshStandardMaterial({
-    color: "whitesmoke",
+    color: "white",
   }),
 }) => {
   const ref = useRef<any>();
@@ -49,12 +49,11 @@ const LinkHelper: React.FC<Paragraph> = ({
   useEffect(() => {
     if (hovered) {
       document.body.style.cursor = "pointer";
-      ref.current.color = "26#fcdb";
     }
     return () => {
       document.body.style.cursor = "auto";
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      // ref.current.color = "whitesmoke";
+      // ref.current.color = "white";
     };
   }, [hovered]);
 

@@ -20,12 +20,13 @@ import { Float, Html, useScroll } from "@react-three/drei";
 import { useFrame, Canvas } from "react-three-fiber";
 import * as THREE from "three";
 import Scene from "./FBO";
+import { Hand } from "./BgcModels.jsx";
 // components
 import CustomCursor from "../Cursors/Cursor.jsx";
 // import Particles from "./Particles";
-// import { Blob, Cells, CylinderWall, Line } from "./BgcModels.jsx";
+import { Blob, Cells, CylinderWall, Line } from "./BgcModels.jsx";
 // import VideoWrap from "./Video.jsx";
-// import VFX from "../Effect/BloomVFX.jsx";
+import VFX from "../Effect/BloomVFX.jsx";
 // import imageTexture from "../../../assets/Images/girl.png";
 // import xfrag from "../Effect/Shaders/xfrag";
 // import xvert from "../Effect/Shaders/xvert";
@@ -92,12 +93,14 @@ const Background = () => {
   //   fov: { value: 10, min: 0, max: 200 },
   //   curl: { value: 0.33, min: 0.01, max: 0.5, step: 0.01 },
   // });
+  const scroll = useScroll();
 
-  // const blob = useRef(null);
+  const blob = useRef(null);
+  const refHand = useRef(null);
   // const blob1 = useRef(null);
   // const blob2 = useRef(null);
   // const scroll = useScroll();
-  // const tl = useRef(null);
+  const tl = useRef(null);
   // const webglRef = useRef();
   // const particlesRef = useRef(null);
 
@@ -122,23 +125,28 @@ const Background = () => {
   //   };
   // }, []);
 
-  // useFrame((_state, _delta) => {
-  //   tl?.current.seek(scroll.offset * tl?.current.duration());
-  // });
+  useFrame((_state, _delta) => {
+    tl?.current.seek(scroll.offset * tl?.current.duration());
+  });
 
-  // useLayoutEffect(() => {
-  //   tl.current = gsap.timeline({
-  //     defaults: { duration: 5, ease: "power1.inOut" },
-  //   });
+  useLayoutEffect(() => {
+    tl.current = gsap.timeline({
+      defaults: { duration: 5, ease: "power1.inOut" },
+    });
 
-  //   const tlx = tl.current;
+    const tlx = tl.current;
 
-  //   tlx.to(blob.current.rotation, {
-  //     x: 3,
-  //     z: 30,
-  //     y: Math.PI * 0.5,
-  //   });
-  // }, []);
+    tlx.to(blob.current.rotation, {
+      x: 3,
+      z: 30,
+      y: Math.PI * 0.5,
+    });
+    tlx.to(refHand.current.rotation, {
+      x: 0,
+      z: 0.5,
+      y: 0,
+    });
+  }, []);
 
   // const count = 2000;
   // const particlesPosition = useMemo(() => {
@@ -177,7 +185,15 @@ const Background = () => {
 
   return (
     <>
-      <Scene />
+      <group position={[0, 0, -1]}>
+        <Hand
+          position={[-0.1, -1.3, 0]}
+          scale={1.2}
+          rotation={[Math.PI * 0.5, Math.PI * 0.5, 0]}
+          ref={refHand}
+        />
+        <Scene />
+      </group>
       {/* <points ref={pointRef}>
         <bufferGeometry>
           <bufferAttribute
@@ -198,25 +214,8 @@ const Background = () => {
       {/* <Experimental /> */}
       {/* <Physics gravity={[0, 0, 5]}> */}
       <CustomCursor />
-      {/* <group position={[0, 0, -0.5]} rotation={[0, 0, 5.5]}>
-          <Particles {...props} position={[0, 0, 1]} />
-        </group> */}
-      {/* <Blob ref={blob} /> */}
-      {/* <group position={[0, 0, -0.5]} rotation={[0, 0, 5.5]}>
-          <Particles src={imageTexture} />
-        </group> */}
-      {/* 
-      <mesh scale={1} position={[0, 0, 0]}>
-        <sphereGeometry />
-        <meshBasicMaterial toneMapped="false">
-          <VideoWrap />
-        </meshBasicMaterial>
-      </mesh> */}
-      {/* <VFX /> */}
-      {/* <RigidBody colliders="ball" gravityScale={0.5}>
-          <Cells />
-          
-        </RigidBody> */}
+      <Blob ref={blob} position={[0, 0, -10]} />
+      <VFX />
       {/* </Physics> */}
       {/* <ForgiveYuri /> */}
     </>

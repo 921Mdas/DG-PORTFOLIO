@@ -5,7 +5,7 @@ import * as THREE from "three";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
 import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
-import { ProjectLens } from "../../3dHelpers/BgcModels";
+import { ProjectLens, Molecule } from "../../3dHelpers/BgcModels";
 import { Materials } from "../../MaterialsHHC/Materials";
 
 const ProjectCard = ({
@@ -37,13 +37,11 @@ const ProjectCard = ({
   }, []);
 
   const material = new Materials().standard2({
-    transparent: true,
     opacity: 1,
-    color: "white",
+    color: "grey",
     roughness: 0.5,
     metalness: 0,
     side: THREE.FrontSide,
-    blending: THREE.AdditiveBlending,
     polygonOffset: true,
     polygonOffsetFactor: 1,
     envMapIntensity: 2,
@@ -51,7 +49,7 @@ const ProjectCard = ({
 
   return (
     <group position={position}>
-      <group position={textPos}>
+      <group>
         <ParagraphHelper
           scale={codeScale + 0.03}
           lineHeight={1.5}
@@ -61,36 +59,39 @@ const ProjectCard = ({
           font={RobotoCondensed}
           material={material}
         />
-        <ParagraphHelper
-          scale={skillScale}
-          lineHeight={1.5}
-          anchorX={SkillAnchX}
-          anchorY={skillAnchY - 2}
-          text={skills}
-        />
-        <LinkHelper
-          scale={codeScale}
-          lineHeight={1.5}
-          anchorX={codeAnchX}
-          anchorY={codeAnchY}
-          text={`CODE`}
-          fnOver={() => Over()}
-          fnClick={() => {
-            window.open(`${codeUrl}`, "_blank");
-          }}
-          font={RobotoCondensed}
-        />
-        <LinkHelper
-          scale={viewScale}
-          lineHeight={1.5}
-          anchorX={viewAnchX}
-          anchorY={viewAnchY}
-          text={`VIEW`}
-          font={RobotoCondensed}
-          fnClick={() => {
-            window.open(`${viewUrl}`, "_blank");
-          }}
-        />
+        <group position={textPos}>
+          <ParagraphHelper
+            scale={skillScale}
+            lineHeight={1.5}
+            anchorX={SkillAnchX}
+            anchorY={skillAnchY - 2}
+            text={skills}
+            material={material}
+          />
+          <LinkHelper
+            scale={codeScale}
+            lineHeight={1.5}
+            anchorX={codeAnchX}
+            anchorY={codeAnchY}
+            text={`CODE`}
+            fnOver={() => Over()}
+            fnClick={() => {
+              window.open(`${codeUrl}`, "_blank");
+            }}
+            font={RobotoCondensed}
+          />
+          <LinkHelper
+            scale={viewScale}
+            lineHeight={1.5}
+            anchorX={viewAnchX}
+            anchorY={viewAnchY}
+            text={`VIEW`}
+            font={RobotoCondensed}
+            fnClick={() => {
+              window.open(`${viewUrl}`, "_blank");
+            }}
+          />
+        </group>
         <mesh position={spherePos} scale={0.4} rotation={[Math.PI * 0.5, 0, 0]}>
           <ProjectLens />
         </mesh>
@@ -227,45 +228,52 @@ const Projects = ({ _material, headNum, initPos }) => {
 
   return (
     <group position={[2.5, -3, -1.5]}>
+      {/* banaleo */}
       <ProjectCard
         {...data[0]}
-        position={[0, 0, 3]}
+        position={[-0, -0.6, 3.5]}
         spherePos={[-1.4, initPos - 34, -0.5]}
-        textPos={[0, 0, 0]}
-        titlePosX={20.85}
+        textPos={[0.03, 0, 0]}
+        titlePosX={20.3}
         titlePosY={72}
       />
+      {/* boolforge */}
       <ProjectCard
         {...data[1]}
-        position={[0, 0, 0]}
+        position={[-2.5, -0.5, 0.6]}
         spherePos={[-1.5, initPos - 34, -0.5]}
-        textPos={[-1, 0, 3]}
-        titlePosY={72}
-        titlePosX={21}
+        textPos={[0.08, 0, 0]}
+        titlePosY={71.8}
+        titlePosX={20}
       />
+      {/* audioview */}
       <ProjectCard
         {...data[2]}
-        position={[0, 0, 0]}
+        position={[-3, 0.3, 1]}
         spherePos={[-1.59, initPos - 34, -0.5]}
-        textPos={[-2, 0, 3]}
+        textPos={[0.01, 0, 0]}
         titlePosY={72}
         titlePosX={21}
       />
+
+      {/* csv cleaner */}
       <ProjectCard
         {...data[3]}
-        position={[0, 0, 0]}
-        spherePos={[-1.5, initPos - 34, -0.5]}
-        textPos={[-1, -1, 3]}
+        position={[-3.5, -0.7, 1]}
+        spherePos={[-1.59, initPos - 34, -0.5]}
+        textPos={[0.05, 0, 0]}
         titlePosY={72}
-        titlePosX={21.5}
+        titlePosX={21}
       />
+
+      {/* salespipe */}
       <ProjectCard
         {...data[4]}
-        position={[0, 0, 0]}
-        spherePos={[-1.6, initPos - 34.05, -0.5]}
-        textPos={[-2, -1, 3]}
-        titlePosY={72}
+        position={[1, 0, 2]}
+        spherePos={[-1.4, initPos - 34, -0.5]}
+        textPos={[-0.04, 0, 0]}
         titlePosX={21.5}
+        titlePosY={72}
       />
     </group>
   );
