@@ -31,7 +31,7 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         vUv = uv;
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
       }`,
-      fragmentShader: glsl`uniform sampler2D positions;
+      fragmentShader: `uniform sampler2D positions;
       uniform float uTime;
       uniform float uCurlFreq;
       varying vec2 vUv;

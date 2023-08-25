@@ -92,11 +92,10 @@ float cnoise(vec3 P) {
 void main(){
   vUv = uv;
 
-    vDisplacement = cnoise(position + vec3(2.0 * u_time));
+    vDisplacement = cnoise(position *  u_intensity + vec3(2.0 * u_time));
+    vec3 newPosition = position.z + normal * (u_intensity + 0.8);
 
-    vec3 newPosition = position + normal * (u_intensity * vDisplacement);
-
-    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0);
+    vec4 modelPosition = modelMatrix * vec4(newPosition, 1.0) * (u_intensity / 0.1);
     vec4 viewPosition = viewMatrix * modelPosition;
     vec4 projectedPosition = projectionMatrix * viewPosition;
 

@@ -93,13 +93,12 @@ const ThreeJS = () => {
             <color attach="background" args={["#000000"]} />
             {/* <Perf position="bottom-left" hidden={true} /> */}
             <LightScene />
-            {/* <CameraIntroMovement /> */}
+            <CameraIntroMovement />
             <ScrollControls pages={5} damping={0.2} distance={0.5}>
               <HHC perfSucks={perfSucks} />
             </ScrollControls>
-            {/* <PerformanceMonitor onDecline={() => deprecate(true)} /> */}
-            <OrbitControls />
-            {/* <Parallax /> */}
+            <PerformanceMonitor onDecline={() => deprecate(true)} />
+            <Parallax />
             <AdaptiveDpr pixelated />
             <Leva hidden={true} />
           </Suspense>

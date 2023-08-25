@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Text } from "@react-three/drei";
 import * as THREE from "three";
-import { MeshStandardMaterial, ShaderMaterial, Vector3 } from "three";
+import { MeshStandardMaterial, ShaderMaterial, Vector3, Euler } from "three";
 
 interface Paragraph {
   text: string;
@@ -17,6 +17,7 @@ interface Paragraph {
     | "top-baseline"
     | "bottom-baseline";
   position: Vector3;
+  rotation: Euler;
   font?: any;
   fnOver?: () => any;
   fnOut?: () => any;
@@ -32,6 +33,7 @@ const ParagraphHelper: React.FC<Paragraph> = ({
   anchorX = 0,
   anchorY = 0,
   position = new Vector3(0, 0, 0),
+  rotation = new Euler(0, 0, 0),
   font = "",
   fnClick,
   material,
@@ -82,6 +84,7 @@ const ParagraphHelper: React.FC<Paragraph> = ({
       onClick={fnClick}
       ref={textRef}
       material={material}
+      rotation={rotation}
     >
       {text}
     </Text>

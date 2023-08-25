@@ -40,14 +40,14 @@ function FuckYuri() {
         value: 0,
       },
       u_intensity: {
-        value: 0.3,
+        value: 0.1,
       },
       u_mouse: { value: new Vector2(0, 0) },
       u_bg: {
-        value: new Color("#2e2e2e"),
+        value: new Color("#57878F"),
       },
       u_colorA: { value: new Color("#ffffff") },
-      u_colorB: { value: new Color("#616161") },
+      u_colorB: { value: new Color("#57878F") },
     };
   });
 

@@ -86,8 +86,8 @@ float snoise(vec2 v)
 void main() {
   vec3 color = u_bg;
 
-  float noise1 = snoise(vUv + uTime * (sin(u_mouse.x * 0.001) + 0.2));
-  float noise2 = snoise(vUv + uTime * (sin(u_mouse.x * 0.001) + 0.2));
+  float noise1 = snoise(vUv + uTime * (sin(u_mouse.x * 0.0005) ));
+  float noise2 = snoise(vUv + uTime * (sin(u_mouse.x * 0.0005)));
 
   color = mix(color, u_colorA, noise1);
   color = mix(color, u_colorB, noise2);
