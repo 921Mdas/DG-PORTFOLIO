@@ -5,7 +5,7 @@ import * as THREE from "three";
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
 import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
-import { ProjectLens, Molecule } from "../../3dHelpers/BgcModels";
+import { ProjectLens } from "../../3dHelpers/BgcModels";
 import { Materials } from "../../MaterialsHHC/Materials";
 
 const ProjectCard = ({
@@ -85,7 +85,7 @@ const ProjectCard = ({
             lineHeight={1.5}
             anchorX={viewAnchX}
             anchorY={viewAnchY}
-            text={`VIEW`}
+            text={`LIVE`}
             font={RobotoCondensed}
             fnClick={() => {
               window.open(`${viewUrl}`, "_blank");
@@ -162,7 +162,7 @@ const Projects = ({ _material, headNum, initPos }) => {
       anchSize: headNum - 0.34,
       anchorX: 31,
       anchorY: initPos + 68,
-      text: "AUDIOVIEW",
+      text: "PULSESYNC",
       skillScale: headNum - 0.36,
       SkillAnchX: 43,
       skillAnchY: initPos + 127,
@@ -186,7 +186,7 @@ const Projects = ({ _material, headNum, initPos }) => {
       anchSize: headNum - 0.34,
       anchorX: 31,
       anchorY: initPos + 68,
-      text: "CSV CLEANER",
+      text: "DATAPURGE",
       skillScale: headNum - 0.36,
       SkillAnchX: 42.5,
       skillAnchY: initPos + 127,
@@ -210,7 +210,7 @@ const Projects = ({ _material, headNum, initPos }) => {
       anchSize: headNum - 0.34,
       anchorX: 31,
       anchorY: initPos + 68,
-      text: "SALESPIPE",
+      text: "QUALIFYME",
       skillScale: headNum - 0.36,
       SkillAnchX: 42.5,
       skillAnchY: initPos + 127,
@@ -231,7 +231,7 @@ const Projects = ({ _material, headNum, initPos }) => {
       {/* banaleo */}
       <ProjectCard
         {...data[0]}
-        position={[-0, -0.6, 3.5]}
+        position={[-0, -0.6, 1.5]}
         spherePos={[-1.4, initPos - 34, -0.5]}
         textPos={[0.03, 0, 0]}
         titlePosX={20.3}

@@ -3,10 +3,9 @@ import React from "react";
 // Internal
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import LinkHelper from "../../Util/LinkHelper.tsx";
-import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
 import { Materials } from "../../MaterialsHHC/Materials";
 
-const LandingContact = ({ headNum, initPos, material, font }) => {
+const LandingContact = ({ headNum, initPos, _material, font }) => {
   const basicMaterial = new Materials().standard2({
     color: "white",
   });

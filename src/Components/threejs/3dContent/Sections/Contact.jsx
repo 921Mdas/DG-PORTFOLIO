@@ -16,11 +16,11 @@ const Contact = ({ headNum, initPos, material }) => {
       <ParagraphHelper
         scale={headNum - 0.27}
         lineHeight={1.5}
-        anchorX={-11}
+        anchorX={-10}
         anchorY={initPos + 27.8}
         text={`SAY HELLO`}
         font={RobotoCondensed}
-        material={material}
+        material={basicMaterial}
       />
       <ParagraphHelper
         scale={headNum - 0.35}
@@ -36,7 +36,6 @@ const Contact = ({ headNum, initPos, material }) => {
           lineHeight={1.5}
           anchorX={-28}
           anchorY={initPos + 125}
-          material={basicMaterial}
           text={`Linkedin /`}
           fnClick={() => {
             window.open("https://www.linkedin.com/feed/", "_blank");
@@ -48,7 +47,6 @@ const Contact = ({ headNum, initPos, material }) => {
           anchorX={-33}
           anchorY={initPos + 125}
           text={`Github /`}
-          material={basicMaterial}
           fnClick={() => {
             window.open("https://github.com/921Mdas", "_blank");
           }}
@@ -58,7 +56,6 @@ const Contact = ({ headNum, initPos, material }) => {
           lineHeight={1.5}
           anchorX={-37}
           anchorY={initPos + 125}
-          material={basicMaterial}
           text={`Instagram`}
           fnClick={() => {
             window.open("", "_blank");

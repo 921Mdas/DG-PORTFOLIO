@@ -1,12 +1,17 @@
-import React, { useMemo, useState, useEffect } from "react";
-import RobotoCondensedBold from "../../../../assets/Fonts/RbtcBold.ttf";
+// react
+import React, { useState, useEffect } from "react";
+
+// three
 import { DoubleSide } from "three";
-import { Decal, Text, MeshTransmissionMaterial } from "@react-three/drei";
-import TextureShape from "../../Util/TextureRender.tsx";
+import { Decal, Text } from "@react-three/drei";
 import { useControls } from "leva";
+
+// internal imports
 import { Materials } from "../../MaterialsHHC/Materials";
 import LandingContact from "./LandingContact";
 import FuckYuri from "../../3dHelpers/FuckYuri";
+import RobotoCondensedBold from "../../../../assets/Fonts/RbtcBold.ttf";
+import TextureShape from "../../Util/TextureRender.tsx";
 
 export const BubbleButton = ({ fnClick }) => {
   const config = useControls({
@@ -41,6 +46,7 @@ export const BubbleButton = ({ fnClick }) => {
       document.body.style.cursor = "auto";
     };
   }, [hovered]);
+
   return (
     <mesh
       onClick={() => {

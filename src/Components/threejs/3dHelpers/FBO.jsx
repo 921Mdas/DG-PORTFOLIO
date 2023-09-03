@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
-import { useFBO, useGLTF } from "@react-three/drei";
-import { useFrame, extend, createPortal, Canvas } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
+import { useFBO, useGLTF } from "@react-three/drei";
+import { useFrame, extend, createPortal } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+// internal imports
 import SimulationMaterial from "./SimulationMaterial";
-import woman from "../../../assets/models/woman.glb";
-import trialglb from "../../../assets/models/envelope.glb";
 import vertexShader from "../../../glsl/fbovertex";
 import fragmentShader from "../../../glsl/fbofragment";
-import Imaginez from "./Image";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+
+// models
+import trialglb from "../../../assets/models/envelope.glb";
 
 extend({ SimulationMaterial: SimulationMaterial });
 
@@ -18,7 +19,6 @@ const FBOParticles = () => {
   const size = 128;
   const points = useRef();
   const simulationMaterialRef = useRef();
-  // const { nodes } = useGLTF(woman, false);
   const { nodes } = useGLTF(trialglb, false);
   const loader = new GLTFLoader();
   loader.load(trialglb, gltf => {
@@ -29,14 +29,6 @@ const FBOParticles = () => {
   // traverse the model
   const model =
     nodes.Sketchfab_Scene.children[0].children[0].children[0].children[0];
-  const geometry = model.geometry.attributes.position.array;
-  // const model = nodes.Root.children[1].children[0];
-  // const scalemodel = 0.09;
-  // model.geometry.scale(scalemodel, scalemodel, scalemodel);
-  // let facePos =
-  // nodes?.Root.children[1].children[3].geometry.attributes.position.array;
-
-  // const faceNumber = facePos?.length / 3;
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(

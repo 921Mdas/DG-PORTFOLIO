@@ -1,4 +1,5 @@
 import React from "react";
+
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 
 const About = ({ _headNum, _material, initPos }) => {
@@ -9,11 +10,11 @@ const About = ({ _headNum, _material, initPos }) => {
           scale={0.06}
           lineHeight={2}
           anchorX={40}
-          anchorY={initPos + 8}
+          anchorY={initPos + 7}
           text={`
-                 Originally from the DR Congo, 
-                  I have worked and studied 
-in beautiful Cape Town, South Africa. 
+                 Freelance FullStack Developer 
+                 with a creative flair.
+                 Focused in delivering high-quality results.
         `}
         />
       </group>
@@ -37,10 +38,8 @@ Curious about new stuffs
           lineHeight={2}
           anchorX={40}
           anchorY={initPos + 26}
-          text={`I enjoy good music,
-        Particularly Blake Shelton's music 
-              Love travelling, playing chess, 
-        savoring sushi,and programming </>`}
+          text={`               Love travelling, playing chess, 
+               savoring sushi and good music </>`}
         />
       </group>
     </>

@@ -23,21 +23,6 @@ const VFX = () => {
 
   return (
     <EffectComposer>
-      {/* <GodRays
-        sun={new THREE.Vector3(0, 100, 0)} // Position of the light source
-        exposure={0.34} // Intensity of the rays
-        decay={0.8} // How quickly the rays fade
-        blur // Apply blur to the rays (optional)
-      /> */}
-      {/* <Bloom
-        mipmapBlur
-        intensity={intensity}
-        luminanceThreshold={luminanceThreshold}
-        luminanceSmoothing={luminanceSmoothing}
-        radius={radius}
-        width={width}
-        height={height}
-      /> */}
       <Bloom
         mipmapBlur
         levels={9}

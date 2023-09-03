@@ -1,6 +1,5 @@
 import { useFrame } from "react-three-fiber";
-import React, { forwardRef, useRef } from "react";
-import { Vector3, Euler } from "three";
+import { useRef } from "react";
 import { MathUtils } from "three";
 
 export const useAnimation = (

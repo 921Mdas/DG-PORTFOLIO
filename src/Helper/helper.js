@@ -37,7 +37,7 @@ export const R3FCameraAnimatedEvents = () => {
 
   window.addEventListener("scroll", e => {
     const scrollRatio = window.scrollY / height;
-    // camera.position.y = -scrollRatio * 1.5;
+    camera.position.y = -scrollRatio * 1.5;
   });
 
   const tl = gsap.timeline({
