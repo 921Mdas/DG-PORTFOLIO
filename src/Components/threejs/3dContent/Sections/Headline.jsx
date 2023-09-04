@@ -1,42 +1,15 @@
-import React, { forwardRef, useEffect, useRef } from "react";
-import { Vector3, Euler } from "three";
-import { useFrame } from "react-three-fiber";
-import { MathUtils } from "three";
+import React, { forwardRef } from "react";
+
 // internal
 import ParagraphHelper from "../../Util/ParagraphHelper.tsx";
 import RobotoCondensed from "../../../../assets/Fonts/Rbtc.ttf";
-import { useAnimation } from "../../3dHelpers/Animator";
 import { Float } from "@react-three/drei";
 
-const Logo = forwardRef(({ headNum, material }, ref) => {
+const Logo = forwardRef(({ headNum, material }, _ref) => {
   const customscaleNum = 0.2;
-
-  // const targetFontRefOne = useAnimation(
-  //   new Vector3(0, 0, 20),
-  //   new Euler(0, 0, 0),
-  //   new Vector3(0, 0, 0),
-  //   new Euler(0, 0, 0)
-  // );
-
-  // const targetFontRefTwo = useAnimation(
-  //   new Vector3(0, 0, 20),
-  //   new Euler(0, 0, 0),
-  //   new Vector3(0, 0, 0),
-  //   new Euler(0, 0, 0),
-  //   1.3
-  // );
-
-  // const targetFontRefThree = useAnimation(
-  //   new Vector3(0, 0, 20),
-  //   new Euler(0, 0, 0),
-  //   new Vector3(0, 0, 0),
-  //   new Euler(0, 0, 0),
-  //   1
-  // );
 
   return (
     <group position-y={1.2} scale={0.2} position-x={-2.5} position-z={0}>
-      {/* Use the targetFontRefOne, targetFontRefTwo, and targetFontRefThree as refs */}
       <Float
         speed={3} // Animation speed, defaults to 1
         rotationIntensity={1.5} // XYZ rotation intensity, defaults to 1

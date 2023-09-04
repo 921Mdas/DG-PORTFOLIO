@@ -1,17 +1,8 @@
 import React, { useRef } from "react";
 import { Mesh, Vector3 } from "three";
 
-import {
-  MeshTransmissionMaterial,
-  Decal,
-  Instance,
-  Instances,
-  useGLTF,
-  Environment,
-} from "@react-three/drei";
-import { useControls } from "leva";
+import { Instance, Instances, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import TextureShape from "../Util/TextureRender.tsx";
 import face from "../../../assets/models/face.glb";
 import { useTransmissionProps } from "../Util/Transmission";
 
@@ -55,18 +46,8 @@ const Lens: React.FC<LensProps> = (
   props
 ) => {
   const lensRef = useRef<Mesh>(null);
-  const { nodes, materials } = useGLTF(face);
-  const transmissionProps = useControls("Lens", {
-    backside: true,
-    ior: { value: 1.54, min: 1, max: 5, step: 0.01 },
-    thickness: { value: 200, min: 0, max: 200, step: 0.01 },
-    chromaticAberration: { value: 1.0, min: 0, max: 1 },
-    anisotropy: { value: 0, min: 0, max: 10, step: 0.01 },
-    distortionScale: { value: 0, min: 0.01, max: 1, step: 0.01 },
-    temporalDistortion: { value: 0, min: 0, max: 1, step: 0.01 },
-  });
-
-  const { material, propsies } = useTransmissionProps();
+  const { nodes } = useGLTF(face);
+  const { material } = useTransmissionProps();
 
   const glassMaterial = new THREE.MeshStandardMaterial({
     color: new THREE.Color(1, 1, 1), // Set color to white
@@ -133,18 +114,6 @@ const Lens: React.FC<LensProps> = (
             </group>
           </group>
           {material}
-          {/* <Decal position={[0, 0, 1]} rotation={0} scale={1.25}>
-            <meshBasicMaterial
-              transparent
-              polygonOffset
-              polygonOffsetFactor={-100}
-              color={"whitesmoke"}
-              side={THREE.DoubleSide}
-              toneMapped={false}
-            >
-              <TextureShape text={text} size={textSize} font={font} />
-            </meshBasicMaterial>
-          </Decal> */}
         </mesh>
       </group>
     </>

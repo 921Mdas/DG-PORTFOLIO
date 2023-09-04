@@ -1,17 +1,17 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React from "react";
 import * as THREE from "three";
-import { vertexShader, fragmentShader } from "../../../glsl/TextShader";
-import { useFrame } from "react-three-fiber";
+import { Scroll, Float } from "@react-three/drei";
+
+// sections
 import Logo from "./Sections/Headline";
 import About from "./Sections/About";
 import SkillPart from "./Sections/Skills";
 import ProjectsPart from "./Sections/Projects";
 import Contact from "./Sections/Contact";
-import { Scroll } from "@react-three/drei";
-import { gsap } from "gsap";
-import { useScroll } from "@react-three/drei";
+
+// internal imports
 import { Molecule } from "../3dHelpers/BgcModels";
-import { Float } from "@react-three/drei";
+import { vertexShader, fragmentShader } from "../../../glsl/TextShader";
 
 const initPos = 28;
 const headNum = 0.4;

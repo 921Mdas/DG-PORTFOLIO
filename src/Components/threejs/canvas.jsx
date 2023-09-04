@@ -1,39 +1,24 @@
-import React, {
-  Suspense,
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-} from "react";
-import { ScrollControls } from "@react-three/drei";
+// external imports
+import React, { Suspense, useState } from "react";
+import {
+  PerformanceMonitor,
+  AdaptiveDpr,
+  ScrollControls,
+} from "@react-three/drei";
 import * as THREE from "three";
 import { Canvas, useThree } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
+import { Leva } from "leva";
+
+// internal imports
 import LightScene from "./Light/Light";
 import useCull from "./Util/useCull";
-import { PerformanceMonitor, AdaptiveDpr } from "@react-three/drei";
-import VFX from "./Effect/BloomVFX.jsx";
-import DepthVFX from "./Effect/DepthVFX";
-import { Leva } from "leva";
 import Background from "./3dHelpers/Background";
 import Content from "./3dContent/MainSection";
 import LoaderX from "./LoaderX.tsx";
 import Parallax from "./Effect/Parallax";
-import { useFrame } from "react-three-fiber";
-import Animations from "../Animations/Animations";
-import { OrbitControls } from "@react-three/drei";
 import CameraIntroMovement from "./3dHelpers/CameraIntro.tsx";
-import LinkHelper from "./Util/LinkHelper.tsx";
-import RobotoCondensed from "../../assets/Fonts/Rbtc.ttf";
-import RobotoCondensedBold from "../../assets/Fonts/RbtcBold.ttf";
-import { Text } from "@react-three/drei";
 import Landing from "./3dContent/Sections/WelcomePage.tsx";
-// ******
-import { gsap } from "gsap/all";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { scrollBar } from "smooth-scrollbar";
-import imagez from "../../assets/Images/girl.png";
-// gsap.registerPlugin(ScrollTrigger);
 
 const FrustumCulledObject = ({ children }) => {
   const { camera } = useThree();
@@ -53,8 +38,6 @@ const ThreeJS = () => {
   const [perfSucks, deprecate] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
   const [showLoadingPage, SetShowLoadingPage] = useState(true);
-
-  // ** particles
 
   return (
     <div
@@ -99,6 +82,7 @@ const ThreeJS = () => {
             </ScrollControls>
             <PerformanceMonitor onDecline={() => deprecate(true)} />
             <Parallax />
+
             <AdaptiveDpr pixelated />
             <Leva hidden={true} />
           </Suspense>

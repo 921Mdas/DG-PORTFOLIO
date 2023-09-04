@@ -5,7 +5,7 @@ import * as THREE from "three";
 const Parallax = () => {
   const targetPosition = useRef(new THREE.Vector3());
 
-  useFrame((state, delta) => {
+  useFrame((state, _delta) => {
     // Calculate the target position based on the pointer input.
     targetPosition.current.set(
       -Math.sin(state.pointer.x / 4) * 9,

@@ -1,106 +1,28 @@
 // External imports
-import React, {
-  useRef,
-  useLayoutEffect,
-  useEffect,
-  useMemo,
-  forwardRef,
-} from "react";
-import * as THREE from "three";
+import React, { useRef, useMemo, forwardRef } from "react";
 import { useControls } from "leva";
-import { useGLTF, useScroll } from "@react-three/drei";
-import { useFrame, useThree } from "react-three-fiber";
-import gsap from "gsap";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { Debug, Physics, RigidBody } from "@react-three/rapier";
-import { MathUtils, MeshStandardMaterial } from "three";
-import deo from "../../../assets/models/deo.glb";
-import Lens from "../../../assets/models/tfolens.glb";
-import { MeshTransmissionMaterial } from "@react-three/drei";
-import { Materials } from "../MaterialsHHC/Materials";
+import { useGLTF, useAnimations } from "@react-three/drei";
 import { Instance, Instances } from "@react-three/drei";
-import cloudsmaze from "../../../assets/models/cloudsmaze.glb";
-import VideoWrap from "./Video";
-import HandModel from "../../../assets/models/hand2.glb";
-import vertexShaderm from "../../../glsl/mgVert";
-import fragmentShaderm from "../../../glsl/mgFrag";
+import { useFrame } from "react-three-fiber";
+import { MathUtils } from "three";
 
-// Internal imports
-import Rbtc from "../../../assets/Fonts/Rbtc.ttf";
-
-// Components
-
-// Models
-import Steps from "../../../assets/models/steps.glb";
-import cloud from "../../../assets/models/cloud.glb";
-import bust from "../../../assets/models/bust.glb";
-import SftCurve from "../../../assets/models/softwaretextcurve.glb";
-import EyeBall from "../../../assets/models/robotic.glb";
-import ComputerRoom from "../../../assets/models/computers.glb";
+// internal imports
+import { Materials } from "../MaterialsHHC/Materials";
 import BlobFrag from "../../../glsl/blobfrag";
 import BlobVert from "../../../glsl/blobvert";
+
+// Models
+import deo from "../../../assets/models/deo.glb";
+import HandModel from "../../../assets/models/hand2.glb";
+import Lens from "../../../assets/models/tfolens.glb";
+import Steps from "../../../assets/models/steps.glb";
 import molecule from "../../../assets/models/molecule.glb";
-import { Stars } from "@react-three/drei";
-// Glb models
-export const Foundation = props => {
-  const { nodes, materials } = useGLTF(bust);
-  return (
-    <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Cube.geometry}
-        material={materials.Material}
-        position={[0, 1.84, 0]}
-        scale={[1, 3.17, 1]}
-      />
-    </group>
-  );
-};
+import universe from "../../../assets/models/universe.glb";
 
 export const Rock = props => {
   const { scene } = useGLTF(Steps);
   return <primitive object={scene} {...props} />;
 };
-
-export const CustomCloud = props => {
-  const { nodes, materials } = useGLTF(cloud);
-  return (
-    <group {...props} dispose={null}>
-      <group rotation={[-Math.PI / 2, 0, 0]}>
-        <group rotation={[Math.PI / 2, 0, 0]}>
-          <group position={[-0.79, 0, -5.26]} rotation={[-Math.PI / 2, 0, 0]}>
-            <mesh
-              castShadow
-              receiveShadow
-              geometry={nodes["Plane001_08_-_Default_0"].geometry}
-              material={materials["08_-_Default"]}
-            />
-          </group>
-        </group>
-      </group>
-    </group>
-  );
-};
-
-export const SftwareTextCurve = props => {
-  const { nodes, materials } = useGLTF(SftCurve);
-  return (
-    <group {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.BezierCurve003.geometry}
-        position={[3.829, -1.682, 2.402]}
-        rotation={[Math.PI / 2, 1.055, -1.558]}
-      >
-        <meshBasicMaterial wireframe />
-      </mesh>
-    </group>
-  );
-};
-
-// Geometries
 export const CustomPlane = ({ args, position, rotation, color }) => {
   return (
     <mesh position={position} rotation={rotation}>
@@ -133,17 +55,6 @@ export const Blob = forwardRef((props, forwardedRef) => {
     const { clock } = state;
 
     mesh.current.material.uniforms.u_time.value = 0.4 * clock.getElapsedTime();
-    // if (mesh.current) {
-    //   mesh.current.material.uniforms.u_time.value =
-    //     0.4 * clock.getElapsedTime();
-
-    //   mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
-    //     mesh.current.material.uniforms.u_intensity.value,
-    //     0.15,
-    //     0.02
-    //   );
-    // }
-
     if (hover) {
       mesh.current.material.uniforms.u_intensity.value = MathUtils.lerp(
         mesh.current.material.uniforms.u_intensity.value,
@@ -520,5 +431,5 @@ export const Cells = () => {
 };
 
 // preloads
-const modelsToPreload = [ComputerRoom, Lens, deo];
+const modelsToPreload = [deo, HandModel, Lens, molecule];
 modelsToPreload.forEach(model => useGLTF.preload(model));
